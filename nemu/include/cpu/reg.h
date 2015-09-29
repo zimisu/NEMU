@@ -19,7 +19,7 @@ typedef struct {
 		uint32_t _32;
 		uint16_t _16;
 		uint8_t _8[2];
-	} gpr[9];//, eax, ecx, edx, ebx, esp, ebp, esi, edi;
+	} gpr[8];//, eax, ecx, edx, ebx, esp, ebp, esi, edi;
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
