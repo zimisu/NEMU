@@ -36,14 +36,14 @@ typedef struct {
 
 /*
 	uint32_t &eax = gpr[0]._32, 
-			 &edx = gpr[1], 
-			 &ecx = gpr[2], 
-			 &ebx = gpr[3], 
-			 &esp = gpr[4], 
-			 &ebp = gpr[5], 
-			 &esi = gpr[6], 
-			 &edi = gpr[7];
-*/
+			 &ecx = gpr[1]._32, 
+			 &edx = gpr[2]._32, 
+			 &ebx = gpr[3]._32, 
+			 &esp = gpr[4]._32, 
+			 &ebp = gpr[5]._32, 
+			 &esi = gpr[6]._32, 
+			 &edi = gpr[7]._32;
+*/	
 	swaddr_t eip;
 
 } CPU_state;
