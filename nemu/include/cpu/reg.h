@@ -1,6 +1,7 @@
 #ifndef __REG_H__
 #define __REG_H__
 
+
 #include "common.h"
 
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
@@ -14,8 +15,18 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
  * For more details about the register encoding scheme, see i386 manual.
  */
 
+
+#define eax gpr[0]._32
+#define edx gpr[1]._32
+#define ecx gpr[2]._32
+#define ebx gpr[3]._32
+#define esp gpr[4]._32
+#define ebp gpr[5]._32
+#define esi gpr[6]._32
+#define edi gpr[7]._32
 typedef struct {
-	union {
+
+	union cpuUnion{
 		uint32_t _32;
 		uint16_t _16;
 		uint8_t _8[2];
@@ -23,9 +34,16 @@ typedef struct {
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
-
-	uint32_t eax, edx, ecx, ebx, esp, ebp, esi, edi;
-
+/*
+	uint32_t &eax = gpr[0]._32, 
+			 &edx = gpr[1], 
+			 &ecx = gpr[2], 
+			 &ebx = gpr[3], 
+			 &esp = gpr[4], 
+			 &ebp = gpr[5], 
+			 &esi = gpr[6], 
+			 &edi = gpr[7];
+*/
 	swaddr_t eip;
 
 } CPU_state;
