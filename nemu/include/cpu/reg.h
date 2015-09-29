@@ -20,10 +20,10 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 #define edx gpr[1]._32
 #define ecx gpr[2]._32
 #define ebx gpr[3]._32
-#define esp gpr[4]._32
-#define ebp gpr[5]._32
-#define esi gpr[6]._32
-#define edi gpr[7]._32
+#define ebp gpr[4]._32
+#define esi gpr[5]._32
+#define edi gpr[6]._32
+#define esp gpr[7]._32
 typedef struct {
 
 	union cpuUnion{
