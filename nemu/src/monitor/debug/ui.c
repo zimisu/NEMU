@@ -49,6 +49,11 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
 	char *arg;
 	arg = strtok(args, " ");
+	if (arg == NULL)
+	{
+		printf("Arguments error.\n");
+		return 0;
+	} else
 	if (strcmp(arg, "r") == 0)
 	{
 		printf("register status:\n");
