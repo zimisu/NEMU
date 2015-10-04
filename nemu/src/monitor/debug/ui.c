@@ -91,6 +91,7 @@ static int cmd_x(char *args)
 		{
 			printf("  %x", dram_read(addr + 4*i + j, 1));
 		}
+		printf("\n");
 		//printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
 	}
 	printf("\n");
