@@ -38,14 +38,13 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args) {
 	int steps = 1;
-	sscanf(args,"%d", &steps);
 	char *arg = strtok(args, " ");
 	if (strcmp(arg, "") == 0) 
 	{
 		printf("no Arguments\n");
 		printf("%d\n", steps);
 		steps = 1;
-	}
+	} else sscanf(args,"%d", &steps);
 	printf("%d\n",steps);
 	//int steps = strtok(args, " ");
 	cpu_exec(steps);
