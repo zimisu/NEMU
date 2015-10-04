@@ -45,6 +45,7 @@ static int cmd_si(char *args) {
 		printf("%d\n", steps);
 		return 0;
 	}
+	printf("%d\n",steps);
 	//int steps = strtok(args, " ");
 	cpu_exec(steps);
 	return 0;
