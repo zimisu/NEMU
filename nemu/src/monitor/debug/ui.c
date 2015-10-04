@@ -80,7 +80,7 @@ static int cmd_x(char *args)
 {
 	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
 	{
-		printf("Please input the right arguments.");
+		printf("Please input the right arguments.\n");
 		return 0;
 	}
 	int n, addr, i;
@@ -89,7 +89,7 @@ static int cmd_x(char *args)
 	for (i = 0; i < n; ++i)
 	{
 		//int content = dram_read(addr + 4*i, 4);
-		printf("  %x  ",addr + 4*i);
+		printf("  0x%08x  ",addr + 4*i);
 		int j;
 		for (j = 0; j < 4; ++j)
 		{
