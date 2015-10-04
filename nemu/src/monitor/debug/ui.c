@@ -59,13 +59,13 @@ static int cmd_info(char *args) {
 		printf("register status:\n");
 		int i;
 		for (i = 0; i < 8; ++i)
-			printf("%s : 0x%x\n", regsl[i], cpu.gpr[i]._32);
+			printf("  %s : 0x%x\n", regsl[i], cpu.gpr[i]._32);
 		for (i = 0; i < 8; ++i)
-			printf("%s : 0x%x\n", regsw[i], cpu.gpr[i]._16);
+			printf("  %s : 0x%x\n", regsw[i], cpu.gpr[i]._16);
 		for (i = 0; i < 4; ++i)
 		{
-			printf("%s : 0x%x\n", regsb[i*2], cpu.gpr[i]._8[0]);
-			printf("%s : 0x%x\n", regsb[i*2+1], cpu.gpr[i]._8[1]);
+			printf("  %s : 0x%x\n", regsb[i*2], cpu.gpr[i]._8[0]);
+			printf("  %s : 0x%x\n", regsb[i*2+1], cpu.gpr[i]._8[1]);
 		}
 	} else
 	{
@@ -74,6 +74,22 @@ static int cmd_info(char *args) {
 	}
 	return 0;
 }
+
+int dram_read(hwaddr_t, size_t);
+static int cmd_x(char *args)
+{
+	//int n = strtok(args, " ");
+	//int addr = strtok(NULL, " ");
+	int n, addr, i;
+	sscanf(args, "%d%d", &n, &addr);
+	for (i = 0; i < n; ++i)
+	{
+		printf("    0x%x", dram_read(addr + i*4, 4));
+	}
+	printf("\n");
+	return 0;
+}
+
 static int cmd_help(char *args);
 
 
@@ -87,7 +103,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "Run with single step", cmd_si },
 	{ "info", "Show the register info or watching points info", cmd_info },
-
+	{ "x", "Scan the memory", cmd_x},
 	/* TODO: Add more commands */
 
 };
