@@ -89,7 +89,7 @@ static int cmd_x(char *args)
 		int j;
 		for (j = 0; j < 4; ++j)
 		{
-			printf("  %x", dram_read(addr + 4*i + j, 1));
+			printf("  %x", hwaddr_read(addr + 4*i + j, 1));
 		}
 		printf("\n");
 		//printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
