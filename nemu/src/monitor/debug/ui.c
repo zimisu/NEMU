@@ -46,10 +46,7 @@ static int cmd_si(char *args) {
 		printf("%d\n", steps);
 		steps = 1;
 	} else 
-	{
-		printf("~~~~\n");
 		sscanf(arg,"%d", &steps);
-	}
 	printf("%d\n",steps);
 	//int steps = strtok(args, " ");
 	cpu_exec(steps);
