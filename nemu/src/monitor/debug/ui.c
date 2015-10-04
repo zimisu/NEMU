@@ -38,8 +38,8 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args) {
 	int steps = -1;
-	//sscanf(args,"%d", &steps);
-	if (sscanf(args, "%d", &steps) == 0); 
+	sscanf(args,"%d", &steps);
+	if (steps == -1); 
 	{
 		printf("Arguments error!\n");
 		printf("%d\n", steps);
