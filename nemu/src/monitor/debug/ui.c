@@ -39,11 +39,12 @@ static int cmd_q(char *args) {
 static int cmd_si(char *args) {
 	int steps = 1;
 	sscanf(args,"%d", &steps);
-	if (steps == 1) 
+	char *arg = strtok(args, " ");
+	if (arg == NULL) 
 	{
 		printf("no Arguments\n");
 		printf("%d\n", steps);
-		return 0;
+		steps = 1;
 	}
 	printf("%d\n",steps);
 	//int steps = strtok(args, " ");
