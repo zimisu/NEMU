@@ -40,12 +40,16 @@ static int cmd_si(char *args) {
 	int steps = 1;
 	char *arg = strtok(args, " ");
 	printf("~\n");
-	if (strcmp(arg, "") == 0) 
+	if (arg == NULL) 
 	{
 		printf("no Arguments\n");
 		printf("%d\n", steps);
 		steps = 1;
-	} else sscanf(args,"%d", &steps);
+	} else 
+	{
+		printf("~~~~\n");
+		sscanf(arg,"%d", &steps);
+	}
 	printf("%d\n",steps);
 	//int steps = strtok(args, " ");
 	cpu_exec(steps);
