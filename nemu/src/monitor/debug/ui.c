@@ -81,7 +81,7 @@ static int cmd_x(char *args)
 	//int n = strtok(args, " ");
 	//int addr = strtok(NULL, " ");
 	int n, addr, i;
-	sscanf(args, "%d%d", &n, &addr);
+	sscanf(args, "%d%x", &n, &addr);
 	printf("%d %x\n", n ,addr);
 	for (i = 0; i < n; ++i)
 	{
