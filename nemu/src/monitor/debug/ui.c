@@ -44,9 +44,22 @@ static int cmd_si(char *args) {
 	return 0;
 }
 static int cmd_info(char *args) {
-	int i;
-	for (i = 0; i < 8; ++i)
-		printf("%s:%x\n", regsl[i], cpu.gpr[i]._32);
+	char *arg;
+	arg = strtok(args, " ");
+	if (strcmp(arg, "r") == 0)
+	{
+		printf("register status:\n");
+		int i;
+		for (i = 0; i < 8; ++i)
+			printf("%s : %x\n", regsl[i], cpu.gpr[i]._32);
+		for (i = 0; i < 8; ++i)
+			printf("%s : %x\n", regsw[i], cpu.gpr[i]._16);
+		for (i = 0; i < 4; ++i)
+		{
+			printf("%s : %x\n", regsb[i*2], cpu.gpr[i]._8[0]);
+			printf("%s : %x\n", regsb[i*2+1], cpu.gpr[i]._8[1]);
+		}
+	}
 	return 0;
 }
 static int cmd_help(char *args);
