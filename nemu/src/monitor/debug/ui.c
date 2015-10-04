@@ -82,6 +82,7 @@ static int cmd_x(char *args)
 	//int addr = strtok(NULL, " ");
 	int n, addr, i;
 	sscanf(args, "%d%x", &n, &addr);
+	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
 	{
 		//int content = dram_read(addr + 4*i, 4);
