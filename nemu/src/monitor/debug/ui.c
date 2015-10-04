@@ -51,7 +51,7 @@ static int cmd_info(char *args) {
 	arg = strtok(args, " ");
 	if (arg == NULL)
 	{
-		printf("Arguments error.\n");
+		printf("Please input an arguments.\n");
 		return 0;
 	} else
 	if (strcmp(arg, "r") == 0)
@@ -67,6 +67,10 @@ static int cmd_info(char *args) {
 			printf("%s : 0x%x\n", regsb[i*2], cpu.gpr[i]._8[0]);
 			printf("%s : 0x%x\n", regsb[i*2+1], cpu.gpr[i]._8[1]);
 		}
+	} else
+	{
+		printf("Arguments error.\n");
+		return 0;
 	}
 	return 0;
 }
