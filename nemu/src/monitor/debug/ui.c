@@ -39,9 +39,9 @@ static int cmd_q(char *args) {
 static int cmd_si(char *args) {
 	int steps = -1;
 	sscanf(args,"%d", &steps);
-	if (steps == -1); 
+	if (steps == -1) 
 	{
-		printf("Arguments error!\n");
+		printf("Arguments error!!!\n");
 		printf("%d\n", steps);
 		return 0;
 	}
