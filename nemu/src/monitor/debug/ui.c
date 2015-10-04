@@ -84,7 +84,14 @@ static int cmd_x(char *args)
 	sscanf(args, "%d%x", &n, &addr);
 	for (i = 0; i < n; ++i)
 	{
-		printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
+		//int content = dram_read(addr + 4*i, 4);
+		printf("  %x  ",addr + 4*i);
+		int j;
+		for (j = 0; j < 4; ++j)
+		{
+			printf("  %x", dram_read(addr + 4*i + j, 1));
+		}
+		//printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
 	}
 	printf("\n");
 	return 0;
