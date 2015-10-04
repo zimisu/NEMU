@@ -40,7 +40,7 @@ static int cmd_si(char *args) {
 	int steps = 1;
 	sscanf(args,"%d", &steps);
 	char *arg = strtok(args, " ");
-	if (arg == NULL) 
+	if (strcmp(arg, "") == 0) 
 	{
 		printf("no Arguments\n");
 		printf("%d\n", steps);
