@@ -37,6 +37,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args) {
+	printf("~\n");
 	int steps = 1;
 	char *arg = strtok(args, " ");
 	if (strcmp(arg, "") == 0) 
