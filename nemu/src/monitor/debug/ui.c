@@ -85,7 +85,7 @@ static int cmd_x(char *args)
 	printf("%d %x\n", n ,addr);
 	for (i = 0; i < n; ++i)
 	{
-		printf("    0x%x", dram_read(addr + i*32, 4));
+		printf("    0x%x", dram_read(addr + i*5, 4));
 	}
 	printf("\n");
 	return 0;
