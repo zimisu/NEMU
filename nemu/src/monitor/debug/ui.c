@@ -37,9 +37,9 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args) {
-	printf("~\n");
 	int steps = 1;
 	char *arg = strtok(args, " ");
+	printf("~\n");
 	if (strcmp(arg, "") == 0) 
 	{
 		printf("no Arguments\n");
