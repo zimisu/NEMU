@@ -78,8 +78,11 @@ static int cmd_info(char *args) {
 int dram_read(hwaddr_t, size_t);
 static int cmd_x(char *args)
 {
-	//int n = strtok(args, " ");
-	//int addr = strtok(NULL, " ");
+	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
+	{
+		printf("Please input the right arguments.");
+		return 0;
+	}
 	int n, addr, i;
 	sscanf(args, "%d%x", &n, &addr);
 	printf("start:[0x%08x]\n", addr);
