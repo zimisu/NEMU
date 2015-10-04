@@ -82,10 +82,9 @@ static int cmd_x(char *args)
 	//int addr = strtok(NULL, " ");
 	int n, addr, i;
 	sscanf(args, "%d%x", &n, &addr);
-	printf("%d %x\n", n ,addr);
 	for (i = 0; i < n; ++i)
 	{
-		printf("    0x%x", dram_read(addr + i*5, 4));
+		printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
 	}
 	printf("\n");
 	return 0;
