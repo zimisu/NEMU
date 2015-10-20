@@ -32,7 +32,9 @@ static struct rule {
 	{"==", EQ},						// equal
 	{"-", '-'},						// sub
 	{"\\*", '*'},					// mul or dereference
-	{"/", '/'}						// div
+	{"/", '/'},						// div
+	{"(", '('},						// (
+	{")", ')'},						// )
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -269,7 +271,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-/*	
+	
 	int i;
 	for (i = 0; i < nr_token; i++)
 	{
@@ -284,7 +286,7 @@ uint32_t expr(char *e, bool *success) {
 	return eval(0, nr_token-1, success);
 	
 
-	panic("please implement me");*/
+	panic("please implement me");
 	return 0;
 }
 
