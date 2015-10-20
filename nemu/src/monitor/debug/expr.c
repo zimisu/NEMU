@@ -24,17 +24,17 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"0x[0-9]+", HEX_NUM},			// hexadecimal number
-	{"[0-9]+", DEC_NUM},				// decimal number
+	{"[0-9]+", DEC_NUM},			// decimal number
 	{"!=", NEQ},					// not equal
 	{"&&", AND},					// and
-	{"\\|\\|", OR},						// or
+	{"\\|\\|", OR},					// or
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
 	{"-", '-'},						// sub
 	{"\\*", '*'},					// mul or dereference
 	{"/", '/'},						// div
-	{"\\(", '('},						// (
-	{"\\)", ')'},						// )
+	{"\\(", '('},					// (
+	{"\\)", ')'},					// )
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -248,13 +248,9 @@ uint32_t eval(int p, int q, bool *success)
 					if (*success == false) return 0;
 					return -val;
 				}
-//				printf("%d\n", *success);
 				uint32_t val1 = eval(p, i-1, success);
-//				printf("%d\n", *success);
-
-//				if (*success == false) return 0;
-//				printf("this is switch %d %d %d\n", p, i , q);
 				uint32_t val2 = eval(i+1, q, success);
+				printf("val1:%d  val2:%d\n", val1, val2);
 
 				if (*success == false) return 0;
 //				printf("this is switch %d %d %d\n", p, i , q);
@@ -297,7 +293,6 @@ uint32_t expr(char *e, bool *success) {
 		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
 			tokens[i].type = MINUS;
 	}
-	printf("this is expr  %d\n", *success);
 	return eval(0, nr_token-1, success);
 	
 
