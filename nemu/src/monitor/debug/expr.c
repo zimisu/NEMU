@@ -173,7 +173,6 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
-	printf("this is eval\n");
 	if (p > q)
 	{
 		*success = false;
@@ -184,14 +183,12 @@ uint32_t eval(int p, int q, bool *success)
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)
 		{
-			printf("``````````````````````````\n");
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
 			//printf("this is DEC_NUM   %d\n");
 		} else 
 		if (tokens[p].type == HEX_NUM)
 		{
-			printf("``````````````````````````\n");
 			for (i = 2; i < strlen(tokens[p].str); i++)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
 		} else
@@ -207,7 +204,7 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else 
 	{
-		if (!success) return 0;
+		if (*success == false) return 0;
 		int minPriority = NOP;
 		int i;
 		int countp = 0;//count parentheses
@@ -244,6 +241,7 @@ uint32_t eval(int p, int q, bool *success)
 					return -val;
 				}
 				printf("%d\n", *success);
+				if (*success == false) return 0;
 				uint32_t val1 = eval(p, i-1, success);
 				if (*success == false) return 0;
 				printf("this is switch %d %d %d\n", p, i , q);
@@ -270,7 +268,6 @@ uint32_t eval(int p, int q, bool *success)
 		//for (i = q; i >= p; i--)
 		//	if (getPriority(tokens[i].type) == maxPriority)
 	}
-	if (*success == false) return 0;
 	return 0;
 }
 
