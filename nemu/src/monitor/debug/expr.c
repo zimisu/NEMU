@@ -226,6 +226,7 @@ uint32_t eval(int p, int q, bool *success)
 			*success = false;
 			return 0;
 		}
+			printf("fuck----\n");
 		countp = 0;
 		for (i = q; i >= p; i--) {
 			int type = tokens[i].type;
