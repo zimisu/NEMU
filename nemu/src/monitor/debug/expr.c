@@ -173,6 +173,7 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
+	printf("this is eval\n");
 	if (p > q)
 	{
 		*success = false;
@@ -180,6 +181,7 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	if (p == q)
 	{
+		printf("this is p == q\n");
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)
 		{
