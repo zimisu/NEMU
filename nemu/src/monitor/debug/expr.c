@@ -23,8 +23,8 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// spaces
-	{"0x\\d+", HEX_NUM},			// hexadecimal number
-	{"\\d+", DEC_NUM},				// decimal number
+	{"0x[0-9]+", HEX_NUM},			// hexadecimal number
+	{"[0-9]+", DEC_NUM},				// decimal number
 	{"!=", NEQ},					// not equal
 	{"&&", AND},					// and
 	{"\\|\\|", OR},						// or
