@@ -79,13 +79,13 @@ int dram_read(hwaddr_t, size_t);
 static int cmd_x(char *args)
 {
 	printf("%s\n", args);
+	int n, addr, i;
+	sscanf(args, "%d%x", &n, &addr);
 	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
 	{
 		printf("Please input the right arguments.\n");
 		return 0;
 	}
-	int n, addr, i;
-	sscanf(args, "%d%x", &n, &addr);
 	printf("%d\n", addr);
 	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
