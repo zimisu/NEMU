@@ -186,7 +186,7 @@ uint32_t eval(int p, int q, bool *success)
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
-			printf("this is DEC_NUM   %d\n", tmp);
+			//printf("this is DEC_NUM   %d\n");
 		} else 
 		if (tokens[p].type == HEX_NUM)
 		{
@@ -243,6 +243,7 @@ uint32_t eval(int p, int q, bool *success)
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
+				printf("this is switch\n");
 				if (*success == false) return 0;
 				switch (type){
 					case '+': return val1 + val2;
