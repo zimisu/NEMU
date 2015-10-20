@@ -78,7 +78,7 @@ static int cmd_info(char *args) {
 int dram_read(hwaddr_t, size_t);
 static int cmd_x(char *args)
 {
-	printf("%s\n", args);
+	//printf("%s\n", args);
 	int n, addr, i;
 	sscanf(args, "%d%x", &n, &addr);
 	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
@@ -86,7 +86,7 @@ static int cmd_x(char *args)
 		printf("Please input the right arguments.\n");
 		return 0;
 	}
-	printf("%d\n", addr);
+	//printf("%d\n", addr);
 	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
 	{
@@ -101,6 +101,24 @@ static int cmd_x(char *args)
 		//printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
 	}
 	printf("\n");
+	return 0;
+}
+static int cmd_p(char *args)
+{
+	char *s = strtok(args, " ");
+	if (s == NULL) 
+	{
+		printf("Please input the argument.\n");
+		return 0;
+	}
+	bool success = true;
+	uint32_t result = expr(s, &success);
+	if (success == false) 
+	{
+		printf("Expression invalid.\n");
+		return 0;
+	}
+	printf("%d\n", result);
 	return 0;
 }
 
@@ -118,6 +136,7 @@ static struct {
 	{ "si", "Run with single step", cmd_si },
 	{ "info", "Show the register info or watching points info", cmd_info },
 	{ "x", "Scan the memory", cmd_x},
+	{ "p", "expression calculation", cmd_p},
 	/* TODO: Add more commands */
 
 };
