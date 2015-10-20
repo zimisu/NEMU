@@ -173,6 +173,7 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
+	printf("-------%d\n", *success);
 	if (p > q)
 	{
 			printf("fuck----\n");
