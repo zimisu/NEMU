@@ -137,6 +137,7 @@ bool check_parentheses(int p, int q, bool *success) {
 				return false;
 			}
 		}
+	printf("================%d\n", count);
 	if (count != 0)
 	{
 		// '('数量不等于  ')'数量
