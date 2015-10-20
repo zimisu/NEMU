@@ -181,12 +181,12 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	if (p == q)
 	{
-		printf("this is p == q\n");
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
+			printf("this is DEC_NUM   %d\n", tmp);
 		} else 
 		if (tokens[p].type == HEX_NUM)
 		{
