@@ -222,6 +222,7 @@ uint32_t eval(int p, int q, bool *success)
 		}
 		if (minPriority == NOP) //未找到op操作符
 		{
+			printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
