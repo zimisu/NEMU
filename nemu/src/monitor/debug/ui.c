@@ -78,6 +78,7 @@ static int cmd_info(char *args) {
 int dram_read(hwaddr_t, size_t);
 static int cmd_x(char *args)
 {
+	printf("%s\n", args);
 	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
 	{
 		printf("Please input the right arguments.\n");
