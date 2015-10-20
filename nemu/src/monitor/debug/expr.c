@@ -243,6 +243,7 @@ uint32_t eval(int p, int q, bool *success)
 					if (*success == false) return 0;
 					return -val;
 				}
+				printf("%d\n", *success);
 				uint32_t val1 = eval(p, i-1, success);
 				if (*success == false) return 0;
 				printf("this is switch %d %d %d\n", p, i , q);
