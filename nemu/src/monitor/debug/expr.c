@@ -178,15 +178,21 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	if (p == q)
 	{
-		if (tokens[p].type != HEX_NUM && tokens[p].type != DEC_NUM)
+		uint32_t tmp = 0, i;
+		if (tokens[p].type == DEC_NUM)
+		{
+			for (i = 0; i < strlen(tokens[p].str); i++)
+				tmp = tmp*10 + tokens[p].str[i] - '0';
+		} else 
+		if (tokens[p].type == HEX_NUM)
+		{
+			for (i = 2; i < strlen(tokens[p].str); i++)
+				tmp = tmp*16 + tokens[p].str[i] - '0';
+		} else
 		{
 			*success = false;
 			return 0;
 		}
-		uint32_t tmp = 0;
-		int i;
-		for (i = 0; i < strlen(tokens[p].str); i++)
-			tmp = tmp*10 + tokens[p].str[i] - '0';
 		return tmp;
 	}
 	else if (check_parentheses(p, q, success) == true)
