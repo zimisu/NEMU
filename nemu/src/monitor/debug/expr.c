@@ -98,7 +98,9 @@ static bool make_token(char *e) {
 						int j;
 						for (j = 0; j < substr_len; j++)
 							tokens[nr_token].str[j] = substr_start[j];
+						tokens[nr_token].str[substr_len] = '\0';
 						++nr_token;
+					
 				}
 
 				break;
