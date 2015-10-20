@@ -192,6 +192,7 @@ uint32_t eval(int p, int q, bool *success)
 		} else 
 		if (tokens[p].type == HEX_NUM)
 		{
+			printf("----\n");
 			for (i = 2; i < strlen(tokens[p].str); i++)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
 		} else
