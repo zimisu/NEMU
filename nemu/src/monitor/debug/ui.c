@@ -86,6 +86,7 @@ static int cmd_x(char *args)
 	}
 	int n, addr, i;
 	sscanf(args, "%d%x", &n, &addr);
+	printf("%d\n", n);
 	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
 	{
