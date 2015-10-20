@@ -241,11 +241,13 @@ uint32_t eval(int p, int q, bool *success)
 					return -val;
 				}
 				printf("%d\n", *success);
-				if (*success == false) return 0;
 				uint32_t val1 = eval(p, i-1, success);
+				printf("%d\n", *success);
+
 				if (*success == false) return 0;
 				printf("this is switch %d %d %d\n", p, i , q);
 				uint32_t val2 = eval(i+1, q, success);
+
 				if (*success == false) return 0;
 				printf("this is switch %d %d %d\n", p, i , q);
 				switch (type){
