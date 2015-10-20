@@ -296,7 +296,7 @@ uint32_t expr(char *e, bool *success) {
 		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
 			tokens[i].type = MINUS;
 	}
-
+	printf("this is expr  %d\n", *success);
 	return eval(0, nr_token-1, success);
 	
 
