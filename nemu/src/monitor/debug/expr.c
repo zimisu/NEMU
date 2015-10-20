@@ -175,6 +175,7 @@ uint32_t eval(int p, int q, bool *success)
 {
 	if (p > q)
 	{
+			printf("fuck----\n");
 		*success = false;
 		return 0;
 	}
@@ -193,6 +194,7 @@ uint32_t eval(int p, int q, bool *success)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
 		} else
 		{
+			printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
@@ -200,7 +202,7 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else if (check_parentheses(p, q, success) == true)
 	{
-		printf("fuck-----\n");
+		//printf("fuck-----\n");
 		return eval(p+1, q-1, success);
 	}
 	else 
