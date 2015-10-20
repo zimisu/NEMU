@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER
 
 	/* TODO: Add more token types */
 
@@ -144,6 +144,31 @@ bool check_parentheses(int p, int q, bool *success) {
 	return 1;
 }
 
+#define NOP 10 //不是一个有效操作符
+
+int getPriority(int type)
+{
+	switch (type){
+		case MINUS: return 7;
+		case DER: return 7;
+		case '*': return 6;
+		case '/': return 6;
+		case '+': return 5;
+		case '-': return 5;
+		case AND: return 4;
+		case OR: return 3;
+		case EQ: return 2;
+		case NEQ: return 2;
+	}
+	return NOP;// 不是一个有效操作符
+}
+/*
+bool isCertainToken(int type)
+{
+	switch type:
+		
+}
+*/
 uint32_t eval(int p, int q, bool *success)
 {
 	if (p > q)
@@ -153,6 +178,11 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	if (p == q)
 	{
+		if (tokens[p].type != HEX_NUM && tokens[p].type != DEC_NUM)
+		{
+			*success = false;
+			return 0;
+		}
 		uint32_t tmp = 0;
 		int i;
 		for (i = 0; i < strlen(tokens[p].str); i++)
@@ -165,8 +195,59 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else 
 	{
-		//int maxPiority = -1;
-		
+		if (!success) return 0;
+		int minPriority = NOP;
+		int i;
+		int countp = 0;//count parentheses
+		for (i = p; i <= q; i++){
+			int type = tokens[i].type;
+			if (type == '(') ++countp;
+			else if (type == ')') -- countp;//op操作符不能在括号内
+			if (getPriority(type)<minPriority && countp==0)
+			{
+				minPriority = getPriority(type);
+			}
+		}
+		for (i = q; i >= p; i--) {
+			int type = tokens[i].type;
+			if (type == '(') ++ countp;
+			else if (type == ')') --countp;
+			if (getPriority(type) == minPriority && countp==0)
+			{
+				if (type == DER)
+				{
+					uint32_t addr = eval(p+1, q, success);
+					if (*success == false) return 0;
+					return hwaddr_read(addr, 4);
+				} else
+				if (type == MINUS)
+				{
+					uint32_t val = eval(p+1, q, success);
+					if (*success == false) return 0;
+					return -val;
+				}
+				uint32_t val1 = eval(p, i-1, success);
+				uint32_t val2 = eval(i+1, q, success);
+				switch (type){
+					case '+': return val1 + val2;
+					case '-': return val1 - val2;
+					case '*': return val1 * val2;
+					case '/': return val1 / val2;
+					case AND: return val1 && val2;
+					case OR:  return val1 || val2;
+					case EQ:  return val1 == val2;
+					case NEQ: return val1 != val2;
+					default : assert(0);
+				}
+
+
+				break;
+			}
+		}
+		countp = 0;
+
+	//	for (i = q; i >= p; i--)
+	//		if (getPriority(tokens[i].type) == maxPriority)
 	}
 	if (*success == false) return 0;
 	return 0;
