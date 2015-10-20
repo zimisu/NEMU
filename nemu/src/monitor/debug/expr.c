@@ -27,7 +27,7 @@ static struct rule {
 	{"\\d+", DEC_NUM},				// decimal number
 	{"!=", NEQ},					// not equal
 	{"&&", AND},					// and
-	{"||", OR},						// or
+	{"\\|\\|", OR},						// or
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
 	{"-", '-'},						// sub
@@ -259,7 +259,6 @@ uint32_t eval(int p, int q, bool *success)
 }
 
 uint32_t expr(char *e, bool *success) {
-	printf("asdf\n");
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
