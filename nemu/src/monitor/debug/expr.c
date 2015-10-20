@@ -243,8 +243,8 @@ uint32_t eval(int p, int q, bool *success)
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
-				printf("this is switch\n");
 				if (*success == false) return 0;
+				printf("this is switch\n");
 				switch (type){
 					case '+': return val1 + val2;
 					case '-': return val1 - val2;
