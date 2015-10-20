@@ -96,6 +96,7 @@ static bool make_token(char *e) {
 						int j;
 						for (j = 0; j < substr_len; j++)
 							tokens[nr_token].str[j] = substr_start[j];
+						++nr_token;
 				}
 
 				break;
@@ -111,13 +112,74 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+bool check_parentheses(int p, int q, bool *success) {
+	if (tokens[p].type != '(' || tokens[q].type != ')') {
+		//左右不为括号
+		*success = false;
+		return false;
+	}
+	int count = 0, i;
+	for (i = p; i <= q; i++)
+		if (tokens[i].type == '(')
+			++count; 
+		else if (tokens[i].type == ')')
+		{
+			-- count;
+			if (count < 0)
+			{
+				*success = false;
+				return 0;
+			}
+			if (count == 0 && i != q)
+			{
+				return false;
+			}
+		}
+	if (count != 0)
+	{
+		// '('数量不等于  ')'数量
+		*success = false;
+		return false;
+	}
+	return 1;
+}
+
+uint32_t eval(int p, int q, bool *success)
+{
+	if (p > q)
+	{
+		*success = false;
+		return 0;
+	}
+	if (p == q)
+	{
+		uint32_t tmp = 0;
+		int i;
+		for (i = 0; i < strlen(tokens[p].str); i++)
+			tmp = tmp*10 + tokens[p].str[i] - '0';
+		return tmp;
+	}
+	else if (check_parentheses(p, q, success) == true)
+	{
+		return eval(p+1, q-1, success);
+	}
+	else 
+	{
+		//int maxPiority = -1;
+		
+	}
+	if (*success == false) return 0;
+	return 0;
+}
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-
+	
 	/* TODO: Insert codes to evaluate the expression. */
+
 	panic("please implement me");
 	return 0;
 }
