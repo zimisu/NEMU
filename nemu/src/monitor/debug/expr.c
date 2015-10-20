@@ -199,28 +199,33 @@ uint32_t eval(int p, int q, bool *success)
 		int minPriority = NOP;
 		int i;
 		int countp = 0;//count parentheses
+		//查找op操作符
 		for (i = p; i <= q; i++){
 			int type = tokens[i].type;
 			if (type == '(') ++countp;
 			else if (type == ')') -- countp;//op操作符不能在括号内
 			if (getPriority(type)<minPriority && countp==0)
-			{
 				minPriority = getPriority(type);
-			}
 		}
+		if (minPriority == NOP) //未找到op操作符
+		{
+			*success = false;
+			return 0;
+		}
+		countp = 0;
 		for (i = q; i >= p; i--) {
 			int type = tokens[i].type;
 			if (type == '(') ++ countp;
 			else if (type == ')') --countp;
 			if (getPriority(type) == minPriority && countp==0)
 			{
-				if (type == DER)
+				if (type == DER)//为单目 解引用×
 				{
 					uint32_t addr = eval(p+1, q, success);
 					if (*success == false) return 0;
 					return hwaddr_read(addr, 4);
 				} else
-				if (type == MINUS)
+				if (type == MINUS)//为单目 负号-
 				{
 					uint32_t val = eval(p+1, q, success);
 					if (*success == false) return 0;
@@ -228,6 +233,7 @@ uint32_t eval(int p, int q, bool *success)
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
+				if (*success == false) return 0;
 				switch (type){
 					case '+': return val1 + val2;
 					case '-': return val1 - val2;
@@ -240,14 +246,13 @@ uint32_t eval(int p, int q, bool *success)
 					default : assert(0);
 				}
 
-
 				break;
 			}
 		}
-		countp = 0;
+		
 
-	//	for (i = q; i >= p; i--)
-	//		if (getPriority(tokens[i].type) == maxPriority)
+		//for (i = q; i >= p; i--)
+		//	if (getPriority(tokens[i].type) == maxPriority)
 	}
 	if (*success == false) return 0;
 	return 0;
@@ -257,8 +262,20 @@ uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
-
 	}
+	
+	int i;
+	for (i = 0; i < nr_token; i++)
+	{
+		if (tokens[i].type == '*' && (i==0 || getPriority(tokens[i-1].type)<NOP))
+			//为解引用
+			tokens[i].type = DER;
+		else
+		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
+			tokens[i].type = MINUS;
+	}
+
+	return eval(0, nr_token-1, success);
 	
 	/* TODO: Insert codes to evaluate the expression. */
 
