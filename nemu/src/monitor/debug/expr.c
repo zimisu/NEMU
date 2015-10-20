@@ -182,6 +182,7 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	if (p == q)
 	{
+			printf("fuck----\n");
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)
 		{
