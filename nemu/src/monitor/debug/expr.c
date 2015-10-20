@@ -194,6 +194,7 @@ uint32_t eval(int p, int q, bool *success)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
 		} else
 		{
+			printf("``````````````````````````\n");
 			*success = false;
 			return 0;
 		}
