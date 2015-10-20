@@ -175,7 +175,7 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
-	printf("p=%d   q=%d\n", p, q);
+	//printf("p=%d   q=%d\n", p, q);
 	if (p > q)
 	{
 	//		printf("fuck----\n");
@@ -253,7 +253,7 @@ uint32_t eval(int p, int q, bool *success)
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
-				printf("val1:%d  val2:%d\n", val1, val2);
+				//printf("val1:%d  val2:%d\n", val1, val2);
 
 				if (*success == false) return 0;
 //				printf("this is switch %d %d %d\n", p, i , q);
