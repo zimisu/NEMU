@@ -117,7 +117,6 @@ static bool make_token(char *e) {
 bool check_parentheses(int p, int q, bool *success) {
 	if (tokens[p].type != '(' || tokens[q].type != ')') {
 		//左右不为括号
-		*success = false;
 		return false;
 	}
 	int count = 0, i;
@@ -137,7 +136,7 @@ bool check_parentheses(int p, int q, bool *success) {
 				return false;
 			}
 		}
-	printf("================%d\n", count);
+	//printf("================%d\n", count);
 	if (count != 0)
 	{
 		// '('数量不等于  ')'数量
@@ -174,16 +173,16 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
-	printf("-------%d\n", *success);
+	//printf("-------%d\n", *success);
 	if (p > q)
 	{
-			printf("fuck----\n");
+	//		printf("fuck----\n");
 		*success = false;
 		return 0;
 	}
 	if (p == q)
 	{
-			printf("fuck----\n");
+		//	printf("fuck----\n");
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)
 		{
@@ -197,7 +196,7 @@ uint32_t eval(int p, int q, bool *success)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
 		} else
 		{
-			printf("fuck----\n");
+		//	printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
@@ -210,9 +209,9 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else 
 	{
-			printf("fuck+++----\n");
+		//	printf("fuck+++----\n");
 		if (*success == false) return 0;
-			printf("fuck+++----\n");
+		//	printf("fuck+++----\n");
 		int minPriority = NOP;
 		int i;
 		int countp = 0;//count parentheses
@@ -226,7 +225,7 @@ uint32_t eval(int p, int q, bool *success)
 		}
 		if (minPriority == NOP) //未找到op操作符
 		{
-			printf("fuck----\n");
+			//printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
@@ -249,16 +248,16 @@ uint32_t eval(int p, int q, bool *success)
 					if (*success == false) return 0;
 					return -val;
 				}
-				printf("%d\n", *success);
+//				printf("%d\n", *success);
 				uint32_t val1 = eval(p, i-1, success);
-				printf("%d\n", *success);
+//				printf("%d\n", *success);
 
-				if (*success == false) return 0;
-				printf("this is switch %d %d %d\n", p, i , q);
+//				if (*success == false) return 0;
+//				printf("this is switch %d %d %d\n", p, i , q);
 				uint32_t val2 = eval(i+1, q, success);
 
 				if (*success == false) return 0;
-				printf("this is switch %d %d %d\n", p, i , q);
+//				printf("this is switch %d %d %d\n", p, i , q);
 				switch (type){
 					case '+': return val1 + val2;
 					case '-': return val1 - val2;
