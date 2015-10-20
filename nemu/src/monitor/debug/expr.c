@@ -200,6 +200,7 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else if (check_parentheses(p, q, success) == true)
 	{
+		printf("fuck-----\n");
 		return eval(p+1, q-1, success);
 	}
 	else 
