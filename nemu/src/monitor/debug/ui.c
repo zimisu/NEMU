@@ -64,8 +64,8 @@ static int cmd_info(char *args) {
 			printf("  %s : 0x%x\n", regsw[i], cpu.gpr[i]._16);
 		for (i = 0; i < 4; ++i)
 		{
-			printf("  %s : 0x%x\n", regsb[i*2], cpu.gpr[i]._8[0]);
-			printf("  %s : 0x%x\n", regsb[i*2+1], cpu.gpr[i]._8[1]);
+			printf("  %s : 0x%x\n", regsb[i], cpu.gpr[i]._8[0]);
+			printf("  %s : 0x%x\n", regsb[i+4], cpu.gpr[i]._8[1]);
 		}
 	} else
 	{

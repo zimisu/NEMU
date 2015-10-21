@@ -257,6 +257,7 @@ uint32_t eval(int p, int q, bool *success)
 				//printf("val1:%d  val2:%d\n", val1, val2);
 
 				if (*success == false) return 0;
+				int j;
 //				printf("this is switch %d %d %d\n", p, i , q);
 				switch (type){
 					case '+': return val1 + val2;
@@ -267,6 +268,24 @@ uint32_t eval(int p, int q, bool *success)
 					case OR:  return val1 || val2;
 					case EQ:  return val1 == val2;
 					case NEQ: return val1 != val2;
+					case REG:
+						for (j = 0; j < 8; j++)
+						{
+							if (strcmp(regsl[j], tokens[i].str+1)==0)
+								return cpu.gpr[j]._32;
+							if (strcmp(regsw[j], tokens[i].str+1)==0)
+								return cpu.gpr[j]._16;
+						}
+						for (j = 0; j < 4; j++)
+						{
+							if (strcmp(regsb[j], tokens[i].str+1)==0)
+								return cpu.gpr[j]._8[0];
+							if (strcmp(regsb[j+4], tokens[i].str+1)==0)
+								return cpu.gpr[j]._8[1];
+						}
+						printf("Invalid register.\n");
+						*success = false;
+						return 0;
 					default : assert(0);
 				}
 
