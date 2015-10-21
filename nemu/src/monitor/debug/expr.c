@@ -199,6 +199,7 @@ uint32_t eval(int p, int q, bool *success)
 		{
 			for (i = 2; i < strlen(tokens[p].str); i++)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
+			printf("%d....\n",tmp);
 		} else					
 		if (tokens[p].type == REG)//寄存器
 		{
