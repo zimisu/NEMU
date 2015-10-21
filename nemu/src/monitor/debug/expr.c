@@ -221,7 +221,7 @@ uint32_t eval(int p, int q, bool *success)
 			printf("Invalid register.\n");
 			*success = false;
 			return 0;
-		}
+		} else
 		{
 		//	printf("fuck----\n");
 			*success = false;
