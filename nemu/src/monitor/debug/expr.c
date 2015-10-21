@@ -231,14 +231,11 @@ uint32_t eval(int p, int q, bool *success)
 	}
 	else if (check_parentheses(p, q, success) == true)
 	{
-		//printf("fuck-----\n");
 		return eval(p+1, q-1, success);
 	}
 	else 
 	{
-		//	printf("fuck+++----\n");
 		if (*success == false) return 0;
-		//	printf("fuck+++----\n");
 		int minPriority = NOP;
 		int i;
 		int countp = 0;//count parentheses
@@ -252,7 +249,6 @@ uint32_t eval(int p, int q, bool *success)
 		}
 		if (minPriority == NOP) //未找到op操作符
 		{
-			//printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
