@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT
 
 	/* TODO: Add more token types */
 
@@ -36,6 +36,7 @@ static struct rule {
 	{"\\(", '('},					// (
 	{"\\)", ')'},					// )
 	{"\\$[a-z]{2,3}", REG},			// register
+	{"!", NOT},						// not
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -156,6 +157,7 @@ int getPriority(int type)
 	switch (type){
 		case MINUS: return 7;
 		case DER: return 7;
+		case NOT: return 7;
 		case '*': return 6;
 		case '/': return 6;
 		case '+': return 5;
@@ -215,7 +217,7 @@ uint32_t eval(int p, int q, bool *success)
 					return cpu.gpr[j]._8[0];
 				if (strcmp(regsb[j+4], tokens[p].str+1)==0)
 					return cpu.gpr[j]._8[1];
-						}
+			}
 			printf("Invalid register.\n");
 			*success = false;
 			return 0;
@@ -272,6 +274,12 @@ uint32_t eval(int p, int q, bool *success)
 					uint32_t val = eval(p+1, q, success);
 					if (*success == false) return 0;
 					return -val;
+				} else
+				if (type == NOT) //为单目 !
+				{
+					uint32_t val = eval(p+1, q, success);
+					if (*success == false) return 0;
+					return !val;
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
