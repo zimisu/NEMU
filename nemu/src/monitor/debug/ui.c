@@ -76,16 +76,23 @@ static int cmd_info(char *args) {
 }
 
 int dram_read(hwaddr_t, size_t);
+
 static int cmd_x(char *args)
 {
 	//printf("%s\n", args);
 	int n, addr, i;
-	sscanf(args, "%d%x", &n, &addr);
-	if (strtok(args, " ")==NULL || strtok(NULL," ")==NULL)
+	sscanf(args, "%d", &n);
+	if (n == 0)
 	{
 		printf("Please input the right arguments.\n");
 		return 0;
 	}
+	while (*args == ' ') ++args;
+	while (*args >= '0' && *args <= '9') ++args;
+	bool success = true;
+	addr = expr(args, &success);
+	if (success == false) return 0;
+
 	//printf("%d\n", addr);
 	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
