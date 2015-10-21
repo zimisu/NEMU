@@ -59,13 +59,13 @@ static int cmd_info(char *args) {
 		printf("register status:\n");
 		int i;
 		for (i = 0; i < 8; ++i)
-			printf("  %s : 0x%x\n", regsl[i], cpu.gpr[i]._32);
+			printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
 		for (i = 0; i < 8; ++i)
-			printf("  %s : 0x%x\n", regsw[i], cpu.gpr[i]._16);
+			printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
 		for (i = 0; i < 4; ++i)
 		{
-			printf("  %s : 0x%x\n", regsb[i], cpu.gpr[i]._8[0]);
-			printf("  %s : 0x%x\n", regsb[i+4], cpu.gpr[i]._8[1]);
+			printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
+			printf("  %s : 0x%02x\n", regsb[i+4], cpu.gpr[i]._8[1]);
 		}
 	} else
 	{
