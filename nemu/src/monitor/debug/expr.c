@@ -187,18 +187,39 @@ uint32_t eval(int p, int q, bool *success)
 	{
 		//	printf("fuck----\n");
 		uint32_t tmp = 0, i;
-		if (tokens[p].type == DEC_NUM)
+		if (tokens[p].type == DEC_NUM)//十六进制数
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
 			//printf("this is DEC_NUM   %d\n");
 		} else 
-		if (tokens[p].type == HEX_NUM)
+		if (tokens[p].type == HEX_NUM)//十进制数
 		{
 			printf("----\n");
 			for (i = 2; i < strlen(tokens[p].str); i++)
 				tmp = tmp*16 + tokens[p].str[i] - '0';
-		} else
+		} else					
+		if (tokens[p].type == REG)//寄存器
+		{
+			int j;
+			for (j = 0; j < 8; j++)
+			{
+				if (strcmp(regsl[j], tokens[p].str+1)==0)
+					return cpu.gpr[j]._32;
+				if (strcmp(regsw[j], tokens[p].str+1)==0)
+					return cpu.gpr[j]._16;
+			}
+			for (j = 0; j < 4; j++)
+			{
+				if (strcmp(regsb[j], tokens[p].str+1)==0)
+					return cpu.gpr[j]._8[0];
+				if (strcmp(regsb[j+4], tokens[p].str+1)==0)
+					return cpu.gpr[j]._8[1];
+						}
+			printf("Invalid register.\n");
+			*success = false;
+			return 0;
+		}
 		{
 		//	printf("fuck----\n");
 			*success = false;
@@ -254,11 +275,9 @@ uint32_t eval(int p, int q, bool *success)
 				}
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
-				//printf("val1:%d  val2:%d\n", val1, val2);
 
 				if (*success == false) return 0;
-				int j;
-//				printf("this is switch %d %d %d\n", p, i , q);
+
 				switch (type){
 					case '+': return val1 + val2;
 					case '-': return val1 - val2;
@@ -268,24 +287,7 @@ uint32_t eval(int p, int q, bool *success)
 					case OR:  return val1 || val2;
 					case EQ:  return val1 == val2;
 					case NEQ: return val1 != val2;
-					case REG:
-						for (j = 0; j < 8; j++)
-						{
-							if (strcmp(regsl[j], tokens[i].str+1)==0)
-								return cpu.gpr[j]._32;
-							if (strcmp(regsw[j], tokens[i].str+1)==0)
-								return cpu.gpr[j]._16;
-						}
-						for (j = 0; j < 4; j++)
-						{
-							if (strcmp(regsb[j], tokens[i].str+1)==0)
-								return cpu.gpr[j]._8[0];
-							if (strcmp(regsb[j+4], tokens[i].str+1)==0)
-								return cpu.gpr[j]._8[1];
-						}
-						printf("Invalid register.\n");
-						*success = false;
-						return 0;
+
 					default : assert(0);
 				}
 
