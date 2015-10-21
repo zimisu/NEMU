@@ -91,7 +91,12 @@ static int cmd_x(char *args)
 	while (*args >= '0' && *args <= '9') ++args;
 	bool success = true;
 	addr = expr(args, &success);
-	if (success == false) return 0;
+	printf("%d-----\n", addr);
+	if (success == false) 
+	{
+		printf("Please input the right arguments.\n");
+		return 0;
+	}
 
 	//printf("%d\n", addr);
 	printf("start:[0x%08x]\n", addr);
