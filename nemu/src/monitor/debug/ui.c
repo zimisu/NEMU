@@ -134,6 +134,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "Run with single step", cmd_si },
 	{ "info", "Show the register info or watching points info", cmd_info },
+	{ "i", "Show the register info or watching points info", cmd_info},
 	{ "x", "Scan the memory", cmd_x},
 	{ "p", "expression calculation", cmd_p},
 	/* TODO: Add more commands */
