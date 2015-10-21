@@ -35,7 +35,7 @@ static struct rule {
 	{"/", '/'},						// div
 	{"\\(", '('},					// (
 	{"\\)", ')'},					// )
-	{"\\$['a'-'z']{2,3}", REG},		// register
+	{"\\$[a-z]{2,3}", REG},			// register
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
