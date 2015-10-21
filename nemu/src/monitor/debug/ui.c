@@ -91,7 +91,6 @@ static int cmd_x(char *args)
 	while (*args >= '0' && *args <= '9') ++args;
 	bool success = true;
 	addr = expr(args, &success);
-	printf("%d-----\n", addr);
 	if (success == false) 
 	{
 		printf("Please input the right arguments.\n");
