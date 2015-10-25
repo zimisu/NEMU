@@ -101,15 +101,11 @@ static int cmd_x(char *args)
 	printf("start:[0x%08x]\n", addr);
 	for (i = 0; i < n; ++i)
 	{
-		//int content = dram_read(addr + 4*i, 4);
 		printf("  0x%08x  ",addr + 4*i);
 		int j;
 		for (j = 0; j < 4; ++j)
-		{
 			printf("  %02x", hwaddr_read(addr + 4*i + j, 1));
-		}
 		printf("\n");
-		//printf("  %x    0x%x\n", addr + i*4,dram_read(addr + i*4, 4));
 	}
 	printf("\n");
 	return 0;
@@ -128,7 +124,7 @@ static int cmd_p(char *args)
 		printf("Expression invalid.\n");
 		return 0;
 	}
-	printf("%d\n", result);
+	printf("  %d    :    0x%x\n", result, result);
 	return 0;
 }
 

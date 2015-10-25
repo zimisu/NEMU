@@ -8,9 +8,7 @@
 
 enum {
 	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT
-
 	/* TODO: Add more token types */
-
 };
 
 static struct rule {
@@ -93,14 +91,16 @@ static bool make_token(char *e) {
 
 				switch(rules[i].token_type) {
 					case NOTYPE:
-						break;
-					
+						break;//空格，什麼也不做
 					default: 
+						//将type写入tokens
 						tokens[nr_token].type = rules[i].token_type;
 						int j;
+						//复制字符串
 						for (j = 0; j < substr_len; j++)
 							tokens[nr_token].str[j] = substr_start[j];
 						tokens[nr_token].str[substr_len] = '\0';
+						//tokens数量增加
 						++nr_token;
 					
 				}
@@ -132,7 +132,7 @@ bool check_parentheses(int p, int q, bool *success) {
 			-- count;
 			if (count < 0)
 			{
-				*success = false;
+				*success =  false;
 				return 0;
 			}
 			if (count == 0 && i != q)
@@ -178,16 +178,13 @@ bool isCertainToken(int type)
 */
 uint32_t eval(int p, int q, bool *success)
 {
-	//printf("p=%d   q=%d\n", p, q);
 	if (p > q)
 	{
-	//		printf("fuck----\n");
 		*success = false;
 		return 0;
 	}
 	if (p == q)
 	{
-		//	printf("fuck----\n");
 		uint32_t tmp = 0, i;
 		if (tokens[p].type == DEC_NUM)//十六进制数
 		{
@@ -204,24 +201,19 @@ uint32_t eval(int p, int q, bool *success)
 			int j;
 			for (j = 0; j < 8; j++)
 			{
-				if (strcmp(regsl[j], tokens[p].str+1)==0)
-					return cpu.gpr[j]._32;
-				if (strcmp(regsw[j], tokens[p].str+1)==0)
-					return cpu.gpr[j]._16;
+				if (strcmp(regsl[j], tokens[p].str+1)==0) return cpu.gpr[j]._32;
+				if (strcmp(regsw[j], tokens[p].str+1)==0) return cpu.gpr[j]._16;
 			}
 			for (j = 0; j < 4; j++)
 			{
-				if (strcmp(regsb[j], tokens[p].str+1)==0)
-					return cpu.gpr[j]._8[0];
-				if (strcmp(regsb[j+4], tokens[p].str+1)==0)
-					return cpu.gpr[j]._8[1];
+				if (strcmp(regsb[j], tokens[p].str+1)==0)  return cpu.gpr[j]._8[0];
+				if (strcmp(regsb[j+4], tokens[p].str+1)==0) return cpu.gpr[j]._8[1];
 			}
 			printf("Invalid register.\n");
 			*success = false;
 			return 0;
 		} else
 		{
-		//	printf("fuck----\n");
 			*success = false;
 			return 0;
 		}
