@@ -193,7 +193,6 @@ uint32_t eval(int p, int q, bool *success)
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
-			//printf("this is DEC_NUM   %d\n");
 		} else 
 		if (tokens[p].type == HEX_NUM)//十进制数
 		{
