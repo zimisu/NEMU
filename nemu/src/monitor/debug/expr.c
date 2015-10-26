@@ -7,8 +7,8 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, LGAND, LGOR,
-			 LGXOR, LGNOT 
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, BITAND, BITOR,
+			 BITXOR 
 	/* TODO: Add more token types */
 };
 
@@ -35,10 +35,9 @@ static struct rule {
 	{"\\(", '('},					// (
 	{"\\)", ')'},					// )
 	{"\\$[a-z]{2,3}", REG},			// register
-	{"&", LGAND},					// logic and
-	{"|", LGOR},					// logic or
-	{"^", LGXOR},					// logic xor
-	{"~", LGNOT},					// logic not
+	{"&", BITAND},					// bit and
+	{"|", BITOR},					// bit or
+	{"^", BITXOR},					// bit xor
 	{"!", NOT},						// not
 };
 
@@ -164,10 +163,13 @@ int getPriority(int type)
 		case '/':	return 6;
 		case '+':	return 5;
 		case '-':	return 5;
-		case AND:	return 4;
-		case OR:	return 3;
-		case EQ:	return 2;	// ==
-		case NEQ:	return 2;	// !=
+		case BITAND:return 4;
+		case BITOR:	return 3;
+		case BITXOR:return 4;
+		case AND:	return 2;
+		case OR:	return 1;
+		case EQ:	return 0;	// ==
+		case NEQ:	return 0;	// !=
 	}
 	return NOP;// 不是一个有效操作符
 }
