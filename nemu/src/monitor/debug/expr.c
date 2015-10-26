@@ -270,19 +270,22 @@ uint32_t eval(int p, int q, bool *success)
 				if (*success == false) return 0;
 
 				switch (type){//为双目运算符
-					case '+': return val1 + val2;
-					case '-': return val1 - val2;
-					case '*': return val1 * val2;
+					case '+':		return val1 + val2;
+					case '-':		return val1 - val2;
+					case '*':		return val1 * val2;
 					case '/':
 						if (val2 == 0) {
 							*success = false;
 							return 0;
 						}
 						return val1 / val2;
-					case AND: return val1 && val2;
-					case OR:  return val1 || val2;
-					case EQ:  return val1 == val2;
-					case NEQ: return val1 != val2;
+					case AND:		return val1 && val2;
+					case OR:		return val1 || val2;
+					case EQ:		return val1 == val2;
+					case NEQ:		return val1 != val2;
+					case BITOR:		return val1 | val2;
+					case BITAND:	return val1 & val2;
+					case BITXOR:	return val1 ^ val2;
 
 					default : assert(0);
 				}
