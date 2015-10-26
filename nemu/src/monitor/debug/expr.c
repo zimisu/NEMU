@@ -36,7 +36,7 @@ static struct rule {
 	{"\\$[a-z]{2,3}", REG},			// register
 	{"&", BITAND},					// bit and
 	{"\\|", BITOR},					// bit or
-	{"^", BITXOR},					// bit xor
+	{"\\^", BITXOR},					// bit xor
 	{"!", NOT},						// not
 };
 
