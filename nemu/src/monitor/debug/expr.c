@@ -8,7 +8,7 @@
 
 enum {
 	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, LGAND, LGOR,
-			 LGXOR, LGNOT
+			 LGXOR, LGNOT 
 	/* TODO: Add more token types */
 };
 
