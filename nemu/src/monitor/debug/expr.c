@@ -119,28 +119,25 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p, int q, bool *success) {
-	if (tokens[p].type != '(' || tokens[q].type != ')') {
+	if (tokens[p].type != '(' || tokens[q].type != ')') 
 		//左右不为括号
 		return false;
-	}
+
 	int count = 0, i;
 	for (i = p; i <= q; i++)
-		if (tokens[i].type == '(')
-			++count; 
+		//每次出现 ( count加1，出现 ) count减1，若出现负数则括号不匹配
+		if (tokens[i].type == '(') ++count; 
 		else if (tokens[i].type == ')')
 		{
 			-- count;
-			if (count < 0)
+			if (count < 0)// ‘)' 比 '(' 数量多，非法表达式
 			{
 				*success =  false;
-				return 0;
-			}
-			if (count == 0 && i != q)
-			{
 				return false;
 			}
+			//括号提前匹配完成
+			if (count == 0 && i != q)  return false;
 		}
-	//printf("================%d\n", count);
 	if (count != 0)
 	{
 		// '('数量不等于  ')'数量
@@ -150,22 +147,22 @@ bool check_parentheses(int p, int q, bool *success) {
 	return 1;
 }
 
-#define NOP 10 //不是一个有效操作符
+#define NOP 10 //不是一个有效操作符的优先级
 
 int getPriority(int type)
 {
 	switch (type){
-		case MINUS: return 7;
-		case DER: return 7;
-		case NOT: return 7;
-		case '*': return 6;
-		case '/': return 6;
-		case '+': return 5;
-		case '-': return 5;
-		case AND: return 4;
-		case OR: return 3;
-		case EQ: return 2;
-		case NEQ: return 2;
+		case MINUS: return 7;   // 负号
+		case DER:	return 7;   // 解引用
+		case NOT:	return 7;	// !	
+		case '*':	return 6;	
+		case '/':	return 6;
+		case '+':	return 5;
+		case '-':	return 5;
+		case AND:	return 4;
+		case OR:	return 3;
+		case EQ:	return 2;	// ==
+		case NEQ:	return 2;	// !=
 	}
 	return NOP;// 不是一个有效操作符
 }
@@ -220,21 +217,20 @@ uint32_t eval(int p, int q, bool *success)
 		return tmp;
 	}
 	else if (check_parentheses(p, q, success) == true)
-	{
-		return eval(p+1, q-1, success);
-	}
+		return eval(p+1, q-1, success);//取出括号继续递归
 	else 
 	{
-		if (*success == false) return 0;
-		int minPriority = NOP;
+		if (*success == false) return 0;//检查括号匹配时是否返回不合法
+		int minPriority = NOP;//默认优先级，即为非法操作符的优先级
 		int i;
-		int countp = 0;//count parentheses
+		int countp = 0;//count parentheses括号计数，'('加1，')'减1
 		//查找op操作符
 		for (i = p; i <= q; i++){
 			int type = tokens[i].type;
 			if (type == '(') ++countp;
-			else if (type == ')') -- countp;//op操作符不能在括号内
-			if (getPriority(type)<minPriority && countp==0)
+			else if (type == ')') -- countp;
+			//查找所有操作符中最低的优先级
+			if (getPriority(type)<minPriority && countp==0) //op操作符不能在括号内
 				minPriority = getPriority(type);
 		}
 		if (minPriority == NOP) //未找到op操作符
@@ -243,36 +239,30 @@ uint32_t eval(int p, int q, bool *success)
 			return 0;
 		}
 		countp = 0;
+		//从右往左查找优先级等于minPriority的操作符，作为op
 		for (i = q; i >= p; i--) {
 			int type = tokens[i].type;
 			if (type == '(') ++ countp;
 			else if (type == ')') --countp;
 			if (getPriority(type) == minPriority && countp==0)
 			{
-				if (type == DER)//为单目 解引用×
+			 	if (type == DER)//为单目dereference 解引用*
 				{
-					uint32_t addr = eval(p+1, q, success);
-					if (*success == false) return 0;
+			 		uint32_t addr = eval(p+1, q, success);
 					return hwaddr_read(addr, 4);
 				} else
 				if (type == MINUS)//为单目 负号-
-				{
-					uint32_t val = eval(p+1, q, success);
-					if (*success == false) return 0;
-					return -val;
-				} else
+			 		return  -eval(p+1, q, success);
+				else
 				if (type == NOT) //为单目 !
-				{
-					uint32_t val = eval(p+1, q, success);
-					if (*success == false) return 0;
-					return !val;
-				}
+				 	return !eval(p+1, q, success);
+
 				uint32_t val1 = eval(p, i-1, success);
 				uint32_t val2 = eval(i+1, q, success);
 
 				if (*success == false) return 0;
 
-				switch (type){
+				switch (type){//为双目运算符
 					case '+': return val1 + val2;
 					case '-': return val1 - val2;
 					case '*': return val1 * val2;
@@ -303,12 +293,14 @@ uint32_t expr(char *e, bool *success) {
 	}
 	
 	int i;
+	//判断* - 是否解引用或负号
 	for (i = 0; i < nr_token; i++)
 	{
 		if (tokens[i].type == '*' && (i==0 || getPriority(tokens[i-1].type)<NOP))
 			//为解引用
 			tokens[i].type = DER;
 		else
+			//为负号
 		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
 			tokens[i].type = MINUS;
 	}

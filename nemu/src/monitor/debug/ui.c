@@ -90,9 +90,10 @@ static int cmd_x(char *args)
 	while (*args == ' ') ++args;
 	while (*args >= '0' && *args <= '9') ++args;
 	bool success = true;
-	addr = expr(args, &success);
+	addr = expr(args, &success);//调用表达式求值
 	if (success == false) 
 	{
+		//表达式非法，无法求值
 		printf("Please input the right arguments.\n");
 		return 0;
 	}
