@@ -7,7 +7,8 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, LGAND, LGOR,
+			 LGXOR, LGNOT
 	/* TODO: Add more token types */
 };
 
@@ -34,6 +35,10 @@ static struct rule {
 	{"\\(", '('},					// (
 	{"\\)", ')'},					// )
 	{"\\$[a-z]{2,3}", REG},			// register
+	{"&", LGAND},					// logic and
+	{"|", LGOR},					// logic or
+	{"^", LGXOR},					// logic xor
+	{"~", LGNOT},					// logic not
 	{"!", NOT},						// not
 };
 
