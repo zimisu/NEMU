@@ -7,8 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, BITAND, BITOR,
-			 BITXOR 
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, BITAND, BITOR, BITXOR 
 	/* TODO: Add more token types */
 };
 
@@ -274,8 +273,8 @@ uint32_t eval(int p, int q, bool *success)
 					case '-':		return val1 - val2;
 					case '*':		return val1 * val2;
 					case '/':
-						if (val2 == 0) {
-							*success = false;
+						if (val2 == 0) { 
+							*success = false; 
 							return 0;
 						}
 						return val1 / val2;
@@ -312,10 +311,10 @@ uint32_t expr(char *e, bool *success) {
 	for (i = 0; i < nr_token; i++)
 	{
 		if (tokens[i].type == '*' && (i==0 || getPriority(tokens[i-1].type)<NOP))
-			//为解引用
+			//前一个操作符拥有优先级，为解引用
 			tokens[i].type = DER;
 		else
-			//为负号
+			//同上。为负号
 		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
 			tokens[i].type = MINUS;
 	}
