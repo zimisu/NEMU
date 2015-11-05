@@ -50,6 +50,7 @@ static int cmd_w(char *args) {
 		printf("Calculate the expression failed.\n");
 		return 0;
 	}
+	printf("Watchpoint %d: %s\n", wp->NO, wp->expr);
 	
 	return 0;
 }
