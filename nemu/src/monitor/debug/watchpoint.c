@@ -85,6 +85,7 @@ int check_wp()
 			wp->oldValue = newValue;
 			count++;
 		}
+		wp = wp->next;
 	}
 	return count;
 }
