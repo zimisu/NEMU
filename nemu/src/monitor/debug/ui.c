@@ -108,6 +108,9 @@ static int cmd_info(char *args) {
 			printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
 			printf("  %s : 0x%02x\n", regsb[i+4], cpu.gpr[i]._8[1]);
 		}
+	} else if (strcmp(arg, "w") == 0)
+	{
+		show_wp();
 	} else
 	{
 		printf("Arguments error.\n");

@@ -90,6 +90,17 @@ int check_wp()
 	return count;
 }
 
+void show_wp()
+{
+	printf("Num     Type		  What\n");
+	WP* wp = head;
+	while (head != NULL)
+	{
+		printf("%4d     watchpoint    %s\n", wp->NO, wp->expr);
+		wp = wp->next;
+	}
+}
+
 /* TODO: Implement the functionality of watchpoint */
 
 

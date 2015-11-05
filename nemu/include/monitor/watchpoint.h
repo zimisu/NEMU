@@ -16,6 +16,7 @@ typedef struct watchpoint {
 
 bool delete_wp_num(int num);
 int check_wp();
+void show_wp();
 WP* new_wp();
 
 #endif
