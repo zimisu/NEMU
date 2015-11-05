@@ -96,7 +96,7 @@ void show_wp()
 	WP* wp = head;
 	while (head != NULL)
 	{
-		printf("%4d     watchpoint    %s\n", wp->NO, wp->expr);
+		printf("%3d     watchpoint    %s\n", wp->NO, wp->expr);
 		wp = wp->next;
 	}
 }
