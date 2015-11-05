@@ -41,8 +41,8 @@ static int cmd_w(char *args) {
 		printf("Add watch points failed.\n");
 		return 0;
 	}
-
-	wp->expr = tmp;
+	//printf("--------:%s\n", tmp);
+	strcpy(tmp, wp->expr);
 	bool success = true;
 	wp->oldValue = expr(tmp, &success);
 	if (success == false)
