@@ -32,14 +32,14 @@ static int cmd_w(char *args) {
 	if (tmp == NULL)
 	{
 		printf("Please input the right argument.\n");
-		return -1;
+		return 0;
 	}
 
 	WP* wp = new_wp();
 	if (wp == NULL)
 	{
 		printf("Add watch points failed.\n");
-		return -1;
+		return 0;
 	}
 
 	wp->expr = tmp;
@@ -48,7 +48,7 @@ static int cmd_w(char *args) {
 	if (success == false)
 	{
 		printf("Calculate the expression failed.\n");
-		return -1;
+		return 0;
 	}
 	
 	return 0;
