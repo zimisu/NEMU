@@ -27,6 +27,46 @@ char* rl_gets() {
 	return line_read;
 }
 
+static int cmd_w(char *args) {
+	char* tmp = strtok(args, " ");
+	if (tmp == NULL)
+	{
+		printf("Please input the right argument.\n");
+		return -1;
+	}
+
+	WP* wp = new_wp();
+	if (wp == NULL)
+	{
+		printf("Add watch points failed.\n");
+		return -1;
+	}
+
+	wp->expr = tmp;
+	bool success = true;
+	wp->oldValue = expr(tmp, &success);
+	if (success == false)
+	{
+		printf("Calculate the expression failed.\n");
+		return -1;
+	}
+	
+	return 0;
+}
+
+static int cmd_d(char *args) {
+	char *tmp = strtok(args, " ");
+	int wpnum = -1;
+	if (sscanf(tmp, "%d", &wpnum) == 0)
+	{
+		printf("Please input the right argument.\n");
+		return -1;
+	}
+	//find the watch point and delete it
+	if (delete_wp_num(wpnum) == 0) return -1;
+	return 0;
+}
+
 static int cmd_c(char *args) {
 	cpu_exec(-1);
 	return 0;
@@ -144,7 +184,9 @@ static struct {
 	{ "info", "Show the register info or watching points info", cmd_info },
 	{ "i", "Show the register info or watching points info", cmd_info},
 	{ "x", "Scan the memory", cmd_x},
-	{ "p", "expression calculation", cmd_p},
+	{ "p", "Expression calculation", cmd_p},
+	{ "w", "Add watch point", cmd_w},
+	{ "d", "Delete a watch point", cmd_d}
 	/* TODO: Add more commands */
 
 };

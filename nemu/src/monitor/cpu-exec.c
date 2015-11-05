@@ -12,6 +12,7 @@
 int nemu_state = STOP;
 
 int exec(swaddr_t);
+int check_wp();
 
 char assembly[80];
 char asm_buf[128];
@@ -73,7 +74,8 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-
+		if (check_wp() > 0)
+			nemu_state = STOP;
 
 		if(nemu_state != RUNNING) { return; }
 	}
