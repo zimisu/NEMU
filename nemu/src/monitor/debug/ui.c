@@ -42,7 +42,7 @@ static int cmd_w(char *args) {
 		return 0;
 	}
 	//printf("--------:%s\n", tmp);
-	strcpy(tmp, wp->expr);
+	strcpy(wp->expr, tmp);
 	bool success = true;
 	wp->oldValue = expr(tmp, &success);
 	if (success == false)
