@@ -88,7 +88,7 @@ void show_wp()
 {
 	printf("Num     Type		  What\n");
 	WP* wp = head;
-	while (head != NULL)
+	while (wp != NULL)
 	{
 		printf("%3d     watchpoint    %s\n", wp->NO, wp->expr);
 		wp = wp->next;
