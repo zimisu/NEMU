@@ -112,6 +112,7 @@ bool printSingleReg(char *reg)
 				printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
 				return 1;
 			}
+		printf("~~\n");
 		for (i = 0; i < 8; ++i)
 			if (strcmp(reg, regsw[i]) == 0)
 			{
