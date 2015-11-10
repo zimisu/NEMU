@@ -148,6 +148,7 @@ static int cmd_info(char *args) {
 		if (arg == NULL) printAllReg();
 		else
 			{
+				printf("%s\n",arg);
 				sscanf(arg,"%s", reg);
 				printSingleReg(reg);
 			}
