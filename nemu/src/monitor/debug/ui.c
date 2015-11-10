@@ -145,9 +145,10 @@ static int cmd_info(char *args) {
 		printf("register status:\n");
 		arg = strtok(NULL, " ");
 		char *reg = NULL;
-			sscanf(arg,"%s", reg);
-		printf("~~\n");
-		if (!printSingleReg(reg)) printAllReg();
+		sscanf(arg,"%s", reg);
+		if (reg) printAllReg();
+			else printSingleReg(reg);
+
 	} else if (strcmp(arg, "w") == 0)
 	{
 		show_wp();
