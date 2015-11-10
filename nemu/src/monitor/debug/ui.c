@@ -106,6 +106,7 @@ void printAllReg()
 bool printSingleReg(char *reg)
 {
 		int i;
+		printf("~~\n");
 		for (i = 0; i < 8; ++i)
 			if (strcmp(reg, regsl[i]) == 0)
 			{
