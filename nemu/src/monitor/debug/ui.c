@@ -90,6 +90,7 @@ static int cmd_si(char *args) {
 
 void printAllReg()
 {
+		printf("~~\n");
 		int i;
 		for (i = 0; i < 8; ++i)
 			printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
