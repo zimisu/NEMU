@@ -153,7 +153,7 @@ static int cmd_info(char *args) {
 				//sscanf(arg,"%s", reg);
 				//printf("%s\n",reg);
 				if (!printSingleReg(arg))
-					printf("Can not find the register:%s\n", arg);
+					printf("Can not find the register : %s\n", arg);
 			}
 
 	} else if (strcmp(arg, "w") == 0)
