@@ -146,6 +146,7 @@ static int cmd_info(char *args) {
 		arg = strtok(NULL, " ");
 		char *reg = NULL;
 			sscanf(arg,"%s", reg);
+		printf("~~\n");
 		if (!printSingleReg(reg)) printAllReg();
 	} else if (strcmp(arg, "w") == 0)
 	{
