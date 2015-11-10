@@ -28,8 +28,8 @@ char* rl_gets() {
 }
 
 static int cmd_w(char *args) {
-	char* tmp = strtok(args, " ");
-	if (tmp == NULL)
+	//char* tmp = strtok(args, " ");
+	if (args == NULL)
 	{
 		printf("Please input the right argument.\n");
 		return 0;
@@ -42,9 +42,9 @@ static int cmd_w(char *args) {
 		return 0;
 	}
 	//printf("--------:%s\n", tmp);
-	strcpy(wp->expr, tmp);
+	strcpy(wp->expr, args);
 	bool success = true;
-	wp->oldValue = expr(tmp, &success);
+	wp->oldValue = expr(args, &success);
 	if (success == false)
 	{
 		printf("Calculate the expression failed.\n");
