@@ -150,6 +150,7 @@ static int cmd_info(char *args) {
 			{
 				printf("%s\n",arg);
 				sscanf(arg,"%s", reg);
+				printf("%s\n",reg);
 				printSingleReg(reg);
 			}
 
