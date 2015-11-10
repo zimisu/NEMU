@@ -192,7 +192,13 @@ uint32_t eval(int p, int q, bool *success)
 		if (tokens[p].type == DEC_NUM)//十六进制数
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
-				tmp = tmp*10 + tokens[p].str[i] - '0';
+			{
+				int num;
+				char c = tokens[p].str[i];
+				if (c >= 'a' && c <= 'f') num = c - 'a' + 10;
+				else num = c - '0';
+				tmp = tmp*10 + num;
+			}
 		} else 
 		if (tokens[p].type == HEX_NUM)//十进制数
 		{
