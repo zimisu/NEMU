@@ -144,14 +144,14 @@ static int cmd_info(char *args) {
 	{
 		printf("register status:\n");
 		arg = strtok(NULL, " ");
-		char *reg = NULL;
+		//char *reg = NULL;
 		if (arg == NULL) printAllReg();
 		else
 			{
-				printf("%s\n",arg);
-				sscanf(arg,"%s", reg);
-				printf("%s\n",reg);
-				printSingleReg(reg);
+				//printf("%s\n",arg);
+				//sscanf(arg,"%s", reg);
+				//printf("%s\n",reg);
+				printSingleReg(arg);
 			}
 
 	} else if (strcmp(arg, "w") == 0)
