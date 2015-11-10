@@ -32,15 +32,7 @@ WP* new_wp()
 	return tmp;
 }
 
-void free_wp(WP *wp)
-{
-	if (wp == NULL) return;
-	WP *tmp = free_;
-	wp->next = tmp;
-	free_ = wp;
-}
-
-bool delete_wp_num(int num)
+bool free_wp(int num)
 {
 	if (head == NULL)
 	{
@@ -52,7 +44,8 @@ bool delete_wp_num(int num)
 	{
 		tmp = head;
 		head = head->next;
-		free_wp(tmp);
+		tmp->next = free_->next;
+		free_->next = tmp;
 		return 1;
 	}
 	tmp = head;
@@ -61,7 +54,8 @@ bool delete_wp_num(int num)
 		{
 			WP *wpToDel = tmp->next;
 			tmp->next = wpToDel->next;
-			free_wp(wpToDel);
+			wpToDel->next = free_->next;
+			free_->next = wpToDel;
 			return 1;
 		}
 	printf("No watch point num %d.\n", num);

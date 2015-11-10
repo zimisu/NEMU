@@ -64,7 +64,7 @@ static int cmd_d(char *args) {
 		return -1;
 	}
 	//find the watch point and delete it
-	if (delete_wp_num(wpnum) == 0) return -1;
+	if (free_wp(wpnum) == 0) return -1;
 	return 0;
 }
 
