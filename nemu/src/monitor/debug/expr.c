@@ -189,7 +189,7 @@ uint32_t eval(int p, int q, bool *success)
 	if (p == q)
 	{
 		uint32_t tmp = 0, i;
-		if (tokens[p].type == DEC_NUM)//十六进制数
+		if (tokens[p].type == HEX_NUM)//十六进制数
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 			{
@@ -197,13 +197,13 @@ uint32_t eval(int p, int q, bool *success)
 				char c = tokens[p].str[i];
 				if (c >= 'a' && c <= 'f') num = c - 'a' + 10;
 				else num = c - '0';
-				tmp = tmp*10 + num;
+				tmp = tmp*16 + num;
 			}
 		} else 
-		if (tokens[p].type == HEX_NUM)//十进制数
+		if (tokens[p].type == DEC_NUM)//十进制数
 		{
 			for (i = 2; i < strlen(tokens[p].str); i++)
-				tmp = tmp*16 + tokens[p].str[i] - '0';
+				tmp = tmp*10 + tokens[p].str[i] - '0';
 		} else					
 		if (tokens[p].type == REG)//寄存器
 		{
