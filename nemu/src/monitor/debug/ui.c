@@ -145,9 +145,12 @@ static int cmd_info(char *args) {
 		printf("register status:\n");
 		arg = strtok(NULL, " ");
 		char *reg = NULL;
-		sscanf(arg,"%s", reg);
-		if (reg) printAllReg();
-			else printSingleReg(reg);
+		if (arg == NULL) printAllReg();
+		else
+			{
+				sscanf(arg,"%s", reg);
+				printSingleReg(reg);
+			}
 
 	} else if (strcmp(arg, "w") == 0)
 	{
