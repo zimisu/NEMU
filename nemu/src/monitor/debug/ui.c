@@ -93,6 +93,7 @@ void printAllReg()
 		int i;
 		for (i = 0; i < 8; ++i)
 			printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
+		printf("~~\n");
 		for (i = 0; i < 8; ++i)
 			printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
 		for (i = 0; i < 4; ++i)
