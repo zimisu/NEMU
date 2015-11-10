@@ -21,7 +21,7 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// spaces
-	{"0x[0-9]+", HEX_NUM},			// hexadecimal number
+	{"0x[0-9a-f]+", HEX_NUM},			// hexadecimal number
 	{"[0-9]+", DEC_NUM},			// decimal number
 	{"!=", NEQ},					// not equal
 	{"&&", AND},					// and
