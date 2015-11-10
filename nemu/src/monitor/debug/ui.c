@@ -108,22 +108,22 @@ void printAllReg()
 bool printSingleReg(char *reg)
 {
 		int i;
-		printf("~~\n");
+		//printf("~~\n");
 		for (i = 0; i < 8; ++i)
-			if (strcmp(reg, regsl[i]) == 0)
+			if (strcmp(reg+1, regsl[i]) == 0)
 			{
 				printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
 				return 1;
 			}
-		printf("~~\n");
+		//printf("~~\n");
 		for (i = 0; i < 8; ++i)
-			if (strcmp(reg, regsw[i]) == 0)
+			if (strcmp(reg+1, regsw[i]) == 0)
 			{
 				printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
 				return 1;
 			}
 		for (i = 0; i < 8; ++i)
-			if (strcmp(reg, regsb[i]) == 0)
+			if (strcmp(reg+1, regsb[i]) == 0)
 			{
 				printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
 				return 1;
