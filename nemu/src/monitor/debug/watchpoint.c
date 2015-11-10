@@ -41,20 +41,21 @@ bool free_wp(int num)
 	}
 	WP* tmp;
 	if (head->NO == num)
-	{
+	{//链表中第一个节点就是需要删除的监视点
 		tmp = head;
 		head = head->next;
-		tmp->next = free_->next;
+		tmp->next = free_->next;//将删除的监视点插入到free表中
 		free_->next = tmp;
 		return 1;
 	}
 	tmp = head;
+	//枚举之后的每一个监视点
 	while (tmp->next != NULL)
 		if (tmp->next->NO == num)
 		{
 			WP *wpToDel = tmp->next;
 			tmp->next = wpToDel->next;
-			wpToDel->next = free_->next;
+			wpToDel->next = free_->next;//将删除的监视点插入到free表中
 			free_->next = wpToDel;
 			return 1;
 		}
@@ -90,7 +91,7 @@ void show_wp()
 	WP* wp = head;
 	while (wp != NULL)
 	{
-		printf("%3d     watchpoint    %s\n", wp->NO, wp->expr);
+		printf("%3d     watchpoint        %s\n", wp->NO, wp->expr);
 		wp = wp->next;
 	}
 }

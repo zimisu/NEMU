@@ -102,6 +102,8 @@ void printAllReg()
 			printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
 			printf("  %s : 0x%02x\n", regsb[i+4], cpu.gpr[i]._8[1]);
 		}
+		
+		printf("  $eip : 0x%02x\n", cpu.eip);
 
 }
 
@@ -129,6 +131,11 @@ bool printSingleReg(char *reg)
 				printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
 				return 1;
 			}
+		if (strcmp("$eip", reg) == 0)
+		{
+			printf("  $eip : 0x%02x\n", cpu.eip);
+			return 1;
+		}
 	return 0;
 
 }

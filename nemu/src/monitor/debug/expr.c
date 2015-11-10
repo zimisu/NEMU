@@ -218,6 +218,7 @@ uint32_t eval(int p, int q, bool *success)
 				if (strcmp(regsb[j], tokens[p].str+1)==0)  return cpu.gpr[j]._8[0];
 				if (strcmp(regsb[j+4], tokens[p].str+1)==0) return cpu.gpr[j]._8[1];
 			}
+			if (strcmp("$eip", tokens[p].str) == 0) return cpu.eip;
 			printf("Invalid register.\n");
 			*success = false;
 			return 0;
