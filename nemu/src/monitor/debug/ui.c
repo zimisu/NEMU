@@ -109,6 +109,7 @@ bool printSingleReg(char *reg)
 {
 		int i;
 		//printf("~~\n");
+		if (reg[0] != '$' || strlen(reg)<2) return 0;
 		for (i = 0; i < 8; ++i)
 			if (strcmp(reg+1, regsl[i]) == 0)
 			{
