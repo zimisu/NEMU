@@ -87,6 +87,47 @@ static int cmd_si(char *args) {
 	cpu_exec(steps);
 	return 0;
 }
+
+void printAllReg()
+{
+		int i;
+		for (i = 0; i < 8; ++i)
+			printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
+		for (i = 0; i < 8; ++i)
+			printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
+		for (i = 0; i < 4; ++i)
+		{
+			printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
+			printf("  %s : 0x%02x\n", regsb[i+4], cpu.gpr[i]._8[1]);
+		}
+
+}
+
+bool printSingleReg(char *reg)
+{
+		int i;
+		for (i = 0; i < 8; ++i)
+			if (strcmp(reg, regsl[i]) == 0)
+			{
+				printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
+				return 1;
+			}
+		for (i = 0; i < 8; ++i)
+			if (strcmp(reg, regsw[i]) == 0)
+			{
+				printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
+				return 1;
+			}
+		for (i = 0; i < 8; ++i)
+			if (strcmp(reg, regsb[i]) == 0)
+			{
+				printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
+				return 1;
+			}
+	return 0;
+
+}
+
 static int cmd_info(char *args) {
 	char *arg;
 	arg = strtok(args, " ");
@@ -98,16 +139,10 @@ static int cmd_info(char *args) {
 	if (strcmp(arg, "r") == 0)
 	{
 		printf("register status:\n");
-		int i;
-		for (i = 0; i < 8; ++i)
-			printf("  %s : 0x%08x\n", regsl[i], cpu.gpr[i]._32);
-		for (i = 0; i < 8; ++i)
-			printf("  %s : 0x%04x\n", regsw[i], cpu.gpr[i]._16);
-		for (i = 0; i < 4; ++i)
-		{
-			printf("  %s : 0x%02x\n", regsb[i], cpu.gpr[i]._8[0]);
-			printf("  %s : 0x%02x\n", regsb[i+4], cpu.gpr[i]._8[1]);
-		}
+		arg = strtok(NULL, " ");
+		char *reg = NULL;
+			sscanf(arg,"%s", reg);
+		if (!printSingleReg(reg)) printAllReg();
 	} else if (strcmp(arg, "w") == 0)
 	{
 		show_wp();
