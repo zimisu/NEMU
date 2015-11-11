@@ -34,22 +34,24 @@ static int cmd_w(char *args) {
 		printf("Please input the right argument.\n");
 		return 0;
 	}
-
+	bool success = true;
+	uint32_t tmp = expr(args, &success);
+	if (success == false)
+	{
+		printf("Expression invalid.\n");
+		return 0;
+	}
 	WP* wp = new_wp();
 	if (wp == NULL)
 	{
 		printf("Add watch points failed.\n");
 		return 0;
 	}
+	wp->oldValue = tmp;
+
 	//printf("--------:%s\n", tmp);
 	strcpy(wp->expr, args);
-	bool success = true;
-	wp->oldValue = expr(args, &success);
-	if (success == false)
-	{
-		printf("Calculate the expression failed.\n");
-		return 0;
-	}
+
 	printf("Watchpoint %d: %s\n", wp->NO, wp->expr);
 	
 	return 0;
