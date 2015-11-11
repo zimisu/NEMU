@@ -76,7 +76,7 @@ int check_wp()
 		{
 			printf("Hardware watch point %d: %s\n", wp->NO, wp->expr);
 			printf("Old value = %u\n", wp->oldValue);
-			printf("New value = %u\n", newValue);
+			printf("New value = %u\n\n", newValue);
 			wp->oldValue = newValue;
 			count++;
 		}
