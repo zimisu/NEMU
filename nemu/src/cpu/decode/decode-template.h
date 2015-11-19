@@ -38,7 +38,7 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	op_src->simm = (tmp << (32 - bits)) >> (32 - bits);
 //	op_src->simm = tmp & mask;
 
-	panic("please implement me");
+//	panic("please implement me");
 
 	op_src->val = op_src->simm;
 
