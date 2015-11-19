@@ -34,8 +34,7 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	 */
 	int32_t tmp = instr_fetch(eip, DATA_BYTE);
 	int32_t bits = DATA_BYTE >> 3;
-//	op_src->simm = (tmp << (32 - bits)) >> (32 - bits);
-	op_src->simm = tmp & bits;
+	op_src->simm = (tmp << (32 - bits)) >> (32 - bits);
 
 //	panic("please implement me");
 
