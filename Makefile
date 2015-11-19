@@ -52,7 +52,10 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/mov
+#--- Makefile
+#+++ Makefile
+#@@ -55,2 +55,2 @@
+#USERPROG := obj/testcase/mov
 USERPROG := obj/testcase/mov-c
 ENTRY := $(USERPROG)
 
