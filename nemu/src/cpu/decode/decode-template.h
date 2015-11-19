@@ -33,9 +33,9 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	op_src->simm = ???
 	 */
 	uint32_t tmp = instr_fetch(eip, DATA_BYTE);
-	uint64_t bits = DATA_BYTE >> 3;
+	uint64_t mask = (1 << (DATA_BYTE >> 3)) - 1;
 //	op_src->simm = (tmp << (32 - bits)) >> (32 - bits);
-	op_src->simm = tmp & ((1 << bits) - 1);
+	op_src->simm = tmp & mask;
 
 	panic("please implement me");
 
