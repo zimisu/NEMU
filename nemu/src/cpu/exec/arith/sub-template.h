@@ -12,8 +12,22 @@
 static void do_execute() {
 	int bits = DATA_BYTE << 3;
 	uint64_t mask = (1 << bits) - 1;
-	OPERAND_W(op_dest, (op_dest->val & mask) - op_src->val); 
+	uint32_t a = op_dest->val & mask;
+	uint32_t b = op_src->val;
+	uint32_t ans = a - b;
+	OPERAND_W(op_dest, ans); 
 	
+	cpu.EFLAGS.CF = (b > a);
+	cpu.EFLAGS.ZF = (a - b == 0);
+	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
+	cpu.EFLAGS.SF = ((a - b) >> 31) & 1;
+	uint32_t tmp = a - b;
+	tmp = tmp & (tmp << 16);
+	tmp = tmp & (tmp << 8);
+	tmp = tmp & (tmp << 4);
+	tmp = tmp & (tmp << 2);
+	tmp = tmp & (tmp << 1);
+	cpu.EFLAGS.PF = (tmp >> 31) & 1;
 
 	print_asm_template2();
 }

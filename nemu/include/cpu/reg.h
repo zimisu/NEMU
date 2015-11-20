@@ -16,6 +16,29 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
  */
 
 
+typedef struct {
+
+	uint32_t CF : 1;
+	uint32_t ONEF: 1;
+	uint32_t PF : 1;
+	uint32_t    : 1;
+	uint32_t AF : 1;
+	uint32_t    : 1;
+	uint32_t ZF : 1;
+	uint32_t SF : 1;
+	uint32_t TF : 1;
+	uint32_t IF : 1;
+	uint32_t DF : 1;
+	uint32_t OF : 1;
+	uint32_t OL : 1;
+	uint32_t IP : 1;
+	uint32_t ND : 1;
+	uint32_t RF : 1;
+	uint32_t	: 1;
+	uint32_t VM : 1;
+	uint32_t	: 14;
+} EFLAGS_t;
+
 #define eax gpr[0]._32
 #define ecx gpr[1]._32
 #define edx gpr[2]._32
@@ -47,7 +70,7 @@ typedef struct {
 		uint32_t _32;
 		uint16_t _16;
 		uint8_t _8[2];
-	} gpr[8];//, eax, ecx, edx, ebx, esp, ebp, esi, edi;
+	} gpr[8];//, eax, ecx, edx, ebx, esp, ebp, esi,;w edi;
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
@@ -63,6 +86,7 @@ typedef struct {
 			 &edi = gpr[7]._32;
 */	
 	swaddr_t eip;
+	EFLAGS_t EFLAGS;
 
 } CPU_state;
 

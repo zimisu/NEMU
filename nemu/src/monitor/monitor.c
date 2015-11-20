@@ -1,4 +1,5 @@
 #include "nemu.h"
+#include "string.h"
 
 #define ENTRY_START 0x100000
 
@@ -74,12 +75,20 @@ static void load_entry() {
 	fclose(fp);
 }
 
+void init_EFLAGS()
+{
+	memset(&cpu.EFLAGS, 0, sizeof(cpu.EFLAGS));
+	cpu.EFLAGS.ONEF = 1;
+}
+
 void restart() {
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
 #endif
+
+	init_EFLAGS();
 
 	/* Read the entry code into memory. */
 	load_entry();
