@@ -16,7 +16,7 @@ static void do_execute()
 	else if (DATA_BYTE == 4)
         cpu.eip = cpu.eip + op_src->val;
 //		REG(REG_EIP) = REG(REG_EIP) + op_src->val;
-
+	printf("%ud\n", cpu.eip);
 	print_asm_template1();
 }
 
