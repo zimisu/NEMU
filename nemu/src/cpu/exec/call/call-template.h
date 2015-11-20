@@ -13,7 +13,7 @@ static void do_execute()
 	if (DATA_BYTE == 2)
 //		REG(REG_EIP) = (REG(REG_EIP) + op_src->val) & 0xffff;
 		cpu.eip = (cpu.eip + op_src->val) & 0xffff;
-	else
+	else if (DATA_BYTE == 4)
         cpu.eip = cpu.eip + op_src->val;
 //		REG(REG_EIP) = REG(REG_EIP) + op_src->val;
 
