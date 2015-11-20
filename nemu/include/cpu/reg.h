@@ -24,6 +24,23 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 #define ebp gpr[5]._32
 #define esi gpr[6]._32
 #define edi gpr[7]._32
+#define ax gpr[0]._16
+#define cx gpr[1]._16
+#define dx gpr[2]._16
+#define bx gpr[3]._16
+#define sp gpr[4]._16
+#define bp gpr[5]._16
+#define si gpr[6]._16
+#define di gpr[7]._16
+
+#define ah gpr[0]._8[0]
+#define al gpr[1]._8[1]
+#define ch gpr[2]._8[0]
+#define cl gpr[3]._8[1]
+#define dh gpr[4]._8[0]
+#define dl gpr[5]._8[1]
+#define bh gpr[6]._8[0]
+#define bl gpr[7]._8[1]
 typedef struct {
 
 	union cpuUnion{
