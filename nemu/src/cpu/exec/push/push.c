@@ -19,7 +19,7 @@
 */
 make_helper(push)
 {
-	swaddr_write(cpu.sp-4, 32, cpu.gpr[ops_decoded.opcode & 5]._32);
+	swaddr_write(cpu.sp-4, 4, cpu.gpr[ops_decoded.opcode & 5]._32);
 //	MEM_W(cpu.sp-4, REG(op_decoded.opcode & 5));
 	cpu.sp -= 4;
 	print_asm_template2();
