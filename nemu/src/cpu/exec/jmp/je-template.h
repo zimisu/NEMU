@@ -9,8 +9,11 @@
 #define instr je
 
 static void do_execute() {
-	cpu.esp += op_dest->val;
-	print_asm_template2();
+	if (cpu.EFLAGS.ZF == 1)
+	{
+		cpu.esp += op_src->val;
+		print_asm_template2();
+	}
 }
 
 make_instr_helper(i)
