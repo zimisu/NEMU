@@ -12,6 +12,7 @@ make_helper(je_i_b)
 {
 	if (cpu.EFLAGS.ZF == 1)
 	{
+		printf("now we should jmp!\n");
 		cpu.esp += op_src->val;
 		print_asm_template2();
 	}
