@@ -6,7 +6,6 @@
  ************************************************************************/
 
 #include "cpu/exec/helper.h"
-#include "cpu/reg.h"
 /*
 make_helper(je_i_b)
 {

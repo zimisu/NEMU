@@ -12,6 +12,7 @@ static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1)
 	{
 		cpu.esp += op_src->val;
+		printf("op_src->val = %x\n", op_src->val);
 		print_asm_template2();
 	}
 }
