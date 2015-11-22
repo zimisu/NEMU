@@ -9,7 +9,7 @@
 #define instr je
 
 static void do_execute() {
-	cpu.esp += op_src->val;
+	cpu.esp += op_dest->val;
 	print_asm_template2();
 }
 
