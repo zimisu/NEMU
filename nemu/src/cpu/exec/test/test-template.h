@@ -22,7 +22,7 @@ static void do_execute()
 	tmp = tmp & (tmp << 2);
 	tmp = tmp & (tmp << 1);
 	cpu.EFLAGS.PF = (tmp >> 31) & 1;
-
+		print_asm_template2();
 }
 
 make_instr_helper(rm)
