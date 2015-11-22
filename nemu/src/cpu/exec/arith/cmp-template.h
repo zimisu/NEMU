@@ -14,8 +14,7 @@ static void do_execute()
 	uint64_t mask = (1 << bits) - 1;
 	uint32_t a = op_dest->val & mask;
 	uint32_t b = op_src->val;
-	uint32_t ans = a - b;
-	OPERAND_W(op_dest, ans); 
+	//OPERAND_W(op_dest, ans); 
 	
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (a - b == 0);

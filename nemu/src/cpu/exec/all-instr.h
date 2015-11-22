@@ -24,6 +24,8 @@
 
 #include "string/rep.h"
 
+#include "jmp/je.h"
+
 #include "misc/misc.h"
 
 #include "special/special.h"
