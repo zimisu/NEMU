@@ -14,6 +14,7 @@ make_helper(je_i_b)
 	{
 		printf("now we should jmp!\n");
 		cpu.esp += op_dest->val;
+		printf("%x\n", op_dest->val);
 		print_asm_template2();
 	}
 	return 2;
