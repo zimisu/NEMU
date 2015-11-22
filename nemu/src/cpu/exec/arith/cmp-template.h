@@ -11,8 +11,8 @@
 static void do_execute()
 {
 	int bits = DATA_BYTE << 3;
-	uint64_t mask = (1 << bits) - 1;
-	printf("op_dest = %x\n", op_dest->val);
+	uint32_t mask = (1 << bits) - 1;
+	printf("op_dest = %x, mask = %x\n", op_dest->val, mask);
 	uint32_t a = op_dest->val & mask;
 	uint32_t b = op_src->val;
 	//OPERAND_W(op_dest, ans); 
