@@ -14,6 +14,7 @@ static void do_execute()
 	if (DATA_BYTE == 2) result &= 0xffff;
 	printf("test_ result= %x\n", result);
 	cpu.EFLAGS.ZF = (result == 0);
+	printf("zf = %x\n", cpu.EFLAGS.ZF);
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = (result >> 31) & 1;
 	uint32_t tmp = result;
