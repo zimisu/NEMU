@@ -14,7 +14,7 @@ static void do_execute()
 //		REG(REG_EIP) = (REG(REG_EIP) + op_src->val) & 0xffff;
 	MEM_W(cpu.esp-DATA_BYTE, cpu.eip);	
 	cpu.esp -= DATA_BYTE;
-	cpu.eip = (cpu.eip + op_src->val) & 0xffff;
+	cpu.eip = (cpu.eip + op_src->val);
 /*	else if (DATA_BYTE == 4)
 		MEM_W(cpu.esp-4, cpu.eip);
 		cpu.esp -= 4;
