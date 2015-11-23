@@ -12,7 +12,7 @@
 
 static void do_execute(){
 	
-	MEM_W(cpu.sp-DATA_BYTE, REG(op_decoded.opcode & 5));
+	MEM_W(cpu.sp-DATA_BYTE, REG(op_decoded.opcode & 7));
 	cpu.sp -= DATA_BYTE;
 	
 	print_asm_template2();

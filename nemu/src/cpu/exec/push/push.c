@@ -9,7 +9,6 @@
 //#include "cpu/helper.h"
 #include "memory/memory.h"
 
-#define instr push
 /*
 #define DATA_BYTE 2
 #include "push-template.h"
@@ -27,6 +26,6 @@ make_helper(push)
 	swaddr_write(cpu.esp-4, 4, cpu.gpr[ops_decoded.opcode & 7]._32);
 //	MEM_W(cpu.sp-4, REG(op_decoded.opcode & 5));
 	cpu.sp -= 4;
-	print_asm_template2();
+	print_asm_template1();
 	return 1;
 }
