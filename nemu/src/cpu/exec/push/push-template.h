@@ -9,7 +9,7 @@
 #include "cpu/helper.h"
 
 #define instr push
-
+/*
 static void do_execute(){
 	
 	MEM_W(cpu.sp-DATA_BYTE, REG(op_decoded.opcode & 7));
@@ -17,5 +17,5 @@ static void do_execute(){
 	
 	print_asm_template2();
 }
-
+*/
 #include "cpu/exec/template-end.h"

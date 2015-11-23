@@ -18,6 +18,7 @@
 #include "push-template.h"
 #undef DATA_BYTE
 */
+#define instr push
 make_helper(push)
 {
 	//printf("%x\n",ops_decoded.opcode & 7);
