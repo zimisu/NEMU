@@ -12,14 +12,14 @@ static void do_execute()
 {
 	int bits = DATA_BYTE << 3;
 	uint32_t mask = (1 << bits) - 1;
-	printf("op_dest = %x, mask = %x\n", op_dest->val, mask);
+	//printf("op_dest = %x, mask = %x\n", op_dest->val, mask);
 	uint32_t a = op_dest->val & mask;
 	uint32_t b = op_src->val;
 	//OPERAND_W(op_dest, ans); 
 	
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (a - b == 0);
-	printf("a = %x, b = %x, a-b = %x, zf = %x\n", a,  b , a-b, cpu.EFLAGS.ZF);
+	//printf("a = %x, b = %x, a-b = %x, zf = %x\n", a,  b , a-b, cpu.EFLAGS.ZF);
 	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
 	cpu.EFLAGS.SF = ((a - b) >> 31) & 1;
 	uint32_t tmp = a - b;
