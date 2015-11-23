@@ -29,7 +29,7 @@ make_helper(push)
 //	MEM_W(cpu.sp-4, REG(op_decoded.opcode & 5));
 	cpu.sp -= 4;
 	//print_asm_template1();
-	print_asm("push %%%s", regsl[ops_decoded.opcode & 7]);
+	print_asm("pushl %%%s", regsl[ops_decoded.opcode & 7]);
 	return 1;
 }
 #undef SUFFIX
