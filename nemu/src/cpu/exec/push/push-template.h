@@ -11,16 +11,10 @@
 #define instr push
 
 static void do_execute(){
-	if (DATA_BYTE == 2)
-	{
-		MEM_W(cpu.sp-2, REG(op_decoded.opcode & 5));
-		cpu.sp -= 2;
-	}
-	else if (DATA_BYTE == 4)
-	{
-		MEM_W(cpu.sp-4, REG(op_decoded.opcode & 5));
-		cpu.sp -= 4;
-	}
+	
+	MEM_W(cpu.sp-DATA_BYTE, REG(op_decoded.opcode & 5));
+	cpu.sp -= DATA_BYTE;
+	
 	print_asm_template2();
 }
 
