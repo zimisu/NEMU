@@ -261,7 +261,7 @@ uint32_t eval(int p, int q, bool *success)
 			{
 			 	if (type == DER)//为单目dereference 解引用*
 				{
-			 		uint32_t addr = eval(p+1, q, success);
+			 		uint32_t addr = eval(p+1 , q, success);
 					return hwaddr_read(addr, 4);
 				} else
 				if (type == MINUS)//为单目 负号-
@@ -317,12 +317,12 @@ uint32_t expr(char *e, bool *success) {
 	//判断* - 是否解引用或负号
 	for (i = 0; i < nr_token; i++)
 	{
-		if (tokens[i].type == '*' && (i==0 || getPriority(tokens[i-1].type)<NOP))
+		if (tokens[i].type == '*' && (i==0 || getPriority(tokens[i-1].type)<NOP || tokens[i-1].type == '('))
 			//前一个操作符拥有优先级，为解引用
 			tokens[i].type = DER;
 		else
 			//同上。为负号
-		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP))
+		if (tokens[i].type == '-' && (i==0 || getPriority(tokens[i-1].type)<NOP || tokens[i-1].type == '('))
 			tokens[i].type = MINUS;
 	}
 	return eval(0, nr_token-1, success);
