@@ -1,27 +1,26 @@
 /*************************************************************************
-    > File Name: sub-template.h
+    > File Name: add-template.h
     > Author: Chen Kan
     > Mail: 14307130198@fudan.edu.cn 
-    > Created Time: 2015年11月19日 星期四 20时55分04秒
+    > Created Time: 2015年12月04日 星期五 16时30分50秒
  ************************************************************************/
 
 #include "cpu/exec/template-start.h"
 
-#define instr sub
+#define instr add
 
-static void do_execute() {
+static void do_execute(){
 	int bits = DATA_BYTE << 3;
-	uint64_t mask = (1 << bits) - 1;
-	uint32_t a = op_dest->val & mask;
-	uint32_t b = op_src->val & mask;
-	uint32_t ans = a - b;
-	OPERAND_W(op_dest, ans); 
+	uint32_t a = op_dest->val;
+	uint32_t b = op_src->val;
+	uint64_t ans = op_dest->val + op_src->val;
 	
-	cpu.EFLAGS.CF = (b > a);
-	cpu.EFLAGS.ZF = (a - b == 0);
-	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
-	cpu.EFLAGS.SF = ((a - b) >> 31) & 1;
+	OPERAND_W(op_dest, (uint32_t)ans);
 
+	cpu.EFLAGS.CF = (ans >> bits) & 1;
+	cpu.EFLAGS.ZF = (ans == 0);
+	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> 31) & 1;
+	cpu.EFLAGS.SF = (ans >> 31) & 1;
 	uint32_t tmp = 1;
 	int i;
 	for (i = 0; i < bits-1; i++)
@@ -31,12 +30,11 @@ static void do_execute() {
 	}
 	cpu.EFLAGS.PF = tmp & 1;
 
-	print_asm_template2();
+	
 }
 
-
 #if DATA_BYTE == 2 || DATA_BYTE == 4
-make_instr_helper(si2rm)
+make_instr_helper(r2rm)
 #endif
 
 
