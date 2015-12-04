@@ -12,7 +12,7 @@ static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 	{
 		printf("%x\n", op_src->val);
-		cpu.eip = (cpu.eip + op_src->val) & 0xff;
+		cpu.eip = (cpu.eip>>8<<8)+((cpu.eip + op_src->val) & 0xff);
 		print_asm_template2();
 	}
 }
