@@ -10,17 +10,9 @@
 
 static void do_execute()
 {
-//	if (DATA_BYTE == 2)
-//		REG(REG_EIP) = (REG(REG_EIP) + op_src->val) & 0xffff;
-	MEM_W(cpu.esp-DATA_BYTE, cpu.eip);	
-	cpu.esp -= DATA_BYTE;
+	MEM_W(cpu.esp-4, cpu.eip);	
+	cpu.esp -= 4;
 	cpu.eip = (cpu.eip + op_src->val);
-/*	else if (DATA_BYTE == 4)
-		MEM_W(cpu.esp-4, cpu.eip);
-		cpu.esp -= 4;
-        cpu.eip = cpu.eip + op_src->val;*/
-//		REG(REG_EIP) = REG(REG_EIP) + op_src->val;
-	//printf("------------%x\n", cpu.eip);
 	print_asm_template1();
 }
 
