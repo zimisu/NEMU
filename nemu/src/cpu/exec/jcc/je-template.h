@@ -11,7 +11,7 @@
 static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1)
 	{
-		cpu.eip += op_src->val & 0xff;
+		cpu.eip = (cpu.eip + op_src->val) & 0xff;
 //		printf("eip = %x\n", cpu.eip);
 		print_asm_template2();
 	}
