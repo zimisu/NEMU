@@ -13,8 +13,8 @@ static void do_execute() {
 	{
 //		printf("%x\n", op_src->val);
 		cpu.eip = ((cpu.eip>>8)<<8)+((cpu.eip + op_src->val) & 0xff);
-		print_asm_template2();
 	}
+	print_asm_template2();
 }
 
 make_instr_helper(i)

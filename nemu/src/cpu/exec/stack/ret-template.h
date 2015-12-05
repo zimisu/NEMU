@@ -12,6 +12,7 @@
 static void do_execute(){
 	eip = swaddr_read(esp, 4);
 	esp += 4;
+	print_asm_template1();
 }
 
 
