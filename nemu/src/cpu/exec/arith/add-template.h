@@ -30,7 +30,7 @@ static void do_execute(){
 	}
 	cpu.EFLAGS.PF = tmp & 1;
 
-	
+	print_asm_template2();
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
