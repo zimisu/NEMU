@@ -10,14 +10,19 @@
 
 static void do_execute()
 {
-	MEM_W(cpu.esp-4, cpu.eip + DATA_BYTE);	
 	cpu.esp -= 4;
+	swaddr_write(reg_l(R_ESP), 4, cpu.eip + DATA_BYTE);
+//	MEM_W(cpu.esp, cpu.eip + DATA_BYTE);
+
 #if DATA_BYTE == 2
 	cpu.eip = (cpu.eip + op_src->simm) & 0xffff;
 #elif DATA_BYTE == 4
 	cpu.eip = cpu.eip + op_src->simm;
 #endif
+
+//	cpu.eip = cpu.eip + op_src->simm;
 	print_asm_template1();
+	return;
 }
 
 make_instr_helper(i);
