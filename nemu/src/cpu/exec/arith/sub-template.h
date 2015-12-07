@@ -11,24 +11,21 @@
 
 static void do_execute() {
 	int bits = DATA_BYTE << 3;
-	uint64_t mask = (1 << bits) - 1;
-	uint32_t a = op_dest->val & mask;
-	uint32_t b = op_src->val & mask;
-	uint32_t ans = a - b;
+	DATA_TYPE mask = (1 << bits) - 1;
+	DATA_TYPE a = op_dest->val & mask;
+	DATA_TYPE b = op_src->val & mask;
+	DATA_TYPE ans = op_dest->val - op_src->val;
 	OPERAND_W(op_dest, ans); 
 	
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (a - b == 0);
 	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
-	cpu.EFLAGS.SF = ((a - b) >> 31) & 1;
+	cpu.EFLAGS.SF = MSB(ans);
 
-	uint32_t tmp = 1;
-	int i;
-	for (i = 0; i < bits-1; i++)
-	{
-		tmp &= (ans & 1);
-		ans >>= 1;
-	}
+	DATA_TYPE tmp = ans & 0xffff;
+	tmp = tmp & (tmp >> 4);
+	tmp = tmp & (tmp >> 2);
+	tmp = tmp & (tmp >> 1);
 	cpu.EFLAGS.PF = tmp & 1;
 
 	print_asm_template2();
@@ -38,6 +35,9 @@ static void do_execute() {
 #if DATA_BYTE == 2 || DATA_BYTE == 4
 make_instr_helper(si2rm)
 #endif
-
+make_instr_helper(i2a)
+make_instr_helper(i2rm)
+make_instr_helper(r2rm)
+make_instr_helper(rm2r)
 
 #include "cpu/exec/template-end.h"
