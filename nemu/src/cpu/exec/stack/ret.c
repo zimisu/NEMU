@@ -14,5 +14,5 @@ make_helper(ret)
 	cpu.esp += 4;
 	//print_asm_template1();
 	print_asm("ret");
-	return 1;
+	return 0;
 }
