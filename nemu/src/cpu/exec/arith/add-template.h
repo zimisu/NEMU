@@ -15,10 +15,10 @@ static void do_execute(){
 	uint32_t b = op_src->val;
 	DATA_TYPE ans = op_dest->val + op_src->val;
 	
-	OPERAND_W(op_dest, (uint32_t)ans);
+	OPERAND_W(op_dest, ans);
 
-	cpu.EFLAGS.CF = (ans >> bits) & 1;
-	cpu.EFLAGS.ZF = (ans == 0);
+	cpu.EFLAGS.CF = op_src->val > ans;
+	cpu.EFLAGS.ZF = !ans;
 	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> 31) & 1;
 	cpu.EFLAGS.SF = (ans >> 31) & 1;
 	uint32_t tmp = 1;
