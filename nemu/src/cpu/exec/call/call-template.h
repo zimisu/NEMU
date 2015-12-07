@@ -15,9 +15,9 @@ static void do_execute()
 //	MEM_W(cpu.esp, cpu.eip + DATA_BYTE);
 
 #if DATA_BYTE == 2
-	cpu.eip = (cpu.eip + op_src->simm) & 0xffff;
+	cpu.eip = (cpu.eip + op_src->val) & 0xffff;
 #elif DATA_BYTE == 4
-	cpu.eip = cpu.eip + op_src->simm;
+	cpu.eip = cpu.eip + op_src->val;
 #endif
 
 //	cpu.eip = cpu.eip + op_src->simm;
