@@ -25,7 +25,8 @@ static void do_execute()
 	return;
 }
 
-make_instr_helper(i);
+make_instr_helper(si);
+make_instr_helper(rm);
 
 
 
