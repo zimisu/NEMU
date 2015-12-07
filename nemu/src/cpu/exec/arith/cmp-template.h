@@ -17,7 +17,7 @@ static void do_execute()
 	uint32_t ans = a - b;
 	
 	cpu.EFLAGS.CF = (b > a);
-	cpu.EFLAGS.ZF = (a - b == 0);
+	cpu.EFLAGS.ZF = !ans;
 	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
 	cpu.EFLAGS.SF = ((a - b) >> 31) & 1;
 	uint32_t tmp = 1;
