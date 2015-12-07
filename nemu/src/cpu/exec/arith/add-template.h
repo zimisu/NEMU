@@ -13,7 +13,7 @@ static void do_execute(){
 	int bits = DATA_BYTE << 3;
 	uint32_t a = op_dest->val;
 	uint32_t b = op_src->val;
-	uint64_t ans = op_dest->val + op_src->val;
+	DATA_TYPE ans = op_dest->val + op_src->val;
 	
 	OPERAND_W(op_dest, (uint32_t)ans);
 
