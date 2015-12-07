@@ -10,9 +10,13 @@
 
 static void do_execute()
 {
-	MEM_W(cpu.esp-4, cpu.eip + DATA_BYTE + 1);	
+	MEM_W(cpu.esp-4, cpu.eip + DATA_BYTE);	
 	cpu.esp -= 4;
-	cpu.eip = (cpu.eip + op_src->val);
+#if DATA_BYTE == 2
+	cpu.eip = (cpu.eip + op_src->simm) & 0xffff;
+#elif DATA_BYTE == 4
+	cpu.eip = cpu.eip + op_src->simm;
+#endif
 	print_asm_template1();
 }
 
