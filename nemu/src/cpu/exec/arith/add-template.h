@@ -17,9 +17,11 @@ static void do_execute(){
 	
 	OPERAND_W(op_dest, ans);
 
+//	cpu.EFLAGS.CF = (ans >> bits) & 1;
 	cpu.EFLAGS.CF = op_src->val > ans;
 	cpu.EFLAGS.ZF = !ans;
 	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> 31) & 1;
+//	cpu.EFLAGS.OF = (MSB(ans) != MSB(op_dest->val))
 	cpu.EFLAGS.SF = (ans >> 31) & 1;
 	uint32_t tmp = 1;
 	int i;
@@ -33,8 +35,8 @@ static void do_execute(){
 	print_asm_template2();
 }
 
-#if DATA_BYTE == 2 || DATA_BYTE == 4
 make_instr_helper(r2rm)
+#if DATA_BYTE == 2 || DATA_BYTE == 4
 make_instr_helper(si2rm)
 #endif
 
