@@ -11,8 +11,8 @@
 static void do_execute()
 {
 	int bits = DATA_BYTE << 3;
-	uint32_t mask = (1 << bits) - 1;
-	uint32_t a = op_dest->val & mask;
+//	uint32_t mask = (1 << bits) - 1;
+	uint32_t a = op_dest->val;
 	uint32_t b = op_src->val;
 	uint32_t ans = a - b;
 	
