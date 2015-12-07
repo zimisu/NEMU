@@ -20,7 +20,7 @@ int main() {
 
 	nemu_assert(i == NR_DATA);
 	nemu_assert(j == NR_DATA);
-	set_bp();
+	//set_bp();
 	HIT_GOOD_TRAP;
 
 	return 0;
