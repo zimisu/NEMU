@@ -10,7 +10,7 @@
 #define instr sub
 
 static void do_execute() {
-	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
+//	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
 	int bits = DATA_BYTE << 3;
 	DATA_TYPE mask = (1 << bits) - 1;
 	DATA_TYPE a = op_dest->val & mask;
