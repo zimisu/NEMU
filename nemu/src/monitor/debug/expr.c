@@ -243,7 +243,7 @@ uint32_t eval(int p, int q, bool *success)
 							symtab[i].st_name + strtab))
 				{
 					printf("``````%x\n", STT_OBJECT);
-					if (symtab[i].st_info == STT_OBJECT)
+					if (symtab[i].st_info == 17)
 						tmp = symtab[i].st_value;
 					break;
 				}
