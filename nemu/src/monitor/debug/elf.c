@@ -14,7 +14,7 @@ int nr_symtab_entry;
 void printStackFrame()
 {
 	int count = 0, tmpebp = cpu.ebp, tmpeip = cpu.eip;
-	while (tmpebp)
+	while (1)
 	{
 		printf("#%d  0x%x in ", count, tmpeip);
 		++count;
@@ -27,6 +27,7 @@ void printStackFrame()
 				//printf("%s\n", strtab + symtab[i].st_name);
 				break;
 			}
+		if (tmpebp == 0) break;
 		tmpeip = swaddr_read(tmpebp, 4);
 		tmpebp = swaddr_read(tmpebp - 4, 4);
 	}
