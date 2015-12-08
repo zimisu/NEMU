@@ -193,7 +193,7 @@ bool nameCmp(char* s1, uint32_t size1, char* s2, uint32_t size2)
 {
 	uint32_t i;
 	printf("-----nameCmp-----\n");
-	printf("%ud  %un",size1, size2);
+	printf("%ud  %ud",size1, size2);
 	if (size1 != size2) return 0;
 	for (i = 0; i < size1; i++) printf("%c",s1[i]);
 	printf("\n");
