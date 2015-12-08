@@ -1,8 +1,12 @@
 #include "trap.h"
 
+int add1(int a, int b){
+	return a + b;
+}
+
 int add(int a, int b) {
 	int c = a + b;
-	return c;
+	return add1(a, b);
 }
 
 int test_data[] = {0, 1, 2, 0x7fffffff, 0x80000000, 0x80000001, 0xfffffffe, 0xffffffff};

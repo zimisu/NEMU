@@ -228,6 +228,11 @@ static int cmd_p(char *args)
 	return 0;
 }
 
+static int cmd_bt(char *args)
+{
+	return 0;
+}
+
 static int cmd_help(char *args);
 
 
@@ -246,7 +251,8 @@ static struct {
 	{ "p", "Expression calculation", cmd_p},
 	{ "w", "Add watch point", cmd_w},
 	{ "watch", "Add watch point", cmd_w},
-	{ "d", "Delete a watch point", cmd_d}
+	{ "d", "Delete a watch point", cmd_d},
+	{ "bt", "Show the stack frames", cmd_bt}
 	/* TODO: Add more commands */
 
 };

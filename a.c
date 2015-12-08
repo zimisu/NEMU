@@ -7,8 +7,21 @@
 
 #include<stdio.h>
 
+void g()
+{
+	printf("this is g\n");
+}
+
+void f()
+{
+	int a = 1;
+	int b = 2;
+	printf("%d\n", a + b);
+	g();
+}
+
 int main()
 {
-	printf("%d\n", sizeof(int*));
+	f();
 	return 0;
 }
