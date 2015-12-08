@@ -189,6 +189,7 @@ bool isCertainToken(int type)
 }
 */
 
+
 bool nameCmp(char* s1, char* s2)
 {
 	uint32_t size1 = strlen(s1);
