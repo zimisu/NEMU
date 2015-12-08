@@ -5,9 +5,11 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <elf.h>
 
 enum {
-	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, OR, MINUS, DER, REG, NOT, BITAND, BITOR, BITXOR 
+	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, 
+		OR, MINUS, DER, REG, NOT, BITAND, BITOR, BITXOR, VAR
 	/* TODO: Add more token types */
 };
 
@@ -38,6 +40,7 @@ static struct rule {
 	{"\\|", BITOR},					// bit or
 	{"\\^", BITXOR},				// bit xor
 	{"!", NOT},						// not
+	{"[a-zA-Z_][a-zA-Z_0-9]", VAR}	// variable
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -81,7 +84,7 @@ static bool make_token(char *e) {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
-				char *substr_start = e + position;
+	 			char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
 				//Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
@@ -93,10 +96,10 @@ static bool make_token(char *e) {
 				 */
 
 				switch(rules[i].token_type) {
-					case NOTYPE:
+			 		case NOTYPE:
 						break;//空格，什麼也不做
 					default: 
-						//将type写入tokens
+					 	//将type写入tokens
 						tokens[nr_token].type = rules[i].token_type;
 						int j;
 						//复制字符串
@@ -135,7 +138,7 @@ bool check_parentheses(int p, int q, bool *success) {
 			-- count;
 			if (count < 0)// ‘)' 比 '(' 数量多，非法表达式
 			{
-				*success =  false;
+				*success =   false;
 				return false;
 			}
 			//括号提前匹配完成
@@ -179,6 +182,21 @@ bool isCertainToken(int type)
 		
 }
 */
+
+bool nameCmp(char* s1, uint32_t size1, char* s2, uint32_t size2)
+{
+	uint32_t i;
+	if (size1 != size2) return 0;
+	for (i = 0; i < size1; i++)
+		if (s1[i] != s2[i])
+			return 0;
+	return 1;
+}
+
+extern Elf32_Sym *symtab;
+extern int nr_symtab_entry;
+extern char* strtab;
+
 uint32_t eval(int p, int q, bool *success)
 {
 	if (p > q)
@@ -204,18 +222,28 @@ uint32_t eval(int p, int q, bool *success)
 		{
 			for (i = 0; i < strlen(tokens[p].str); i++)
 				tmp = tmp*10 + tokens[p].str[i] - '0';
-		} else					
+		} else
+		if (tokens[p].type == VAR)  //变量
+		{
+			for (i = 0; i < nr_symtab_entry; i++)
+				if (nameCmp(tokens[p].str, strlen(tokens[p].str),
+							symtab[i].st_name + strtab, symtab[i].st_size))
+				{
+					tmp = symtab[i].st_value;
+					break;
+				}
+		} else
 		if (tokens[p].type == REG)//寄存器
 		{
 			int j;
 			for (j = 0; j < 8; j++)
 			{
-				if (strcmp(regsl[j], tokens[p].str+1)==0) return cpu.gpr[j]._32;
+				if (strcmp(regsl[j] , tokens[p].str+1)==0) return cpu.gpr[j]._32;
 				if (strcmp(regsw[j], tokens[p].str+1)==0) return cpu.gpr[j]._16;
 			}
 			for (j = 0; j < 4; j++)
 			{
-				if (strcmp(regsb[j], tokens[p].str+1)==0)  return cpu.gpr[j]._8[0];
+				if (strcmp(regsb[j ], tokens[p].str+1)==0)  return cpu.gpr[j]._8[0];
 				if (strcmp(regsb[j+4], tokens[p].str+1)==0) return cpu.gpr[j]._8[1];
 			}
 			if (strcmp("$eip", tokens[p].str) == 0) return cpu.eip;
@@ -259,7 +287,7 @@ uint32_t eval(int p, int q, bool *success)
 			else if (type == ')') --countp;
 			if (getPriority(type) == minPriority && countp==0)
 			{
-			 	if (type == DER)//为单目dereference 解引用*
+			 	if (type == DER)// 为单目dereference 解引用*
 				{
 			 		uint32_t addr = eval(p+1 , q, success);
 					return hwaddr_read(addr, 4);
