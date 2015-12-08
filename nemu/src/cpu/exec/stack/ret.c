@@ -18,4 +18,5 @@ make_helper(ret)
 	print_asm("ret");
 	return 0;
 }
+
 #include "cpu/exec/template-end.h"
