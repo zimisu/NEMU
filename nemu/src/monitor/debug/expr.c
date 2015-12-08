@@ -193,14 +193,15 @@ bool nameCmp(char* s1, char* s2)
 {
 	uint32_t size1 = strlen(s1);
 	uint32_t size2 = strlen(s2);
+	if (size1 != size2 || size1 == 0) return 0;
 	uint32_t i;
+	/*
 	printf("-----nameCmp-----\n");
 	printf("%u  %u\n",size1, size2);
-	if (size1 != size2 || size1 == 0) return 0;
 	for (i = 0; i < size1; i++) printf("%c",s1[i]);
 	printf("\n");
 	for (i = 0; i < size2; i++) printf("%c", s2[i]);
-	printf("\n");
+	printf("\n");*/
 	for (i = 0; i < size1; i++)
 		if (s1[i] != s2[i])
 			return 0;
@@ -248,7 +249,7 @@ uint32_t eval(int p, int q, bool *success)
 				return 0;
 			}
 		} else
-		if (tokens[p].type == REG)//寄存器
+		if (tokens[p].type == REG)//寄存;w器
 		{
 			int j;
 			for (j = 0; j < 8; j++)
