@@ -74,6 +74,7 @@ void load_elf_tables(int argc, char *argv[]) {
 			assert(ret == 1);
 		}
 	}
+	printf("this is elf_load. strtab:%s\n", strtab);
 
 	free(sh);
 	free(shstrtab);
