@@ -7,6 +7,10 @@
 #include <regex.h>
 #include <elf.h>
 
+extern Elf32_Sym *symtab;
+extern int nr_symtab_entry;
+extern char* strtab;
+
 enum {
 	NOTYPE = 256, EQ, DEC_NUM, HEX_NUM, NEQ, AND, 
 		OR, MINUS, DER, REG, NOT, BITAND, BITOR, BITXOR, VAR
@@ -62,6 +66,8 @@ void init_regex() {
 			Assert(ret == 0, "regex compilation failed: %s\n%s", error_msg, rules[i].regex);
 		}
 	}
+///////////////////////////////
+	printf("~~~%s\n", strtab);
 }
 
 typedef struct token {
@@ -192,10 +198,6 @@ bool nameCmp(char* s1, uint32_t size1, char* s2, uint32_t size2)
 			return 0;
 	return 1;
 }
-
-extern Elf32_Sym *symtab;
-extern int nr_symtab_entry;
-extern char* strtab;
 
 uint32_t eval(int p, int q, bool *success)
 {
