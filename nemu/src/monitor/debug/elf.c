@@ -13,23 +13,24 @@ int nr_symtab_entry;
 
 void printStackFrame()
 {
-	int count = 0, tmpebp = cpu.ebp, tmpeip = cpu.eip;
+	int count = 0, tmpebp = cpu.ebp, tmpeip = cpu.eip, i;
 	while (1)
 	{
-		printf("#%d  0x%x in ", count, tmpeip);
-		++count;
-		int i;
+		bool success = 0;
 		for (i = 0; i < nr_symtab_entry; i++)
-			if (tmpeip < symtab[i].st_value && 
-				tmpeip > tmpebp &&
-				symtab[i].st_info == 18)
+			if (tmpeip >= symtab[i].st_value &&
+				tmpeip < symtab[i].st_value + symtab[i].st_size)
 			{
-				//printf("%s\n", strtab + symtab[i].st_name);
+				success = 1;
+				printf("#%d  0x%x in %s\n", count, 
+						tmpeip, strtab + symtab[i].st_name);
+				tmpeip = swaddr_read(tmpebp-4, 4);
+				tmpebp = swaddr_read(tmpebp, 4);
+				count++;
 				break;
 			}
-		if (tmpebp == 0) break;
-		tmpeip = swaddr_read(tmpebp, 4);
-		tmpebp = swaddr_read(tmpebp - 4, 4);
+		if (count == 0) printf("No stack.\n");
+		if (!success) break;
 	}
 }
 
