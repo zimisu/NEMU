@@ -22,9 +22,9 @@ void printStackFrame()
 				tmpeip < symtab[i].st_value + symtab[i].st_size)
 			{
 				success = 1;
-				printf("#%d  0x%x in %s\n", count, 
+				printf("#%d  0x%x in %s()\n", count, 
 						tmpeip, strtab + symtab[i].st_name);
-				tmpeip = swaddr_read(tmpebp-4, 4);
+				tmpeip = swaddr_read(tmpebp+4, 4);
 				tmpebp = swaddr_read(tmpebp, 4);
 				count++;
 				break;
