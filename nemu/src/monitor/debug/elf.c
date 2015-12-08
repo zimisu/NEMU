@@ -76,7 +76,9 @@ void load_elf_tables(int argc, char *argv[]) {
 			assert(ret == 1);
 		}
 	}
-	printf("this is elf_load. strtab:%s len:%d\n", strtab, (int)strlen(strtab));
+	for (i = 0; i < nr_symtab_entry; i++)
+		printf("the num %d string: %s\n", i, strtab + symtab[i].st_name);
+	//printf("this is elf_load. strtab:%s len:%d\n", strtab, (int)strlen(strtab));
 
 	free(sh);
 	free(shstrtab);
