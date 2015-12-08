@@ -232,6 +232,7 @@ uint32_t eval(int p, int q, bool *success)
 		} else
 		if (tokens[p].type == VAR)  //变量
 		{
+			tmp = 0;
 			for (i = 0; i < nr_symtab_entry; i++)
 				if (nameCmp(tokens[p].str, strlen(tokens[p].str),
 							symtab[i].st_name + strtab, symtab[i].st_size))
@@ -239,6 +240,10 @@ uint32_t eval(int p, int q, bool *success)
 					tmp = symtab[i].st_value;
 					break;
 				}
+			if (tmp == 0) {
+				*success = 0;
+				return 0;
+			}
 		} else
 		if (tokens[p].type == REG)//寄存器
 		{
