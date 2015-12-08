@@ -17,13 +17,14 @@ void printStackFrame()
 	while (tmpebp)
 	{
 		printf("#%d  0x%x in ", count, tmpeip);
+		++count;
 		int i;
 		for (i = 0; i < nr_symtab_entry; i++)
-			if (tmpeip >= symtab[i].st_name && 
-				tmpeip < symtab[i].st_name + symtab[i].st_size &&
+			if (tmpeip < symtab[i].st_value && 
+				tmpeip > tmpebp &&
 				symtab[i].st_info == 18)
 			{
-				printf("%s\n", strtab + symtab[i].st_name);
+				//printf("%s\n", strtab + symtab[i].st_name);
 				break;
 			}
 		tmpeip = swaddr_read(tmpebp, 4);
