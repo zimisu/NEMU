@@ -29,7 +29,7 @@ void init_monitor(int argc, char *argv[]) {
 
 	/* Open the log file. */
 	init_log();
-
+	printf("---%s\n----%s\n", argv[0], argv[1]);
 	/* Load the string table and symbol table from the ELF file for future use. */
 	load_elf_tables(argc, argv);
 
