@@ -12,7 +12,7 @@ void g()
 	printf("this is g\n");
 }
 
-void f()
+void f(int k)
 {
 	int a = 1;
 	int b = 2;
@@ -22,6 +22,6 @@ void f()
 
 int main()
 {
-	f();
+	f(1);
 	return 0;
 }

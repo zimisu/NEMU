@@ -228,8 +228,10 @@ static int cmd_p(char *args)
 	return 0;
 }
 
+void printStackFrame();
 static int cmd_bt(char *args)
 {
+	printStackFrame();
 	return 0;
 }
 

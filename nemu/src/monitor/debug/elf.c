@@ -2,12 +2,33 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <elf.h>
+#include "memory/memory.h"
+#include "cpu/reg.h"
 
 char *exec_file = NULL;
 
 char *strtab = NULL;
 Elf32_Sym *symtab = NULL;
 int nr_symtab_entry;
+
+void printStackFrame()
+{
+	int count = 0, tmpebp = cpu.ebp, tmpeip = cpu.eip;
+	while (tmpebp)
+	{
+		printf("#%d  0x%x in ", count, tmpeip);
+		int i;
+		for (i = 0; i < nr_symtab_entry; i++)
+			if (tmpeip >= symtab[i].st_name && 
+				tmpeip < symtab[i].st_name + symtab[i].st_size)
+			{
+				printf("%s\n", strtab + symtab[i].st_name);
+				break;
+			}
+		tmpeip = swaddr_read(tmpebp, 4);
+		tmpebp = swaddr_read(tmpebp - 4, 4);
+	}
+}
 
 void load_elf_tables(int argc, char *argv[]) {
 	int ret;
