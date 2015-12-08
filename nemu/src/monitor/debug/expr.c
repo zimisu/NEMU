@@ -242,8 +242,8 @@ uint32_t eval(int p, int q, bool *success)
 				if (nameCmp(tokens[p].str,
 							symtab[i].st_name + strtab))
 				{
-					//if (symtab[i].st_info != STT_OBJECT) break;
-					tmp = symtab[i].st_value;
+					if (symtab[i].st_info == STT_OBJECT)
+						tmp = symtab[i].st_value;
 					break;
 				}
 			if (tmp == 0) {
