@@ -13,8 +13,9 @@ void load_elf_tables(int argc, char *argv[]) {
 	int ret;
 	Assert(argc == 2, "run NEMU with format 'nemu [program]'");
 	exec_file = argv[1];
-	printf("argv[0]: %s\n", argv[0]);
-	printf("exec_file : %s\n", exec_file);
+
+	//printf("argv[0]: %s\n", argv[0]);
+	//printf("exec_file : %s\n", exec_file);
 	//printf("----%s\n=====%s\n",argv[0], argv[1]);
 
 	FILE *fp = fopen(exec_file, "rb");
@@ -76,9 +77,11 @@ void load_elf_tables(int argc, char *argv[]) {
 			assert(ret == 1);
 		}
 	}
+	/*
 	for (i = 0; i < nr_symtab_entry; i++)
 		printf("the num %d string: %s, size : %u\n", 
 				i, strtab + symtab[i].st_name, symtab[i].st_size);
+				*/
 	//printf("this is elf_load. strtab:%s len:%d\n", strtab, (int)strlen(strtab));
 
 	free(sh);
