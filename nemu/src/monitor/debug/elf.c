@@ -20,7 +20,8 @@ void printStackFrame()
 		int i;
 		for (i = 0; i < nr_symtab_entry; i++)
 			if (tmpeip >= symtab[i].st_name && 
-				tmpeip < symtab[i].st_name + symtab[i].st_size)
+				tmpeip < symtab[i].st_name + symtab[i].st_size &&
+				symtab[i].st_info == 17)
 			{
 				printf("%s\n", strtab + symtab[i].st_name);
 				break;
@@ -103,7 +104,7 @@ void load_elf_tables(int argc, char *argv[]) {
 		printf("the num %d string: %s, size : %u, info: %u\n", 
 				i, strtab + symtab[i].st_name, symtab[i].st_size,symtab[i].st_info);
 				
-	//printf("this is elf_load. strtab:%s len:%d\n", strtab, (int)strlen(strtab));
+	printf("this is elf_load. strtab:%s len:%d\n", strtab, (int)strlen(strtab));
 
 	free(sh);
 	free(shstrtab);
