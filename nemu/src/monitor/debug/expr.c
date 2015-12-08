@@ -44,7 +44,7 @@ static struct rule {
 	{"\\|", BITOR},					// bit or
 	{"\\^", BITXOR},				// bit xor
 	{"!", NOT},						// not
-	{"[a-zA-Z_][a-zA-Z_0-9]", VAR}	// variable
+	{"[a-zA-Z_][a-zA-Z_0-9]*", VAR}	// variable
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
