@@ -25,13 +25,13 @@ void printStackFrame()
 				printf("#%d  0x%x in %s()\n", count, 
 						tmpeip, strtab + symtab[i].st_name);
 				tmpeip = swaddr_read(tmpebp+4, 4);
-				tmpebp = swaddr_read(tmpebp, 4);
+				tmpebp = swaddr_read(tmpebp,4);
 				count++;
 				break;
 			}
-		if (count == 0) printf("No stack.\n");
 		if (!success) break;
 	}
+	if (count == 0) printf("No stack.\n");
 }
 
 void load_elf_tables(int argc, char *argv[]) {
