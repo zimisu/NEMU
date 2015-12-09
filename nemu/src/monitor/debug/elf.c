@@ -42,7 +42,6 @@ void load_elf_tables(int argc, char *argv[]) {
 	int ret;
 	Assert(argc == 2, "run NEMU with format 'nemu [program]'");
 	exec_file = argv[1];
-
 	//printf("argv[0]: %s\n", argv[0]);
 	//printf("exec_file : %s\n", exec_file);
 	//printf("----%s\n=====%s\n",argv[0], argv[1]);
