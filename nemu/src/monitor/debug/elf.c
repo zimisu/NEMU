@@ -14,6 +14,7 @@ int nr_symtab_entry;
 void printStackFrame()
 {
 	int count = 0, tmpebp = cpu.ebp, tmpeip = cpu.eip, i;
+	bool over = 0;
 	while (1)
 	{
 		bool success = 0;
@@ -24,11 +25,14 @@ void printStackFrame()
 				success = 1;
 				printf("#%d  0x%x in %s()\n", count, 
 						tmpeip, strtab + symtab[i].st_name);
+				if (strcmp("main", strtab + symtab[i].st_name) == 0)
+					over = 1;
 				tmpeip = swaddr_read(tmpebp+4, 4);
 				tmpebp = swaddr_read(tmpebp,4);
 				count++;
 				break;
 			}
+		if (over) break;
 		if (!success) break;
 	}
 	if (count == 0) printf("No stack.\n");
