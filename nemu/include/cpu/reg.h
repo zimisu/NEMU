@@ -17,7 +17,6 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 
 
 typedef struct {
-
 	uint32_t CF : 1;
 	uint32_t ONEF: 1;
 	uint32_t PF : 1;
@@ -73,20 +72,7 @@ typedef struct {
 		uint16_t _16;
 		uint8_t _8[2];
 	} gpr[8];//, eax, ecx, edx, ebx, esp, ebp, esi,;w edi;
-
 	/* Do NOT change the order of the GPRs' definitions. */
-
-
-/*
-	uint32_t &eax = gpr[0]._32, 
-			 &ecx = gpr[1]._32, 
-			 &edx = gpr[2]._32, 
-			 &ebx = gpr[3]._32, 
-			 &esp = gpr[4]._32, 
-			 &ebp = gpr[5]._32, 
-			 &esi = gpr[6]._32, 
-			 &edi = gpr[7]._32;
-*/	
 	swaddr_t eip;
 	EFLAGS_t EFLAGS;
 
