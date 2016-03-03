@@ -56,7 +56,7 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #-USERPROG := obj/testcase/mov
-USERPROG := obj/testcase/if-else
+USERPROG := obj/testcase/hello
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
