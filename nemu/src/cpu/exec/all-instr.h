@@ -41,3 +41,4 @@
 
 #include "stack/leave.h"
 #include "stack/ret.h"
+#include "stack/pop.h"
