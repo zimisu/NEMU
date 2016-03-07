@@ -46,11 +46,11 @@ typedef struct {
 #define ebp gpr[5]._32
 #define esi gpr[6]._32
 #define edi gpr[7]._32
-/*
+
 #define ax gpr[0]._16
 #define cx gpr[1]._16
 #define dx gpr[2]._16
-#define bx gpr[3]._16
+#define bx gpr[3]._16/*
 #define sp gpr[4]._16
 #define bp gpr[5]._16
 #define si gpr[6]._16

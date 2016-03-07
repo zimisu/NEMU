@@ -14,24 +14,20 @@ static void do_execute(){
 	uint32_t a = op_dest->val;
 	uint32_t b = op_src->val;
 	DATA_TYPE ans = op_dest->val + op_src->val;
-	printf("%d %d\n", a, b);
 	
 	OPERAND_W(op_dest, ans);
 
-//	cpu.EFLAGS.CF = (ans >> bits) & 1;
-	cpu.EFLAGS.CF = op_src->val > ans;
-	cpu.EFLAGS.ZF = !ans;
-	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> 31) & 1;
-//	cpu.EFLAGS.OF = (MSB(ans) != MSB(op_dest->val))
-	cpu.EFLAGS.SF = (ans >> 31) & 1;
-	uint32_t tmp = 1;
-	int i;
-	for (i = 0; i < bits-1; i++)
-	{
-		tmp &= (ans & 1);
-		ans >>= 1;
-	}
-	cpu.EFLAGS.PF = tmp & 1;
+	cpu.EFLAGS.CF = (b > a);
+	cpu.EFLAGS.ZF = (ans == 0);
+	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> (bits - 1)) & 1;
+	cpu.EFLAGS.SF = MSB(ans);
+
+	DATA_TYPE tmp = ans & 0xff;
+	tmp = tmp & (tmp >> 4);
+	tmp = tmp & (tmp >> 2);
+	tmp = tmp & (tmp >> 1);
+	cpu.EFLAGS.PF = tmp ^ 1;
+
 
 	print_asm_template2();
 }

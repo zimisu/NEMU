@@ -12,22 +12,22 @@
 static void do_execute() {
 //	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
 	int bits = DATA_BYTE << 3;
-	DATA_TYPE mask = (1 << bits) - 1;
+	uint32_t mask = (1 << bits) - 1;
 	DATA_TYPE a = op_dest->val & mask;
 	DATA_TYPE b = op_src->val & mask;
-	DATA_TYPE ans = op_dest->val - op_src->val;
+	DATA_TYPE ans = a - b;
 	OPERAND_W(op_dest, ans); 
 	
 	cpu.EFLAGS.CF = (b > a);
-	cpu.EFLAGS.ZF = (a - b == 0);
-	cpu.EFLAGS.OF = ((a ^ b ^ (a-b)) >> 31) & 1;
+	cpu.EFLAGS.ZF = (ans == 0);
+	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
 
-	DATA_TYPE tmp = ans & 0xffff;
+	DATA_TYPE tmp = ans & 0xff;
 	tmp = tmp & (tmp >> 4);
 	tmp = tmp & (tmp >> 2);
 	tmp = tmp & (tmp >> 1);
-	cpu.EFLAGS.PF = tmp & 1;
+	cpu.EFLAGS.PF = tmp ^ 1;
 
 	print_asm_template2();
 }

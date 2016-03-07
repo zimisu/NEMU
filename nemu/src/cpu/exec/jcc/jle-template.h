@@ -1,15 +1,9 @@
-/*************************************************************************
-    > File Name: jbe-template.h
-    > Author: Chen Kan
-    > Mail: 14307130198@fudan.edu.cn 
-    > Created Time: 2015年12月04日 星期五 15时37分26秒
- ************************************************************************/
 #include "cpu/exec/template-start.h"
 
-#define instr jbe
+#define instr jle
 
 static void do_execute() {
-	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
+	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.SF != cpu.EFLAGS.OF)
 	{
         int l = DATA_BYTE * 8;
         int mask = 0;

@@ -3,6 +3,7 @@
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
 #include "data-mov/movsx.h"
+#include "data-mov/convert.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
@@ -28,6 +29,7 @@
 
 #include "jcc/je.h"
 #include "jcc/jbe.h"
+#include "jcc/jle.h"
 #include "jmp/jmp.h"
 
 #include "misc/misc.h"

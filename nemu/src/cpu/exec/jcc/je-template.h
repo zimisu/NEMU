@@ -11,10 +11,10 @@
 static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1)
 	{
+        //printf("jump!\n");
 		cpu.eip = (cpu.eip>>8<<8)+((cpu.eip + op_src->val) & 0xff);
-//		printf("eip = %x\n", cpu.eip);
-		print_asm_template2();
 	}
+    print_asm_template1();
 }
 
 make_instr_helper(i)
