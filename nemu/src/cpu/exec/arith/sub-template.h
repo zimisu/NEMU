@@ -9,6 +9,7 @@
 
 #define instr sub
 
+
 static void do_execute() {
 //	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
 	int bits = DATA_BYTE << 3;
