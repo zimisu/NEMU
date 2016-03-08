@@ -18,7 +18,7 @@ static void do_execute()
     printf("%d %d\n", a, b);
 	DATA_TYPE_S ans = a - b;
 	
-	cpu.EFLAGS.CF = (b > a);
+	cpu.EFLAGS.CF = ans < 0;
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
