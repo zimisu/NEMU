@@ -20,11 +20,11 @@ static void do_execute()
 	
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (ans == 0);
-    //printf("ZF:%d\n", cpu.EFLAGS.ZF);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
-    //printf("%d%d%d", cpu.EFLAGS.CF, cpu.EFLAGS.ZF, cpu.EFLAGS.OF);
+    printf("%d%d%d", cpu.EFLAGS.CF, cpu.EFLAGS.ZF, cpu.EFLAGS.OF);
 
+    //printf("ZF:%d CF:%d SF:%d\n%", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 	DATA_TYPE tmp = ans & 0xff;
 	tmp = tmp & (tmp >> 4);
 	tmp = tmp & (tmp >> 2);
