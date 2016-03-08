@@ -11,8 +11,8 @@
 static void do_execute()
 {
 	int bits = DATA_BYTE << 3;
-	uint32_t mask = (1 << bits) - 1;
-    if (mask == 0) mask = 0xffffffff;
+	//uint32_t mask = (1 << bits) - 1;
+    //if (mask == 0) mask = 0xffffffff;
 	DATA_TYPE a = op_dest->val;
 	DATA_TYPE b = op_src->val;
     printf("%d %d\n", a, b);
