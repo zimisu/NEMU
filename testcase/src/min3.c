@@ -1,4 +1,5 @@
 #include "trap.h"
+
 int min3(int x, int y, int z) {
 	int m;
 	if(x < y) { m = x; }
@@ -24,8 +25,8 @@ int ans[] = {0, 0, 0, 0, 0x80000000, 0x80000001, 0xfffffffe, 0xffffffff,
 int main() {
 	int i, j, k, ans_idx = 0;
 	for(i = 0; i < NR_DATA; i ++) {
-		for(j = 1; j < 2; j ++) {
-			for(k = 0; k < 1; k ++) {
+		for(j = 0; j < NR_DATA; j ++) {
+			for(k = 0; k < NR_DATA; k ++) {
 				nemu_assert(min3(test_data[i], test_data[j], test_data[k]) == ans[ans_idx ++]);
 			}
 		}
