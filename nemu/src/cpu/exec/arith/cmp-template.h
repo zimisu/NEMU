@@ -15,7 +15,7 @@ static void do_execute()
     if (mask == 0) mask = 0xffffffff;
 	DATA_TYPE a = op_dest->val & mask;
 	DATA_TYPE b = op_src->val & mask;
-   // printf("%d %d\n", a, b);
+    printf("%d %d\n", a, b);
 	DATA_TYPE ans = a - b;
 	
 	cpu.EFLAGS.CF = (b > a);
