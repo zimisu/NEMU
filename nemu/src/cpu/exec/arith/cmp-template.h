@@ -14,7 +14,7 @@ static void do_execute()
 	DATA_TYPE_S a = op_dest->val;
 	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
-    //printf("%d %d a-b = %d\n", a, b, ans);
+    printf("%d %d a-b = %d\n", a, b, ans);
 	
 	cpu.EFLAGS.CF = b < a;
 	cpu.EFLAGS.ZF = (ans == 0);
