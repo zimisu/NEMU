@@ -15,8 +15,8 @@ static void do_execute()
     //if (mask == 0) mask = 0xffffffff;
 	DATA_TYPE a = op_dest->val;
 	DATA_TYPE b = op_src->val;
-    printf("%d %d\n", a, b);
 	DATA_TYPE_S ans = a - b;
+    printf("%d %d a-b = %d\n", a, b, ans);
 	
 	cpu.EFLAGS.CF = ans < 0;
 	cpu.EFLAGS.ZF = (ans == 0);
