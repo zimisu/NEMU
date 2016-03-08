@@ -13,13 +13,12 @@
 static void do_execute() {
 //	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
 	int bits = DATA_BYTE << 3;
-	uint32_t mask = (1 << bits) - 1;
-	DATA_TYPE a = op_dest->val & mask;
-	DATA_TYPE b = op_src->val & mask;
-	DATA_TYPE ans = a - b;
+	DATA_TYPE_S a = op_dest->val;
+	DATA_TYPE_S b = op_src->val;
+	DATA_TYPE_S ans = a - b;
 	OPERAND_W(op_dest, ans); 
 	
-	cpu.EFLAGS.CF = (b > a);
+	cpu.EFLAGS.CF = (b < a);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);

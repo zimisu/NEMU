@@ -11,18 +11,16 @@
 static void do_execute()
 {
 	int bits = DATA_BYTE << 3;
-	//uint32_t mask = (1 << bits) - 1;
-    //if (mask == 0) mask = 0xffffffff;
 	DATA_TYPE_S a = op_dest->val;
 	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
-    printf("%d %d a-b = %d\n", a, b, ans);
+    //printf("%d %d a-b = %d\n", a, b, ans);
 	
 	cpu.EFLAGS.CF = b < a;
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
-    printf("%d%d%d\n", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
+    //printf("%d%d%d\n", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 
     //printf("ZF:%d CF:%d SF:%d\n%", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 	DATA_TYPE tmp = ans & 0xff;
