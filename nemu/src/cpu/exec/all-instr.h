@@ -32,7 +32,8 @@
 #include "jcc/jbe.h"
 #include "jcc/jle.h"
 #include "jcc/jge.h"
-#include "jmp/jmp.h"
+#include "jmp/jmp_rel.h"
+#include "jmp/jmp_indrct.h"
 
 #include "misc/misc.h"
 

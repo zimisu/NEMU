@@ -5,9 +5,10 @@
     > Created Time: 2015年12月04日 星期五 15时17分52秒
  ************************************************************************/
 
-#ifndef __JMP_H__
-#define __JMP_H__
+#ifndef __JMP_REL_H__
+#define __JMP_REL_H__
 
-make_helper(jmp_i_b);
+make_helper(jmp_rel_si_b);
+make_helper(jmp_rel_si_v);
 
 #endif
