@@ -10,8 +10,9 @@ static void do_execute () {
     cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
     cpu.EFLAGS.SF = MSB(result);
     cpu.EFLAGS.ZF = result == 0;
+    cpu.EFLAGS.PF = get_pf(result);
     
-	panic("please implement me");
+//	panic("please implement me");
 
 	print_asm_template2();
 }
