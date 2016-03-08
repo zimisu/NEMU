@@ -78,6 +78,8 @@ typedef struct {
 
 } CPU_state;
 
+int get_pf(int a);
+
 extern CPU_state cpu;
 
 static inline int check_reg_index(int index) {
