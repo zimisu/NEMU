@@ -22,7 +22,7 @@ static void do_execute()
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
-    printf("%d%d%d", cpu.EFLAGS.CF, cpu.EFLAGS.ZF, cpu.EFLAGS.OF);
+    printf("%d%d%d\n", cpu.EFLAGS.CF, cpu.EFLAGS.ZF, cpu.EFLAGS.OF);
 
     //printf("ZF:%d CF:%d SF:%d\n%", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 	DATA_TYPE tmp = ans & 0xff;
