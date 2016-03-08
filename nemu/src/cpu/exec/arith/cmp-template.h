@@ -13,12 +13,12 @@ static void do_execute()
 	int bits = DATA_BYTE << 3;
 	//uint32_t mask = (1 << bits) - 1;
     //if (mask == 0) mask = 0xffffffff;
-	DATA_TYPE a = op_dest->val;
-	DATA_TYPE b = op_src->val;
+	DATA_TYPE_S a = op_dest->val;
+	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
     printf("%d %d a-b = %d\n", a, b, ans);
 	
-	cpu.EFLAGS.CF = op_src->val < op_dest->val;
+	cpu.EFLAGS.CF = b < a;
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
