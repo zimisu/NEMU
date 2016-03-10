@@ -13,23 +13,16 @@ char s[] = "abcde";
 
 int main() {
 	int i, j, ans_idx = 0;
-	int loop = 0;
 	for(i = 0; i < NR_DATA; i ++) {
 		for(j = 0; j < NR_DATA; j ++) {
 			nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
-			loop ++;
 		}
 	}
 
-<<<<<<< HEAD
 
 	nemu_assert(i == NR_DATA);
 	nemu_assert(j == NR_DATA);
 	//set_bp();
-=======
-	nemu_assert(loop == NR_DATA * NR_DATA);
-
->>>>>>> 7df28c500f3c4415ec2a5a5777e2849d54783fb3
 	HIT_GOOD_TRAP;
 
 	return 0;
