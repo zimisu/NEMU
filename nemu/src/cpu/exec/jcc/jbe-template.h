@@ -11,12 +11,10 @@
 static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 	{
-        int l = DATA_BYTE * 8;
-        int mask = 0;
-        if (l == 8) mask = 0xff;
-        else if (l == 16) mask = 0xffff;
-        else mask = 0xffffffff;
-		cpu.eip = ((cpu.eip>>l)<<l)+((cpu.eip + op_src->val) & mask);
+        cpu.eip += op_src->val;
+        if (DATA_BYTE == 2)
+            cpu.eip &= 0xffff;
+		//cpu.eip = ((cpu.eip>>l)<<l)+((cpu.eip + op_src->val) & mask);
         
 	}
 	print_asm_template1();
