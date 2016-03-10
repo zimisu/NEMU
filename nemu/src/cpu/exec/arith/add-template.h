@@ -16,7 +16,8 @@ static void do_execute(){
 	DATA_TYPE ans = op_dest->val + op_src->val;
 	
 	OPERAND_W(op_dest, ans);
-
+    printf("a = %d, b = %d, a + b = %d, CF = %d", a, b,
+            ans, cpu.EFLAGS.CF);
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
