@@ -10,7 +10,7 @@
 
 static void do_execute() {
 
-        printf("op_dest->val : %x\n", op_dest->val);
+    printf("op_src->val : %x\n", op_src->val);
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 	{
         cpu.eip += op_dest->val;
