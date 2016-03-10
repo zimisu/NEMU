@@ -11,6 +11,7 @@
 static void do_execute() {
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 	{
+        printf("op_dest->val : %x\n", op_dest->val);
         cpu.eip += op_dest->val;
         if (DATA_BYTE == 2)
             cpu.eip &= 0xffff;
