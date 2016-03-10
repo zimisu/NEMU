@@ -13,7 +13,7 @@ static void do_execute() {
     printf("op_src->val : %x\n", op_src->val);
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 	{
-        cpu.eip += op_dest->val;
+        cpu.eip += op_src->val;
         if (DATA_BYTE == 2)
             cpu.eip &= 0xffff;
 		//cpu.eip = ((cpu.eip>>l)<<l)+((cpu.eip + op_src->val) & mask);
