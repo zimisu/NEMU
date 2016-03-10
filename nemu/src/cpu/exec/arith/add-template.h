@@ -19,14 +19,11 @@ static void do_execute(){
 
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (ans == 0);
-	cpu.EFLAGS.OF = ((a ^ b ^ ans) >> (bits - 1)) & 1;
+	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
+    cpu.EFLAGS.OF = ((a ^ b ^ ans) >> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
 
-	DATA_TYPE tmp = ans & 0xff;
-	tmp = tmp & (tmp >> 4);
-	tmp = tmp & (tmp >> 2);
-	tmp = tmp & (tmp >> 1);
-	cpu.EFLAGS.PF = tmp ^ 1;
+	cpu.EFLAGS.PF = get_pf(ans);
 
 
 	print_asm_template2();
