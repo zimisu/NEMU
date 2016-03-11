@@ -31,6 +31,7 @@
 
 #include "jcc/je.h"
 #include "jcc/jbe.h"
+#include "jcc/ja.h"
 #include "jcc/jle.h"
 #include "jcc/jge.h"
 #include "jmp/jmp_rel.h"
