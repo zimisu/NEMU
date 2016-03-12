@@ -19,9 +19,8 @@ static void do_execute()
 #elif DATA_BYTE == 4
 	cpu.eip = cpu.eip + op_src->val;
 #endif
-
-//	cpu.eip = cpu.eip + op_src->simm;
-	print_asm_template1();
+	print_asm("call 0x%x", cpu.eip);
+	//print_asm_template1();
 }
 
 make_instr_helper(si);
