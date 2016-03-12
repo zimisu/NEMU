@@ -4,10 +4,16 @@
 
 
 static void do_execute() {
-    OPERAND_W(op_dest, op_src->val);
+    uint32_t mask = 0;
+    if (op_src->size == 1)
+       mask = 0xff;
+    else if (op_src->size == 2)
+        mask = 0xffff;
+    OPERAND_W(op_dest, op_src->val & mask);
     
     print_asm_template2();
 }
+
 
 make_instr_helper(rm2r)
 
