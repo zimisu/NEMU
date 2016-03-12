@@ -11,9 +11,9 @@ static void do_execute()
     	OPERAND_W(op_dest, val);
     	print_asm_template1();
 	} else 
-	if (opcode >= 58 && opcode <= 58 + 7)
+	if (opcode >= 0x58 && opcode < 0x58 + 8)
 	{
-		reg_l(opcode - 58) = val;
+		reg_l(opcode - 0x58) = val;
 
 	}
 }
