@@ -11,8 +11,8 @@
 
 static void do_execute(){
 	int bits = DATA_BYTE << 3;
-	uint32_t a = op_dest->val;
-	uint32_t b = op_src->val;
+	DATA_TYPE_S a = op_dest->val;
+	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = op_dest->val + op_src->val;
    // printf("%x %x %x\n", a, b, ans);
 	
