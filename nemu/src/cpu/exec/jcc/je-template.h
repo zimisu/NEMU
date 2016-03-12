@@ -9,15 +9,20 @@
 #define instr je
 
 static void do_execute() {
-	if (cpu.EFLAGS.ZF == 1)
+	if (cpu.EFLAGS.SF != cpu.EFLAGS.OF)
 	{
-        //printf("jump!\n");
-		cpu.eip = (cpu.eip>>8<<8)+((cpu.eip + op_src->val) & 0xff);
+        int l = DATA_BYTE * 8;
+        int mask = 0;
+        if (l == 8) mask = 0xff;
+        else if (l == 16) mask = 0xffff;
+        else mask = 0xffffffff;
+		cpu.eip = ((cpu.eip>>l)<<l)+((cpu.eip + op_src->val) & mask);
+        
 	}
-    print_asm_template1();
+	print_asm_template1();
 }
 
-make_instr_helper(i)
+make_instr_helper(si)
 
 
 #include "cpu/exec/template-end.h"
