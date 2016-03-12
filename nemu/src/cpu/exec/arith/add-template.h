@@ -14,11 +14,11 @@ static void do_execute(){
 	uint32_t a = op_dest->val;
 	uint32_t b = op_src->val;
 	DATA_TYPE ans = op_dest->val + op_src->val;
-    printf("%x %x %x\n", a, b, ans);
+   // printf("%x %x %x\n", a, b, ans);
 	
 	OPERAND_W(op_dest, ans);
-    printf("a = %d, b = %d, a + b = %d, CF = %d", a, b,
-            ans, cpu.EFLAGS.CF);
+ //   printf("a = %d, b = %d, a + b = %d, CF = %d", a, b,
+          //  ans, cpu.EFLAGS.CF);
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
