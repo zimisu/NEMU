@@ -11,7 +11,7 @@ static void do_execute () {
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.PF = get_pf(result);
 	cpu.EFLAGS.ZF = (result == 0);
-	cpu.EFLAGS.SF = ((int)result) < 0;
+	cpu.EFLAGS.SF = MSB(result);
 
 	print_asm_template2();
 }
