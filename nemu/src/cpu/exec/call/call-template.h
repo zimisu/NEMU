@@ -19,7 +19,7 @@ static void do_execute()
 #elif DATA_BYTE == 4
 	cpu.eip = cpu.eip + op_src->val;
 #endif
-	print_asm("call 0x%x", cpu.eip);
+	print_asm("call 0x%x", cpu.eip + 1 + DATA_BYTE);
 	//print_asm_template1();
 }
 
