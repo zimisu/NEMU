@@ -22,7 +22,6 @@ static void do_execute()
 
 //	cpu.eip = cpu.eip + op_src->simm;
 	print_asm_template1();
-	return;
 }
 
 make_instr_helper(si);
