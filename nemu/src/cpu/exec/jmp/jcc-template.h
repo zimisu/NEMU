@@ -3,6 +3,10 @@
 		//new_eip = (new_eip << (32 - l)) >> (32 - l);
 
 #define get_new_eip()\
+		int CODE_LEN = 0;\
+		if (DATA_BYTE == 1) CODE_LEN = 2; else\
+		if (DATA_BYTE == 2) CODE_LEN = 4; else\
+		if (DATA_BYTE == 4) CODE_LEN = 6;\
 		int32_t new_eip = op_src->val + cpu.eip;\
        	 	if (DATA_BYTE == 2) new_eip &= 0xffff;
 
@@ -13,7 +17,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -24,7 +28,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 0 && cpu.EFLAGS.CF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -35,7 +39,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.SF != cpu.EFLAGS.OF)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -46,7 +50,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.CF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -57,7 +61,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.CF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -68,7 +72,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.CF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -79,7 +83,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 0 && cpu.EFLAGS.SF == cpu.EFLAGS.OF)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -90,7 +94,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.SF == cpu.EFLAGS.OF)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -101,7 +105,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.SF != cpu.EFLAGS.OF)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -112,7 +116,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -123,7 +127,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.OF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -134,7 +138,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.PF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -145,7 +149,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.SF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -156,7 +160,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.OF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -167,7 +171,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.PF == 1)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
@@ -178,7 +182,7 @@ static void do_execute()
 	get_new_eip()
 	if (cpu.EFLAGS.SF == 0)
 		cpu.eip = new_eip;
-	print_asm(str(instr) " $0x%x", new_eip);
+	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
 make_instr_helper(si)
 #undef instr
