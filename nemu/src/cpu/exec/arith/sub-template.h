@@ -18,7 +18,7 @@ static void do_execute() {
 	DATA_TYPE_S ans = a - b;
 	OPERAND_W(op_dest, ans); 
 	
-	cpu.EFLAGS.CF = (a < b);
+	cpu.EFLAGS.CF = (a > b);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
