@@ -14,7 +14,7 @@ static void do_execute()
 	if (opcode >= 0x58 && opcode < 0x58 + 8)
 	{
 		reg_l(opcode - 0x58) = val;
-		print_asm("pop" str(SUFFIX) " $%s", REG_NAME(opcode - 0x58));
+		print_asm("pop" str(SUFFIX) " %%%s", REG_NAME(opcode - 0x58));
 	}
 }
 
