@@ -29,14 +29,6 @@
 
 #include "string/rep.h"
 
-/*
-#include "jcc/je.h"
-#include "jcc/jg.h"
-#include "jcc/jbe.h"
-#include "jcc/ja.h"
-#include "jcc/jle.h"
-#include "jcc/jl.h"
-#include "jcc/jge.h"*/
 #include "jmp/jcc.h"
 #include "jmp/jmp_rel.h"
 #include "jmp/jmp_indrct.h"
