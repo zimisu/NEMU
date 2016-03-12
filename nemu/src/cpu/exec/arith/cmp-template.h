@@ -15,7 +15,7 @@ static void do_execute()
 	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
 	
-	cpu.EFLAGS.CF = a > b;
+	cpu.EFLAGS.CF = (a < b);
    // printf("%d %d a-b = %d CF=%d\n", a, b, ans, cpu.EFLAGS.CF);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
