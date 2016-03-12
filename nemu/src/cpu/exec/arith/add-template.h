@@ -17,7 +17,7 @@ static void do_execute(){
    // printf("%x %x %x\n", a, b, ans);
 	
 	OPERAND_W(op_dest, ans);
-    printf("a = %d, b = %d, a + b = %d, CF = %d", a, b,
+    printf("a = %d, b = %d, a + b = %d, CF = %d\n", a, b,
             ans, cpu.EFLAGS.CF);
 	cpu.EFLAGS.CF = (b > a);
 	cpu.EFLAGS.ZF = (ans == 0);
