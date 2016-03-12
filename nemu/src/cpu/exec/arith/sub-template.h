@@ -12,7 +12,7 @@
 
 static void do_execute() {
 //	printf("%x %x %x %x\n", op_dest->val, op_dest->simm, op_src->val,op_src->simm);
-	int bits = DATA_BYTE << 3;
+	//int bits = DATA_BYTE << 3;
 	DATA_TYPE_S a = op_dest->val;
 	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
@@ -20,14 +20,11 @@ static void do_execute() {
 	
 	cpu.EFLAGS.CF = (a < b);
 	cpu.EFLAGS.ZF = (ans == 0);
-	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
+	cpu.EFLAGS.OF = MSB(a) == MSB(b) && MSB(a) != MSB(ans);
+	//cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
 
-	DATA_TYPE tmp = ans & 0xff;
-	tmp = tmp & (tmp >> 4);
-	tmp = tmp & (tmp >> 2);
-	tmp = tmp & (tmp >> 1);
-	cpu.EFLAGS.PF = tmp ^ 1;
+	cpu.EFLAGS.PF = get_pf(ans);
 
 	print_asm_template2();
 }
