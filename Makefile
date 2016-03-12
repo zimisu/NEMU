@@ -55,7 +55,7 @@ clean: clean-cpp
 #--- Makefile
 #+++ Makefile
 #@@ -55,2 +55,2 @@
-USERPROG := obj/testcase/bubble-sort
+USERPROG := obj/testcase/select-sort
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
