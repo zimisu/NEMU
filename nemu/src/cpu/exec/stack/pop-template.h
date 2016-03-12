@@ -5,9 +5,17 @@ static void do_execute()
 {
     int val = cpu.esp;
     cpu.esp += DATA_BYTE;
-    OPERAND_W(op_dest, val);
+	int opcode = instr_fetch(cpu.eip, 1);
+	if (opcode == 0x8f)
+	{
+    	OPERAND_W(op_dest, val);
+    	print_asm_template1();
+	} else 
+	if (opcode >= 58 && opcode <= 58 + 7)
+	{
+		reg_l(opcode - 58) = val;
 
-    print_asm_template1();
+	}
 }
 
 make_instr_helper(rm)
