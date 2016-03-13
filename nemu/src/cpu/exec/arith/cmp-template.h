@@ -16,6 +16,7 @@ static void do_execute()
 	DATA_TYPE_S ans = a - b;
 	
 	uint64_t tmp = (uint64_t)a - b;
+printf("%lx\n", tmp);
 	cpu.EFLAGS.CF = (tmp >> DATA_BYTE) & 1;
 	//cpu.EFLAGS.CF = (a < b);
 	cpu.EFLAGS.ZF = (ans == 0);
