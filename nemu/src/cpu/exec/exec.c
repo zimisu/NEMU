@@ -64,12 +64,12 @@ make_group(group2_cl_v,
 
 /* 0xf6 */
 make_group(group3_b,
-	inv, inv, inv, inv,
+	test_r2rm_b, inv, inv, inv,
 	inv, imul_rm2a_b, inv, idiv_rm_b)
 
 /* 0xf7 */
 make_group(group3_v,
-	inv, inv, inv, inv,
+	test_r2rm_v, inv, inv, inv,
 	inv, imul_rm2a_v, inv, idiv_rm_v)
 
 /* 0xfe */
@@ -127,7 +127,7 @@ helper_fun opcode_table [256] = {
 /* 0x78 */	js_si_b, jns_si_b, jp_si_b, jnp_si_b,
 /* 0x7c */	jl_si_b, jge_si_b, jle_si_b, jg_si_b,
 /* 0x80 */	group1_b, group1_v, inv, group1_sx_v,
-/* 0x84 */	inv, test_rm_v, inv, inv,
+/* 0x84 */	inv, test_r2rm_v, inv, inv,
 /* 0x88 */	mov_r2rm_b, mov_r2rm_v, mov_rm2r_b, mov_rm2r_v,
 /* 0x8c */	inv, lea, inv, pop_rm_v,
 /* 0x90 */	nop, inv, inv, inv,
@@ -136,7 +136,7 @@ helper_fun opcode_table [256] = {
 /* 0x9c */	inv, inv, inv, inv,
 /* 0xa0 */	mov_moffs2a_b, mov_moffs2a_v, mov_a2moffs_b, mov_a2moffs_v,
 /* 0xa4 */	inv, inv, inv, inv,
-/* 0xa8 */	inv, inv, inv, inv,
+/* 0xa8 */	test_i2a_b, test_i2a_v, inv, inv,
 /* 0xac */	inv, inv, inv, inv,
 /* 0xb0 */	mov_i2r_b, mov_i2r_b, mov_i2r_b, mov_i2r_b,
 /* 0xb4 */	mov_i2r_b, mov_i2r_b, mov_i2r_b, mov_i2r_b,

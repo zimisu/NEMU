@@ -10,23 +10,18 @@
 
 static void do_execute()
 {
-	uint32_t result = op_src->val & op_src->val;
+	DATA_TYPE_S result = op_src->val & op_src->val;
 	if (DATA_BYTE == 2) result &= 0xffff;
-	//printf("test_ result= %x\n", result);
 	cpu.EFLAGS.ZF = (result == 0);
-	//printf("zf = %x\n", cpu.EFLAGS.ZF);
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
-	cpu.EFLAGS.SF = (result >> 31) & 1;
-	uint32_t tmp = result;
-	tmp = tmp & (tmp << 16);
-	tmp = tmp & (tmp << 8);
-	tmp = tmp & (tmp << 4);
-	tmp = tmp & (tmp << 2);
-	tmp = tmp & (tmp << 1);
-	cpu.EFLAGS.PF = (tmp >> 31) & 1;
-		print_asm_template2();
+	cpu.EFLAGS.SF = MSB(result);
+	cpu.EFLAGS.PF = get_pf(result);
+	print_asm_template2();
 }
 
-make_instr_helper(rm)
+make_instr_helper(i2a)
+make_instr_helper(i2rm)
+make_instr_helper(r2rm)
+
 
 #include "cpu/exec/template-end.h"
