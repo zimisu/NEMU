@@ -35,7 +35,9 @@ make_instr_helper(si)
 /*----------------------------------------------------*/
 #define instr jle
 static void do_execute() 
-{
+{	
+	printf("cf:%d zf:%d sf:%d of:%d\n", 
+			cpu.EFLAGS.CF, cpu.EFLAGS.ZF, cpu.EFLAGS.SF, cpu.EFLAGS.OF);
 	get_new_eip()
 	if (cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.SF != cpu.EFLAGS.OF)
 		cpu.eip = new_eip;
