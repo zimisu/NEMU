@@ -6,10 +6,15 @@
  ************************************************************************/
 
 #include "cpu/exec/helper.h"
-//#include "cpu/helper.h"
 #include "memory/memory.h"
 
-/*
+#define instr push
+
+
+#define DATA_BYTE 1
+#include "push-template.h"
+#undef DATA_BYTE
+
 #define DATA_BYTE 2
 #include "push-template.h"
 #undef DATA_BYTE
@@ -17,8 +22,12 @@
 #define DATA_BYTE 4
 #include "push-template.h"
 #undef DATA_BYTE
-*/
-#define instr push
+
+make_helper_v(push_r)
+make_helper_v(push_rm)
+make_helper_v(push_i)
+
+/*
 #define SUFFIX l
 make_helper(push)
 {
@@ -32,5 +41,5 @@ make_helper(push)
 	print_asm("push %%%s", regsl[ops_decoded.opcode & 7]);
 	return 1;
 }
-#undef SUFFIX
+#undef SUFFIX*/
 
