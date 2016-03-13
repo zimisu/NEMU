@@ -8,7 +8,7 @@
 
 
 #define instr call
-/*
+
 static void do_execute()
 {
 	cpu.esp -= 4;
@@ -17,13 +17,13 @@ static void do_execute()
 	if (op_src->type == OP_TYPE_IMM)
 		cpu.eip += op_src->val;
 	else
-		cpu.eip = op_src->val - get_instr_len() - 1;
+		cpu.eip = op_src->val - get_instr_len();
 	//if (DATA_BYTE == 2) cpu.eip &= 0xffff;
 
 	print_asm("call 0x%x", cpu.eip + get_instr_len());
 	//print_asm_template1();
-}*/
-
+}
+/*
 static void do_execute() {
 	int len = get_instr_len();
 	cpu.esp -= 4;
@@ -36,7 +36,7 @@ static void do_execute() {
 	}
 	print_asm_template1();
 }
-
+*/
 
 make_instr_helper(si);
 make_instr_helper(rm);
