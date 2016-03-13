@@ -4,16 +4,20 @@
     > Mail: 14307130198@fudan.edu.cn
     > Created Time: 2015年12月04日 星期五 17时29分35秒
  ************************************************************************/
-
 #include "cpu/exec/template-start.h"
 
 #define instr ret
-/*
-static void do_execute(){
-	cpu.eip = swaddr_read(esp, 4);
-	cpu.esp += 4;
-	print_asm_template1();
+
+static void do_execute() {
+	uint32_t result = swaddr_read(cpu.esp, 4);
+	cpu.esp += 4 + op_src->val;
+	cpu.eip = result;
+	if(op_src->val == 0) print_asm("ret"); 
+	else print_asm_template1();
+	
 }
-*/
+
+make_instr_helper(none)
+make_instr_helper(i)
 
 #include "cpu/exec/template-end.h"
