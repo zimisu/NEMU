@@ -55,7 +55,7 @@ clean: clean-cpp
 #--- Makefile
 #+++ Makefile
 #@@ -55,2 +55,2 @@
-USERPROG := obj/testcase/add-longlong
+USERPROG := obj/testcase/my_fib
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
