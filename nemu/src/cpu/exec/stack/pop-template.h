@@ -4,9 +4,9 @@
 static void do_execute()
 {
     int val = cpu.esp;
-	printf("%d %d   ", cpu.esp, DATA_BYTE);
+	//printf("%d %d   ", cpu.esp, DATA_BYTE);
     cpu.esp += DATA_BYTE;
-	printf("%d \n\n", cpu.esp);
+	//printf("%d \n\n", cpu.esp);
 	//int opcode = instr_fetch(cpu.eip, 1);
 	//if (opcode == 0x8f)
 	//{
