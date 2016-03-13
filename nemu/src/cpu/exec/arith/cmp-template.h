@@ -21,11 +21,11 @@ static void do_execute()
 	//cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
     //printf("%d%d%d\n", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
-    printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
     //printf("ZF:%d CF:%d SF:%d\n%", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 
 	cpu.EFLAGS.PF = get_pf(ans);
+    printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
 	print_asm_template2();
 }

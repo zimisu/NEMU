@@ -17,7 +17,6 @@ static void do_execute(){
    // printf("%x %x %x\n", a, b, ans);
 	
 	OPERAND_W(op_dest, ans);
-    printf("0x%x 0x%x a+b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
 	cpu.EFLAGS.CF = ((-b) > a);
 	cpu.EFLAGS.ZF = (ans == 0);
@@ -26,6 +25,7 @@ static void do_execute(){
 
 	cpu.EFLAGS.PF = get_pf(ans);
 
+    printf("0x%x 0x%x a+b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
 	print_asm_template2();
 }
