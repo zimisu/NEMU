@@ -22,7 +22,7 @@ static void do_execute()
 	cpu.EFLAGS.SF = MSB(ans);
 
 	cpu.EFLAGS.PF = get_pf(ans);
-    //printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
+    printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
 	print_asm_template2();
 }
