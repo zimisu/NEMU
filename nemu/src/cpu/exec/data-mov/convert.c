@@ -12,6 +12,7 @@ make_helper(cvt)
     {
         if (cpu.eax & 0x80000000)
             cpu.edx = 0xffffffff;
+		else cpu.edx = 0;
     }
     
     print_asm("cwd/cdq");
