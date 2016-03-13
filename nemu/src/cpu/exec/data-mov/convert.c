@@ -4,13 +4,13 @@ make_helper(cvt)
 {
     if (ops_decoded.is_data_size_16)
     {
-        if (cpu.ax & 0x1000) cpu.dx = 0xffff;
+        if (cpu.ax & 0x8000) cpu.dx = 0xffff;
         else cpu.dx = 0;
         
     } 
     else 
     {
-        if (cpu.eax & 0x1000)
+        if (cpu.eax & 0x80000000)
             cpu.edx = 0xffffffff;
     }
     
