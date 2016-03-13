@@ -29,6 +29,7 @@
 #include "logic/shrd.h"
 
 #include "string/rep.h"
+#include "string/movs.h"
 
 #include "jmp/jcc.h"
 #include "jmp/jmp.h"
