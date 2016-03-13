@@ -13,11 +13,12 @@ int cal_fib(int a)
 
 int main()
 {
-    int i;
-    for (i = 0; i < len; i ++)
+    int i = 1;
+    nemu_assert(cal_fib(i) == fib[i]);
+    //for (i = 0; i < len; i ++)
         //if (cal_fib(i) != fib[i])
           //  printf("error\n");
-        nemu_assert(cal_fib(i) == fib[i]);
+        //nemu_assert(cal_fib(i) == fib[i]);
 
     nemu_assert(i == len);
 
