@@ -10,6 +10,7 @@ static void do_execute() {
 #else
 	a = ((int64_t)REG(R_EDX) << (DATA_BYTE * 8)) | REG(R_EAX);
 #endif
+	printf("a=%lx b=%x  a/b=%lx  a%%b= %lx\n", a, b, a / b, a % b);
 	REG(R_EAX) = a / b;
 	REG(R_EDX) = a % b;
 
