@@ -18,6 +18,7 @@ static void do_execute()
 	uint64_t tmp = (uint64_t)a - b;
 printf("%lx\n", tmp);
 	cpu.EFLAGS.CF = (tmp >> DATA_BYTE) & 1;
+printf("%d\n", cpu.EFLAGS.CF);
 	//cpu.EFLAGS.CF = (a < b);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);
