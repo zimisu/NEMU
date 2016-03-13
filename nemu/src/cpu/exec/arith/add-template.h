@@ -19,7 +19,7 @@ static void do_execute(){
 	OPERAND_W(op_dest, ans);
     printf("a = %x, b = %x, a + b = %x, CF = %d\n", a, b,
             ans, cpu.EFLAGS.CF);
-	cpu.EFLAGS.CF = (b > a);
+	cpu.EFLAGS.CF = (b < a);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == MSB(b) && MSB(a) != MSB(ans);
 	cpu.EFLAGS.SF = MSB(ans);
