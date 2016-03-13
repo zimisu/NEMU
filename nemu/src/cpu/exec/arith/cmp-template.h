@@ -11,9 +11,9 @@
 static void do_execute()
 {
 	//int bits = DATA_BYTE << 3;
-	DATA_TYPE a = op_dest->val;
-	DATA_TYPE b = op_src->val;
-	DATA_TYPE ans = a - b;
+	DATA_TYPE_S a = op_dest->val;
+	DATA_TYPE_S b = op_src->val;
+	DATA_TYPE_S ans = a - b;
 	
 	uint64_t tmp = (uint64_t)a - b;
 	cpu.EFLAGS.CF = (tmp >> 8 * DATA_BYTE) & 1;
