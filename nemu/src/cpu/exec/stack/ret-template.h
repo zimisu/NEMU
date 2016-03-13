@@ -13,12 +13,12 @@ static void do_execute() {
 	cpu.esp += 4 + op_src->val;
 	cpu.eip = result;
 	if(op_src->val == 0) 
+		print_asm("ret");
+	else 
 	{
 		cpu.eip -= 1;
-		print_asm("ret");
-	} 
-	else print_asm_template1();
-	
+		print_asm_template1();
+	}	
 }
 
 make_instr_helper(none)
