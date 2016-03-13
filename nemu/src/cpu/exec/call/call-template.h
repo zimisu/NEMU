@@ -11,14 +11,13 @@
 static void do_execute()
 {
 	cpu.esp -= 4;
-	swaddr_write(reg_l(R_ESP), 4, cpu.eip + DATA_BYTE + 1);
-//	MEM_W(cpu.esp, cpu.eip + DATA_BYTE);
+	swaddr_write(cpu.esp, 4, cpu.eip + get_instr_len());
 
-#if DATA_BYTE == 2
-	cpu.eip = (cpu.eip + op_src->val) & 0xffff;
-#elif DATA_BYTE == 4
-	cpu.eip = cpu.eip + op_src->val;
-#endif
+	if (op_src->type == OP_TYPE_IMM)
+		cpu.eip += op_src->val;
+	else
+		cpu.eip = op_src->val - get_instr_len();
+	if (DATA_BYTE == 2) cpu.eip &= 0xffff;
 	print_asm("call 0x%x", cpu.eip + 1 + DATA_BYTE);
 	//print_asm_template1();
 }
