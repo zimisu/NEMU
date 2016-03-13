@@ -1,5 +1,5 @@
-//#include "trap.h"
-#include <stdio.h>
+#include "trap.h"
+//#include <stdio.h>
 
 int f(int i)
 {
@@ -14,10 +14,10 @@ int f(int i)
 int main()
 {
     //int i = 0;
-    //nemu_assert(f(-1) == 0);
-        //for (i = 1; i < 6; i++)
+    nemu_assert(f(-1) == 0);
+    //for (i = 1; i < 6; i++)
         //nemu_assert(f(i) == i / 2);
-    //HIT_GOOD_TRAP;
-    printf("%d %d\n", f(0), f(-1));
+    HIT_GOOD_TRAP;
+    //printf("%d %d\n", f(0), f(-1));
     return 0;
 }
