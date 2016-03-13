@@ -15,7 +15,7 @@ int cal_fib(int a)
 
 int main()
 {
-    int i = 5;
+    int i = 2;
     nemu_assert(cal_fib(i) == fib[i]);
     //for (i = 0; i < len; i ++)
         //if (cal_fib(i) != fib[i])
