@@ -16,9 +16,9 @@ static void do_execute()
 	DATA_TYPE_S ans = a - b;
 	
 	uint64_t tmp = (uint64_t)a - b;
-printf("%lx\n", tmp);
+//printf("%lx\n", tmp);
 	cpu.EFLAGS.CF = (tmp >> 8 * DATA_BYTE) & 1;
-printf("%d\n", cpu.EFLAGS.CF);
+//printf("%d\n", cpu.EFLAGS.CF);
 	//cpu.EFLAGS.CF = (a < b);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);
