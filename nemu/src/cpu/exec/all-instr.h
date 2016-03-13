@@ -41,7 +41,9 @@
 
 #include "push/push.h"
 
-#include "test/test.h"
+#include "logic/test.h"
+
+#include "setcc/setcc.h"
 
 #include "stack/leave.h"
 #include "stack/ret.h"
