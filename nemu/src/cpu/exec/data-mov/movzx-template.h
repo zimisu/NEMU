@@ -4,7 +4,7 @@
 
 
 static void do_execute() {
-    uint32_t mask = 0;
+    uint32_t mask = 0xffffffff;
     if (op_src->size == 1)
        mask = 0xff;
     else if (op_src->size == 2)
