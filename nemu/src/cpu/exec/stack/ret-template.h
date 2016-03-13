@@ -14,7 +14,7 @@ static void do_execute() {
 	cpu.eip = result;
 	if(op_src->val == 0) 
 	{
-		cpu.eip -= 2;
+		cpu.eip -= 1;
 		print_asm("ret");
 	} 
 	else print_asm_template1();
