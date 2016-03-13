@@ -21,7 +21,7 @@ static void do_execute()
 	//cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
 	cpu.EFLAGS.SF = MSB(ans);
     //printf("%d%d%d\n", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
-    printf("%d %d a-b = %d CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
+    printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
     //printf("ZF:%d CF:%d SF:%d\n%", cpu.EFLAGS.ZF, cpu.EFLAGS.CF, cpu.EFLAGS.SF);
 
