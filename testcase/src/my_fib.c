@@ -8,7 +8,7 @@ int fib[] = {1, 1, 2, 3, 5, 8};
 int cal_fib(int a)
 {
     if (a == 0) return 0;
-    return cal_fib(a-1);
+    return cal_fib(a-1) + 1;
     //if (a == 0 || a == 1) return 1;
     //return cal_fib(a-1) + cal_fib(a-2);
 }
