@@ -15,8 +15,10 @@ make_helper(ret)
 	cpu.eip = swaddr_read(cpu.esp, 4);
 	cpu.esp += 4;
 	//print_asm_template1();
+	if (DATA_BYTE == 2) cpu.eip &= 0xffff;
 	print_asm("ret");
 	return 0;
 }
+#undef DATA_BYTE
 
 #include "cpu/exec/template-end.h"
