@@ -1,7 +1,7 @@
 #include "trap.h"
+//#include "stdio.h"
 
-
-int fib[] = {1, 1, 2};
+int fib[] = {1, 1, 2, 3, 5, 8};
 
 #define len sizeof(fib) / sizeof(int)
 
@@ -15,6 +15,8 @@ int main()
 {
     int i;
     for (i = 0; i < len; i ++)
+        //if (cal_fib(i) != fib[i])
+          //  printf("error\n");
         nemu_assert(cal_fib(i) == fib[i]);
 
     nemu_assert(i == len);
