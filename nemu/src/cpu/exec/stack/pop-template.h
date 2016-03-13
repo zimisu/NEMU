@@ -10,7 +10,7 @@ static void do_execute()
 	//int opcode = instr_fetch(cpu.eip, 1);
 	//if (opcode == 0x8f)
 	//{
-    	OPERAND_W(op_dest, val);
+    	OPERAND_W(op_src, val);
     	print_asm_template1();
 	/*} else 
 	if (opcode >= 0x58 && opcode < 0x58 + 8)
