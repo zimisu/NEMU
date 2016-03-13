@@ -55,7 +55,7 @@ clean: clean-cpp
 #--- Makefile
 #+++ Makefile
 #@@ -55,2 +55,2 @@
-USERPROG := obj/testcase/if-else
+USERPROG := obj/testcase/matrix-mul-small
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
