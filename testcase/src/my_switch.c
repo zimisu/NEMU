@@ -12,7 +12,7 @@ int f(int i)
 int main()
 {
     int i = 0;
-    for (i = 1; i < 2; i++)
+    for (i = 1; i < 6; i++)
         nemu_assert(f(i) == i / 2);
     HIT_GOOD_TRAP;
     return 0;
