@@ -16,7 +16,7 @@ static void do_execute() {
 		print_asm("ret");
 	else 
 	{
-		cpu.eip -= 2;
+		cpu.eip -= 3;
 		print_asm_template1();
 	}	
 }
