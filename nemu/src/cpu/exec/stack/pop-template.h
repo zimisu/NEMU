@@ -3,16 +3,18 @@
 
 static void do_execute()
 {
-   // int val = cpu.esp;
 	int val = swaddr_read(cpu.esp, DATA_BYTE);	
 	cpu.esp += DATA_BYTE;
-	//printf("%d \n\n", cpu.esp);
-	//int opcode = instr_fetch(cpu.eip, 1);
-	//if (opcode == 0x8f)
-	//{
+    OPERAND_W(op_src, val);
+    print_asm_template1();
+
+/*
+	int opcode = instr_fetch(cpu.eip, 1);
+	if (opcode == 0x8f)
+	{
     	OPERAND_W(op_src, val);
     	print_asm_template1();
-	/*} else 
+	} else 
 	if (opcode >= 0x58 && opcode < 0x58 + 8)
 	{
 		reg_l(opcode - 0x58) = val;
