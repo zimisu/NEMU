@@ -16,7 +16,7 @@ static void do_execute() {
 	} else {
 		cpu.eip = op_src->val - len - 1;
 	}
-	print_asm("jmp" str(SUFFIX) "%x\n", cpu.eip + len);
+	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + len);
 }
 
 
