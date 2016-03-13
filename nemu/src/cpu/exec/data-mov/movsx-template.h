@@ -4,10 +4,10 @@
 
 
 static void do_execute() {
-    uint32_t sign = (op_src->val >> (DATA_BYTE * 8 - 1)) & 1;
+    uint32_t sign = MSB(op_src->val);
     uint32_t mask = 0;
     if (op_src->size == 1 && op_dest->size == 2 && sign)
-       mask = 0xff00;
+      	mask = 0xff00;
     else if (op_src->size == 1 && op_dest->size == 4 && sign)
         mask = 0xffffff00;
     else if (op_src->size == 2 && op_dest->size == 4 && sign)
