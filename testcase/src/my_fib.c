@@ -7,14 +7,16 @@ int fib[] = {1, 1, 2, 3, 5, 8};
 
 int cal_fib(int a)
 {
-    if (a == 0 || a == 1) return 1;
-    return cal_fib(a-1) + cal_fib(a-2);
+    if (a == 0) return 0;
+    return cal_fib(a-1);
+    //if (a == 0 || a == 1) return 1;
+    //return cal_fib(a-1) + cal_fib(a-2);
 }
 
 int main()
 {
-    int i = 2;
-    nemu_assert(cal_fib(i) == fib[i]);
+    int i = 1;
+    nemu_assert(cal_fib(i) == i);
     //for (i = 0; i < len; i ++)
         //if (cal_fib(i) != fib[i])
           //  printf("error\n");
