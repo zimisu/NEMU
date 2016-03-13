@@ -182,7 +182,7 @@ make_instr_helper(si)
 static void do_execute() 
 {
 	get_new_eip()
-	if (cpu.EFLAGS.SF == 0)
+	if (cpu.EFLAGS.SF == 1)
 		cpu.eip = new_eip;
 	print_asm(str(instr) " $0x%x", new_eip + CODE_LEN);
 }
