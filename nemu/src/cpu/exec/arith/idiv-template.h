@@ -12,7 +12,8 @@ static void do_execute() {
 #endif
 	REG(R_EAX) = a / b;
 	REG(R_EDX) = a % b;
-
+	
+	printf("a=%lx b=%x a/b=%lx a%%b=%lx\n", a, b, a/b, a%b);
 	print_asm_template1();
 }
 
