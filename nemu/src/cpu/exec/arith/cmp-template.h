@@ -15,7 +15,9 @@ static void do_execute()
 	DATA_TYPE_S b = op_src->val;
 	DATA_TYPE_S ans = a - b;
 	
-	cpu.EFLAGS.CF = (a < b);
+	uint64_t tmp = (uint64_t)a - b;
+	cpu.EFLAGS.CF = (tmp & (1 << DATA_BYTE)) != 0;
+	//cpu.EFLAGS.CF = (a < b);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);
 	//cpu.EFLAGS.OF = (((a ^ b) & ans & b)>> (bits - 1)) & 1;
