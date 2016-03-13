@@ -18,7 +18,9 @@ static void do_execute(){
 	
 	OPERAND_W(op_dest, ans);
 
-	cpu.EFLAGS.CF = MSB(a) + MSB(b) > MSB(ans);
+	uint64_t tmp = (uint64_t)a + b;
+	cpu.EFLAGS.CF = (tmp & (1 << DATA_BYTE)) != 0;
+	//cpu.EFLAGS.CF = MSB(a) + MSB(b) > MSB(ans);
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == MSB(b) && MSB(a) != MSB(ans);
 	cpu.EFLAGS.SF = MSB(ans);
