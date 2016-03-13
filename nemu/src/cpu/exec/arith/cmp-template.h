@@ -18,10 +18,9 @@ static void do_execute()
 	//uint64_t tmp = (uint64_t)a - b;
 	//cpu.EFLAGS.CF = (tmp >> 8 * DATA_BYTE) & 1;
 	cpu.EFLAGS.CF = a < b;
-	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);
+	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.SF = MSB(ans);
-
 	cpu.EFLAGS.PF = get_pf(ans);
     //printf("0x%x 0x%x a-b = 0x%x CF=%d, OF=%d, ZF=%d\n", a, b, ans, cpu.EFLAGS.CF, cpu.EFLAGS.OF, cpu.EFLAGS.ZF);
 
