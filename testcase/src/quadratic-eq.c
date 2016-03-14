@@ -7,12 +7,12 @@ int main() {
 	FLOAT a = f2F(0.5);
 	FLOAT b = f2F(0.5);
 	FLOAT c = f2F(-0.5);
-	FLOAT a_plus_b = f2F(1.0);
-	nemu_assert(a + b == a_plus_b);
+	//FLOAT a_plus_b = f2F(1.0);
+	//nemu_assert(a + b == a_plus_b);
 	//set_bp();
-	nemu_assert(f2F(0.25) == F_mul_F(a, b));
+	//nemu_assert(f2F(0.25) == F_mul_F(a, b));
 	//set_bp();
-	nemu_assert(f2F(1.0) == Fabs(f2F(1.0)));
+	nemu_assert(f2F(1.0) == Fabs(f2F(-1.0)));
 	set_bp();
 	nemu_assert(f2F(1.0) == Fabs(-1.0) && Fabs(1.0) == f2F(5.4) - f2F(-3.6) - f2F(8.0));
 	set_bp();
