@@ -6,7 +6,8 @@
 static void do_execute() {
 	
 	uint32_t sign = 1 & (op_src->val >> ((op_src->size << 3) - 1));
-	printf("%d %d\n", op_src->type, op_dest->type);
+	printf("%d %d\n", op_src->type, op_src->type);		
+//printf("%d %d   %d %d\n", op_src->type, op_src->size, op_dest->type, op_dest->size);
     //uint32_t sign = MSB(op_src->val);
     uint32_t mask = 0;
     if (op_src->size == 1 && op_dest->size == 2 && sign)
