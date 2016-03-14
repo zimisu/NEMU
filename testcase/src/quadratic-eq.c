@@ -14,6 +14,8 @@ int main() {
 	set_bp();
 	nemu_assert(f2F(1) == F_div_F(a, b));
 	set_bp();
+	nemu_assert(f2F(1.0) == Fabs(-1.0) && Fabs(1.0) == f2F(5.4) - f2F(-3.6) - f2F(8.0));
+	set_bp();
 
 	FLOAT dt = F_mul_F(b, b) - F_mul_F(F_mul_int(a, 4), c);
 	FLOAT sqrt_dt = sqrt(dt);
