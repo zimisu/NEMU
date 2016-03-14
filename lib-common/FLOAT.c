@@ -1,6 +1,8 @@
 #include "FLOAT.h"
 
 typedef long long int64_t;
+typedef unsigned long long uint64_t
+typedef unsigned int uint32_t
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	int64_t res = (int64_t)a * (int64_t)b;	
@@ -29,6 +31,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	}
 	return ans;
 }
+
+
 
 FLOAT f2F(float a) {	
 	int i, m, e, s, ans;
