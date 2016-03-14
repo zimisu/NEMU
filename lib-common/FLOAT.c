@@ -30,9 +30,20 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	return ans;
 }
 
-FLOAT f2F(float a) {
-	//nemu_assert(0);
-	return (int)(a * (1 << 16));
+FLOAT f2F(float a) {	
+	int i, uf, m, e, s, ans;
+	uf = *(int*)&a;
+	m = uf & ((1 << 23) - 1);
+	e = ((uf >> 23) & ((1 << 8) - 1)) - 127;
+	s = uf >> 31;
+	ans = 1;
+	for(i = 1; i <= e + 16; ++ i) {
+		ans = (ans << 1) + ((m & (1 << 22)) >> 22);
+		if (ans < 0) return 0x80000000u;
+		m = m << 1;
+	}
+	if (s != 0) ans = (~ans) + 1;
+	return (FLOAT)(ans);
 }
 
 FLOAT Fabs(FLOAT a) {
