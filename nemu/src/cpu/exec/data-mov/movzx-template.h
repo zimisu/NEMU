@@ -5,9 +5,9 @@
 
 static void do_execute() {
     uint32_t mask = 0xffffffff;
-    if (DATA_BYTE == 1)
+    if (op_src->size == 1)
        mask = 0xff;
-    else if (DATA_BYTE == 2)
+    else if (op_src->size == 2)
         mask = 0xffff;
     OPERAND_W(op_dest, op_src->val & mask);
     
