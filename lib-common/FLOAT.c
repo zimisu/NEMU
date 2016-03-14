@@ -49,10 +49,10 @@ FLOAT f2F(float a) {
 	}
 	if (s != 0) ans = (~ans) + 1;
 	return (ans);*/
-    uint32_t af = *(uint32_t *)&a;
-    uint32_t sign = af >> 31;
-    int exp = (af >> 23) & 0xff;
-    uint32_t sig = af & 0x7fffff;
+    uint32_t f_uint = *(uint32_t *)&a;
+    uint32_t sign = f_uint >> 31;
+    int exp = (f_uint >> 23) & 0xff;
+    uint32_t sig = f_uint & 0x7fffff;
     if (exp != 0) sig += 1 << 23;
     exp -= 150;
     if (exp < -16) sig >>= -16 - exp;
