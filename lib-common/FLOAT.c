@@ -5,16 +5,16 @@ typedef unsigned long long uint64_t;
 typedef unsigned int uint32_t;
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-	int64_t res = (int64_t)a * (int64_t)b;	
+	uint64_t res = (uint64_t)a * (uint64_t)b;	
 	//nemu_assert(0);
 	return res >> 16;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-	unsigned int a00 = a << 16;
-	unsigned int a01 = a >> 16;
-	unsigned int a10 = a >> 31;
-	unsigned int a11 = a >> 31;
+	uint32_t a00 = a << 16;
+	uint32_t a01 = a >> 16;
+	uint32_t a10 = a >> 31;
+	uint32_t a11 = a >> 31;
 	int ans = 0, i;
 	for(i = 0; i < 64; ++i)
 	{
