@@ -61,9 +61,7 @@ FLOAT f2F(float a) {
 }
 
 FLOAT Fabs(FLOAT a) {
-	//nemu_assert(0);
-	if (a < 0) return -a;
-	return a;
+	return a < 0 ? -a : a;
 }
 
 FLOAT sqrt(FLOAT x) {
