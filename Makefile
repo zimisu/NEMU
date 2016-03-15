@@ -54,7 +54,7 @@ clean: clean-cpp
 #--- Makefile
 #+++ Makefile
 #@@ -55,2 +55,2 @@
-USERPROG := obj/testcase/matrix-mul
+USERPROG := obj/testcase/matrix-mul-small
 #USERPROG := obj/testcase/integral
 ENTRY := $(USERPROG)
 #ENTRY = $(kernel_BIN)
