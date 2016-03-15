@@ -11,10 +11,10 @@
 #define instr push
 
 static void do_execute() {
-//	int len;
-//	if(DATA_BYTE == 2) len = 2; else len = 4;
-	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, (int)op_src->val);
+	int len;
+	if(DATA_BYTE == 2) len = 2; else len = 4;
+	cpu.esp -= len;
+	swaddr_write(cpu.esp, len, op_src->val);
 	print_asm_template1();
 }
 
