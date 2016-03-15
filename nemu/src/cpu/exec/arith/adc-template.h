@@ -3,20 +3,14 @@
 #define instr adc
 
 static void do_execute(){
-	int bits = DATA_BYTE << 3;
-    int sign_bit = 1 << (bits - 1);
-	DATA_TYPE_S a = op_dest->val;
-	DATA_TYPE_S b = op_src->val;
-	DATA_TYPE_S ans = op_dest->val + op_src->val + cpu.EFLAGS.CF;
+	DATA_TYPE ans = op_dest->val + op_src->val + cpu.EFLAGS.CF;
 	
 	OPERAND_W(op_dest, ans);
-	cpu.EFLAGS.CF = ((a & sign_bit) || (b & sign_bit)) 
-        & ((~ans) & sign_bit);
-	cpu.EFLAGS.ZF = (ans == 0);
-	cpu.EFLAGS.OF = (((a ^ b) & ans & b) >> (bits - 1)) & 1;
-    cpu.EFLAGS.OF = ((a ^ b ^ ans) >> (bits - 1)) & 1;
+	if(ans < op_dest->val && op_src->val > 0) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
+	if(MSB(op_dest->val) == MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
+		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = MSB(ans);
- 
+ 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.PF = get_pf(ans);
 
 
