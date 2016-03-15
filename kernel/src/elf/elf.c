@@ -48,7 +48,7 @@ uint32_t loader() {
 	/* Load each program segment */
 	//panic("please implement me");
 	uint32_t ph_final = elf->e_phoff + elf->e_phnum * elf->e_phentsize;
-	set_bp();
+	set_bp();		
 	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += elf->e_phentsize ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
@@ -87,6 +87,6 @@ uint32_t loader() {
 
 	write_cr3(get_ucr3());
 #endif
-
+	nemu_assert(entry != 0);
 	return entry;
 }
