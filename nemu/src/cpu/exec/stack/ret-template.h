@@ -19,7 +19,7 @@ static void do_execute() {
 		cpu.eip -= 2;
 		print_asm_template1();
 	}	
-	cpu.eip -= 1;
+	//cpu.eip -= 1;
 }
 
 make_instr_helper(none)
