@@ -74,10 +74,9 @@ static void load_entry() {
 	assert(ret == 1);
 	fclose(fp);
 }
-	
 
 void init_EFLAGS()
-{	
+{
 	memset(&cpu.EFLAGS, 0, sizeof(cpu.EFLAGS));
 	cpu.EFLAGS.ONEF = 1;
 }
