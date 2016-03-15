@@ -8,15 +8,27 @@
 
 #define instr jmp
 
+#if DATA_BYTE == 1
+#define CODE_LEN 2
+#endif
+#if DATA_BYTE == 2
+#define CODE_LEN 4
+#endif
+#if DATA_BYTE == 4
+#define CODE_LEN 6
+#endif
+
 static void do_execute() {
-	int len = get_instr_len();
+	//int len = get_instr_len();
 	if(op_src->type == OP_TYPE_IMM) {
 		cpu.eip += op_src->val;
 	} else {
-		cpu.eip = op_src->val - len;
+		cpu.eip = op_src->val - CODE_LEN;
 	}
-	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + len);
+	if (DATA_BYTE == 2) cpu.eip &= 0xffff;	
+	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + CODE_LEN);
 }
+#undef CODE_LEN
 
 
 make_instr_helper(rm)
