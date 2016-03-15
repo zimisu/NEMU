@@ -57,8 +57,8 @@ uint32_t loader() {
 			extern uint32_t brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
-			set_bp();
 #endif
+			set_bp();
 		}
 		ph++;
 		set_bp();
