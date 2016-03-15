@@ -39,8 +39,9 @@ uint32_t loader() {
 	//Log("load %d times\n", count++);
 	
 	
+	set_bp();
 	count++;
-	//set_bp();
+	set_bp();
 	
 	
 
