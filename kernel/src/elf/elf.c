@@ -62,6 +62,7 @@ uint32_t loader() {
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
+			memset((void*)ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
 			//swaddr_write(ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
 
 
