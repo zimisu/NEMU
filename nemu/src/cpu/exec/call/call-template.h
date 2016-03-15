@@ -18,7 +18,7 @@ static void do_execute()
 		cpu.eip += op_src->val;
 	else
 		cpu.eip = op_src->val - get_instr_len();
-	printf("%d\n", cpu.eip);
+	//printf("%d\n", cpu.eip);
 	if (DATA_BYTE == 2) 
 		cpu.eip &= 0xffff;
 	print_asm("call $0x%x", cpu.eip + get_instr_len());
