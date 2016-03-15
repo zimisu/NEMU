@@ -115,6 +115,7 @@ uint32_t loader() {
 	elf = (void*)buf;
 	set_bp();
 	volatile uint32_t entry = elf->e_entry;
+	nemu_assert(entry != 0);
 	
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
@@ -124,7 +125,7 @@ uint32_t loader() {
 	/* Load each program segment */
 	//panic("please implement me");
 	int i;
-	ph = (void*)buf + elf->e_phoff;	
+	ph = ((void*)buf) + elf->e_phoff;	
 	for(i = 0; i < elf->e_phnum; i++) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
