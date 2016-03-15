@@ -23,7 +23,7 @@ static void do_execute() {
 	if(op_src->type == OP_TYPE_IMM) {
 		cpu.eip += op_src->val;
 	} else {
-		cpu.eip = op_src->val - CODE_LEN;
+		cpu.eip = op_src->val - CODE_LEN - 1;
 	}
 	if (DATA_BYTE == 2) cpu.eip &= 0xffff;	
 	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + CODE_LEN);
