@@ -48,12 +48,13 @@ int main()
         nemu_assert(b == mychar_to_int[i]);
         nemu_assert(c == mychar_to_int[i]);
     }
-    
+    set_bp();
     /* short to int */
     for (i = 0; i < myshort_len; i++) {
         unsigned short a = myshort[i];
         unsigned int b = a;
         nemu_assert(b == myshort_to_int[i]);
+        set_bp();
     }
     
     HIT_GOOD_TRAP;
