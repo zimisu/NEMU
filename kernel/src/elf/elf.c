@@ -127,7 +127,7 @@ uint32_t loader() {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
-			ramdisk_read((uint8_t*)(ph->p_vaddr), ph->p_offset, ph->p_filesz);
+			ramdisk_read((uint8_t*)(ph->p_vaddr), ELF_OFFSET_IN_DISK + ph->p_offset, ph->p_filesz);
 			 
 			memset((void*)ph->p_vaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
@@ -142,7 +142,7 @@ uint32_t loader() {
 		ph++;
 	}
 
-	volatile uint32_t entry = elf->e_entry;
+	//volatile uint32_t entry = elf->e_entry;
 
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
@@ -153,8 +153,8 @@ uint32_t loader() {
 
 	write_cr3(get_ucr3());
 #endif
-	return entry;
-	//return 0x800000;
+	//return entry;
+	return 0x800000;
 }
 
 
