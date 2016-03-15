@@ -35,6 +35,10 @@ uint32_t loader() {
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 	
+	static int count = 0;
+	//Log("load %d times\n", count++);
+	
+	count++;
 	set_bp();
 	
 	
