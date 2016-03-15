@@ -51,16 +51,18 @@ uint32_t loader() {
 	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += elf->e_phentsize ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
-
+			//ramdisk_read(uint8_t *buf, uint32_t offset, uint32_t len)
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
+			ramdisk_read((uint8_t*)(ph->p_vaddr), ph->p_offset, ph->p_filesz);
 			
 			 
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
+			//swaddr_write(ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
 
 
 #ifdef IA32_PAGE
