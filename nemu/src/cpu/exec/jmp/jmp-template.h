@@ -19,14 +19,14 @@
 #endif
 
 static void do_execute() {
-	//int len = get_instr_len();
+	int len = get_instr_len();
 	if(op_src->type == OP_TYPE_IMM) {
 		cpu.eip += op_src->val;
 	} else {
-		cpu.eip = op_src->val - CODE_LEN - 1;
+		cpu.eip = op_src->val - len;
 	}
 	if (DATA_BYTE == 2) cpu.eip &= 0xffff;	
-	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + CODE_LEN + 1);
+	print_asm("jmp" str(SUFFIX) " $%x\n", cpu.eip + len);
 }
 #undef CODE_LEN
 
