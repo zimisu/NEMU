@@ -35,16 +35,10 @@ uint32_t loader() {
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 	
-	//Log("load %d times\n", count++);
-	
-	
-	//set_bp();
-	//set_bp();
-	
-	
 
 	/* Load each program segment */
 	//panic("please implement me");
+	
 	uint32_t ph_final = elf->e_phoff + elf->e_phnum * elf->e_phentsize;
 	set_bp();		
 	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += 1 ) {
@@ -58,10 +52,7 @@ uint32_t loader() {
 			
 			 
 			 
-			/* TODO: zero the memory region 
-			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
-			 */
-			memset((void*)ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
+			//memset((void*)ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
 			//swaddr_write(ph->p_vaddr + ph->p_filesz, ph->p_memsz - ph->p_filesz, 0);
 
 
