@@ -9,7 +9,9 @@ static void do_execute() {
 	OPERAND_W(op_dest, ans);
 
 	cpu.EFLAGS.CF = op_dest->val < op_src->val + cpu.EFLAGS.CF;
-	cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);	
+	//cpu.EFLAGS.OF = MSB(a) == (MSB(b) ^ 1) && MSB(a) != MSB(ans);	
+	if(MSB(op_dest->val) != MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
+		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.SF = MSB(ans);
 	cpu.EFLAGS.PF = get_pf(ans);
