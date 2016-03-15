@@ -111,7 +111,7 @@ uint32_t loader() {
 #else
 	ramdisk_read(buf, ELF_OFFSET_IN_DISK, 4096);
 #endif
-
+	set_bp();
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
