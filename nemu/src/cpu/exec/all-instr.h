@@ -30,11 +30,10 @@
 
 #include "string/rep.h"
 #include "string/movs.h"
+#include "string/stos.h"
 
 #include "jmp/jcc.h"
 #include "jmp/jmp.h"
-//#include "jmp/jmp_rel.h"
-//#include "jmp/jmp_indrct.h"
 
 #include "misc/misc.h"
 #include "misc/flags.h"
