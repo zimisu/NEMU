@@ -35,12 +35,10 @@ uint32_t loader() {
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 	
-	static int count = 0;
 	//Log("load %d times\n", count++);
 	
 	
 	//set_bp();
-	count++;
 	//set_bp();
 	
 	
@@ -49,7 +47,7 @@ uint32_t loader() {
 	//panic("please implement me");
 	uint32_t ph_final = elf->e_phoff + elf->e_phnum * elf->e_phentsize;
 	set_bp();		
-	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += elf->e_phentsize ) {
+	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += 1 ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 			//ramdisk_read(uint8_t *buf, uint32_t offset, uint32_t len)
@@ -87,6 +85,6 @@ uint32_t loader() {
 
 	write_cr3(get_ucr3());
 #endif
-	nemu_assert(entry != 0);
+	//nemu_assert(entry != 0);
 	return entry;
 }
