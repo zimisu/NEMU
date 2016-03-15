@@ -49,7 +49,6 @@ uint32_t loader() {
 			
 
 			memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
-			set_bp();
 //			Log("%x %x %x %x", ph->p_vaddr, ph->p_filesz, ph->p_memsz, ph->p_vaddr + ph->p_filesz);
 			//memset((void *)hwaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
@@ -58,9 +57,11 @@ uint32_t loader() {
 			extern uint32_t brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
+			set_bp();
 #endif
 		}
 		ph++;
+		set_bp();
 	}
 
 	volatile uint32_t entry = elf->e_entry;
