@@ -39,9 +39,12 @@ uint32_t loader() {
 	/* Load each program segment */
 	//panic("please implement me");
 	
-	uint32_t ph_final = elf->e_phoff + elf->e_phnum * elf->e_phentsize;
+	//uint32_t ph_final = elf->e_phoff + elf->e_phnum * elf->e_phentsize;
 	set_bp();		
-	for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += 1 ) {
+	int i;
+	for (i = 0; i < elf->e_phnum; i++) {
+		ph = (void*)elf->e_phoff + i * elf->e_phentsize;	
+	//for(ph = (Elf32_Phdr *)elf->e_phoff; (uint32_t)ph < ph_final; ph += 1 ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 			//ramdisk_read(uint8_t *buf, uint32_t offset, uint32_t len)
@@ -65,7 +68,7 @@ uint32_t loader() {
 		}
 	}
 
-	volatile uint32_t entry = elf->e_entry;
+	volatile uint32_t entry = elf->e_entry	;
 
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
@@ -79,3 +82,16 @@ uint32_t loader() {
 	//nemu_assert(entry != 0);
 	return entry;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
