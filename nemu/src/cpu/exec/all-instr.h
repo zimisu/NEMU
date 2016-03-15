@@ -31,6 +31,7 @@
 #include "string/rep.h"
 #include "string/movs.h"
 #include "string/stos.h"
+#include "string/cmps.h"
 
 #include "jmp/jcc.h"
 #include "jmp/jmp.h"
