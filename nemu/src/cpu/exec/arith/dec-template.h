@@ -6,7 +6,7 @@ static void do_execute () {
 	DATA_TYPE result = op_src->val - 1;
 	OPERAND_W(op_src, result);
 
-	if(MSB(op_src->val) == 0 && MSB(result) != MSB(op_src->val))
+	if(MSB(op_src->val) == 1 && MSB(result) != MSB(op_src->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.ZF = result == 0;
 	cpu.EFLAGS.SF = MSB(result);
