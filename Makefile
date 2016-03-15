@@ -54,10 +54,10 @@ clean: clean-cpp
 #--- Makefile
 #+++ Makefile
 #@@ -55,2 +55,2 @@
-USERPROG := obj/testcase/string
+USERPROG := obj/testcase/add-longlong
 #USERPROG := obj/testcase/integral
 ENTRY := $(USERPROG)
-#ENTRY = $(kernel_BIN)
+#ENTRY = $(kernel_BIN)		
 
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
