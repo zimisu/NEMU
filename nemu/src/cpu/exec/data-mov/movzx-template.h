@@ -3,7 +3,7 @@
 #define instr movzb
 static void do_execute() {
 	printf("%d  %d\n", (int)op_src->size, (int)op_dest->size);
-	printf("%d \n", (int)op_dest->reg);
+	printf("%d  %d\n", (int)op_src->reg, (int)op_dest->reg);
     uint32_t mask = 0xff;
     OPERAND_W(op_dest, op_src->val & mask);
     print_asm_template2();
