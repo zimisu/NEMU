@@ -41,10 +41,10 @@ uint32_t loader() {
 
 	int cnt;
 	/* Load each program segment */
+	ph = (void*)buf + elf->e_phoff;
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
 
-		ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
 		if(ph->p_type == PT_LOAD) {
 			
 
@@ -60,6 +60,7 @@ uint32_t loader() {
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 		}
+		ph++;
 	}
 
 	volatile uint32_t entry = elf->e_entry;
