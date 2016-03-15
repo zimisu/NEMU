@@ -37,6 +37,7 @@
 //#include "jmp/jmp_indrct.h"
 
 #include "misc/misc.h"
+#include "misc/flags.h"
 
 #include "special/special.h"
 
