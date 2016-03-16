@@ -45,7 +45,7 @@ uint32_t loader() {
 	set_bp();	
 	int size = sizeof(Elf32_Phdr);
 	set_bp();
-	size ++;
+	size ++;				
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
 
