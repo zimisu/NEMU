@@ -37,7 +37,7 @@ uint32_t loader() {
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
-	nemu_assert(*p_magic == elf_magic); 
+	nemu_assert(*p_magic == elf_magic);
 
 	int cnt;
 	/* Load each program segment */
@@ -52,10 +52,10 @@ uint32_t loader() {
 		if(ph->p_type == PT_LOAD) {
 			
 			//set_bp();
-			//ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
-			memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
+			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
+			//memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
 //			Log("%x %x %x %x", ph->p_vaddr, ph->p_filesz, ph->p_memsz, ph->p_vaddr + ph->p_filesz);
-			memset((void *)ph->p_vaddr				 + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
+			memset((void *)ph->p_vaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
