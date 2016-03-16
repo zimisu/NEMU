@@ -55,7 +55,7 @@ uint32_t loader() {
 			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
 			//memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
 //			Log("%x %x %x %x", ph->p_vaddr, ph->p_filesz, ph->p_memsz, ph->p_vaddr + ph->p_filesz);
-			memset((void *)buf + ph->p_offset + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
+			memset((void *)ph->p_vaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
