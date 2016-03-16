@@ -42,7 +42,7 @@ uint32_t loader() {
 	int cnt;
 	/* Load each program segment */
 	ph = (void*)buf + elf->e_phoff;
-	set_bp();
+	set_bp();				
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
 
@@ -61,6 +61,7 @@ uint32_t loader() {
 #endif
 			set_bp();		
 		}
+		set_bp();
 		ph++;
 		set_bp();
 	}
