@@ -4,6 +4,7 @@
 #include "data-mov/xchg.h"
 #include "data-mov/movsx.h"
 #include "data-mov/movzx.h"
+#include "data-mov/cmovcc.h"
 #include "data-mov/convert.h"
 
 #include "arith/dec.h"
