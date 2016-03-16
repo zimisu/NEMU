@@ -31,7 +31,7 @@ uint32_t loader() {
 #else
 	ramdisk_read(buf, ELF_OFFSET_IN_DISK, HEAD_SIZE);
 #endif
-	//set_bp();
+	set_bp();
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
@@ -42,9 +42,9 @@ uint32_t loader() {
 	int cnt;
 	/* Load each program segment */
 	ph = (void*)buf + elf->e_phoff;		
-	//set_bp();	
+	set_bp();	
 	int size = sizeof(Elf32_Phdr);
-	//set_bp();
+	set_bp();
 	size ++;				
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
@@ -62,7 +62,7 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-			//set_bp();		
+			set_bp();		
 		}
 		//set_bp();	
 		ph++;
