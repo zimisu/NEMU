@@ -14,6 +14,7 @@ void *sbrk(int incr) {
 }
 
 int main() {
+set_bp();
 	sprintf(buf, "%s", "Hello world!\n");
 set_bp();
 	int res = strcmp("1", "1");
