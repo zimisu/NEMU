@@ -61,7 +61,7 @@ uint32_t loader() {
 #endif
 			set_bp();		
 		}
-		set_bp();
+		set_bp();	
 		ph++;
 		set_bp();
 	}
