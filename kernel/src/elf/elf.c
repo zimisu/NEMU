@@ -52,8 +52,8 @@ uint32_t loader() {
 		if(ph->p_type == PT_LOAD) {
 			
 			//set_bp();
-			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
-			//memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
+			//ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
+			memcpy((void *)ph->p_vaddr, (void *)(buf) + ph->p_offset, ph->p_filesz);
 //			Log("%x %x %x %x", ph->p_vaddr, ph->p_filesz, ph->p_memsz, ph->p_vaddr + ph->p_filesz);
 			memset((void *)ph->p_vaddr				 + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
