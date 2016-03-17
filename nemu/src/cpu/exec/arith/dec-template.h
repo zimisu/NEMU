@@ -3,7 +3,7 @@
 #define instr dec
 
 static void do_execute () {
-	printf("%d %d\n", op_src->val, op_dest->val);
+	//printf("%d %d\n", op_src->val, op_dest->val);
 	DATA_TYPE result = op_src->val - 1;
 	OPERAND_W(op_src, result);
 
