@@ -14,7 +14,7 @@ static void do_execute(){
 	
 	OPERAND_W(op_dest, ans);
 	
-	cpu.EFLAGS.CF = (((uint64_t)op_dest->val + op_src->val) >> DATA_BYTE) & 1;
+	cpu.EFLAGS.CF = (((uint64_t)op_dest->val + op_src->val) >> DATA_BYTE * 8) & 1;
 	//if(ans < op_dest->val && op_src->val > 0) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
 	if(MSB(op_dest->val) == MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
