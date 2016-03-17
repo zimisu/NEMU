@@ -10,7 +10,7 @@
 
 static void do_execute()
 {
-	DATA_TYPE_S result = op_src->val & op_src->val;
+	DATA_TYPE result = op_src->val & op_src->val;
 	if (DATA_BYTE == 2) result &= 0xffff;
 	cpu.EFLAGS.ZF = (result == 0);
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;

@@ -7,7 +7,7 @@
 static void do_execute() 
 {
 	if (cpu.EFLAGS.CF == 0 && cpu.EFLAGS.ZF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -17,7 +17,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.CF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -27,7 +27,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.CF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -37,7 +37,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.CF || cpu.EFLAGS.ZF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -47,7 +47,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.ZF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -57,7 +57,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.ZF == 0 && cpu.EFLAGS.SF == cpu.EFLAGS.OF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -67,7 +67,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.SF == cpu.EFLAGS.OF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -77,7 +77,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.ZF || cpu.EFLAGS.SF != cpu.EFLAGS.OF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -87,7 +87,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.SF != cpu.EFLAGS.OF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -97,7 +97,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.ZF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -107,7 +107,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.OF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -117,7 +117,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.PF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -127,7 +127,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.SF == 0) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -137,7 +137,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.OF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -147,7 +147,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.PF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
@@ -157,7 +157,7 @@ make_instr_helper(rm)
 static void do_execute() 
 {
 	if (cpu.EFLAGS.SF) 
-		OPERAND_W(op_dest, 1);
+		OPERAND_W(op_src, 1);
 	print_asm_template1();
 }
 make_instr_helper(rm)
