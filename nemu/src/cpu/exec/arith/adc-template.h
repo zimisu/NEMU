@@ -10,7 +10,7 @@ static void do_execute(){
 	if(MSB(op_dest->val) == MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = MSB(ans);
- 	cpu.EFLAGS.ZF		 = (ans == 0);
+ 	cpu.EFLAGS.ZF = (ans == 0);
 	cpu.EFLAGS.PF = get_pf(ans);
 
 

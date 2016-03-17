@@ -13,8 +13,9 @@ static void do_execute(){
 	DATA_TYPE ans = op_dest->val + op_src->val;
 	
 	OPERAND_W(op_dest, ans);
-
-	if(ans < op_dest->val && op_src->val > 0) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
+	
+	cpu.EFLAGS.CF = (((uint64_t)op_dest->val + op_src->val) >> DATA_BYTE) & 1;
+	//if(ans < op_dest->val && op_src->val > 0) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
 	if(MSB(op_dest->val) == MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.ZF = (ans == 0);
