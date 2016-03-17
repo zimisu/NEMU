@@ -14,20 +14,20 @@ void *sbrk(int incr) {
 }
 
 int main() {
-set_bp();
+//set_bp();
 	sprintf(buf, "%s", "Hello world!\n");
-set_bp();
+//set_bp();
 	int res = strcmp("1", "1");
-set_bp();
+//set_bp();
 	nemu_assert(res == 0);
-set_bp();
+//set_bp();
 	sprintf(buf, "%d + %d = %d\n", 1, 1, 2);
 	nemu_assert(strcmp(buf, "1 + 1 = 2\n") == 0);
-set_bp();
+//set_bp();
 
 	sprintf(buf, "%d + %d = %d\n", 2, 10, 12);
 	nemu_assert(strcmp(buf, "2 + 10 = 12\n") == 0);
-set_bp();
+//set_bp();
 
 	HIT_GOOD_TRAP;
 	return 0;
