@@ -45,7 +45,7 @@ long long LLneg(long long x)
 
 int main()
 {
-    int n = 6;
+    int n = 1;
     long long a[] = {5, 6, 7, -5, -6, -7};
     long long b[] = {-5, -6, -7, 5, 6, 7};
     int i;
