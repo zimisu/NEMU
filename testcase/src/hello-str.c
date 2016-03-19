@@ -20,7 +20,7 @@ int main() {
 	int res = strcmp("1", "1");
 //set_bp();
 	nemu_assert(res == 0);
-//set_bp();
+set_bp();
 	sprintf(buf, "%d + %d = %d\n", 1, 1, 2);
 	nemu_assert(strcmp(buf, "1 + 1 = 2\n") == 0);
 //set_bp();
