@@ -4,5 +4,6 @@
 make_helper(cld);
 make_helper(clc);
 make_helper(cli);
+make_helper(std);
 
 #endif
