@@ -11,7 +11,6 @@
 static void do_execute()
 {
 	DATA_TYPE result = op_src->val & op_src->val;
-	if (DATA_BYTE == 2) result &= 0xffff;
 	cpu.EFLAGS.ZF = (result == 0);
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = MSB(result);
