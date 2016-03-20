@@ -5,8 +5,11 @@
 static void do_execute(){
 	DATA_TYPE ans = op_dest->val + op_src->val + cpu.EFLAGS.CF;
 	
-	OPERAND_W(op_dest, ans);
-	if(ans < op_dest->val) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
+	OPERAND_W(op_dest, ans);     
+	long long resultLL = (long long)op_dest->val + (long long)op_src->val + (long long) cpu.EFLAGS.CF;
+    if(resultLL >> (8 * DATA_BYTE)) cpu.EFLAGS.CF = 1;
+    else cpu.EFLAGS.CF = 0;
+	//if(ans < op_dest->val) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
 	if(MSB(op_dest->val) == MSB(op_src->val) && MSB(ans) != MSB(op_dest->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = MSB(ans);
