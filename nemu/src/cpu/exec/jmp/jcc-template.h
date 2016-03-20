@@ -7,7 +7,6 @@
 		if (DATA_BYTE == 1) CODE_LEN = 2; else\
 		if (DATA_BYTE == 2) CODE_LEN = 4; else\
 		if (DATA_BYTE == 4) CODE_LEN = 6;\
-		CODE_LEN = get_instr_len();\
 		int32_t new_eip = op_src->val + cpu.eip;\
        	if (DATA_BYTE == 2) new_eip &= 0xffff;
 
