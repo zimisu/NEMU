@@ -10,6 +10,11 @@
 #define instr add
 
 static void do_execute(){
+	if(op_src->type == OP_TYPE_IMM &&  op_src->size == 1 && op_src->val & 0x80)
+	{
+		op_src->val |= 0xffffff00;
+		if (DATA_BYTE == 2) op_src->val &= 0xffff;
+	}
 	DATA_TYPE ans = op_dest->val + op_src->val;
 	
 	OPERAND_W(op_dest, ans);
