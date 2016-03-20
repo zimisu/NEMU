@@ -55,7 +55,7 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #USERPROG := obj/testcase/if-else			
-USERPROG := obj/testcase/checkzero
+USERPROG := obj/testcase/cmovc
 #ENTRY := $(USERPROG)
 ENTRY = $(kernel_BIN)
 
