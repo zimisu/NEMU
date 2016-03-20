@@ -15,9 +15,11 @@ static void do_execute() {
 	//int bits = DATA_BYTE << 3;
 	if(op_src->type == OP_TYPE_IMM &&  op_src->size == 1 && op_src->val & 0x80)
 	{
-		printf("===============");
+		
+		printf("===============%x\n", op_src->val);
 		op_src->val |= 0xffffff00;
 		if (DATA_BYTE == 2) op_src->val &= 0xffff;
+		printf("===============%x\n", op_src->val);
 	}
 	DATA_TYPE a = op_dest->val;
 	DATA_TYPE b = op_src->val;
