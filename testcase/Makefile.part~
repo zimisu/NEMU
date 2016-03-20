@@ -20,7 +20,7 @@ $(testcase_OBJ_DIR)/mov: % : %.o
 	@objdump -d $@ > $@.txt
 ############## test .S cases ###################    
 testcase_BIN_SOBJS := $(filter-out obj/testcase/start, $(testcase_SOBJS:.o=))
-    $(testcase_BIN_SOBJS): % : %.o
-    	$(call make_command, $(LD), $(testcase_LDFLAGS), ld $@, $^)
-    	@objdump -d $@ > $@.txt
+$(testcase_BIN_SOBJS): % : %.o
+	$(call make_command, $(LD), $(testcase_LDFLAGS), ld $@, $^)
+	@objdump -d $@ > $@.txt
 #################################
