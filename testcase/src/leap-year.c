@@ -10,6 +10,7 @@ int main() {
 	int i;
 	for(i = 0; i < 125; i ++) {
 		nemu_assert(is_leap_year(i + 1890) == ans[i]);
+		set_bp();
 	}
 
 	HIT_GOOD_TRAP;
