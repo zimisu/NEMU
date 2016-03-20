@@ -10,7 +10,8 @@
 
 static void do_execute()
 {
-	DATA_TYPE result = op_src->val & op_src->val;
+	DATA_TYPE result = op_src->val & op_dest->val;
+	OPERAND_W(op_dest, result);
 	cpu.EFLAGS.ZF = (result == 0);
 	cpu.EFLAGS.CF = cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.SF = MSB(result);
