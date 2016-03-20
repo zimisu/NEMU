@@ -7,8 +7,8 @@ static void do_execute () {
 	OPERAND_W(op_src, result);
 
 	/* TODO: Update EFLAGS. */
-	//if(MSB(op_src->val) == 0 && MSB(result) != MSB(op_src->val))
-	if( MSB(result) != MSB(op_src->val))
+	if(MSB(op_src->val) == 0 && MSB(result) != MSB(op_src->val))
+	//if( MSB(result) != MSB(op_src->val))
 		cpu.EFLAGS.OF = 1; else cpu.EFLAGS.OF = 0;
 	cpu.EFLAGS.ZF = result == 0;
 	cpu.EFLAGS.SF = MSB(result);
