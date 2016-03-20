@@ -2,12 +2,12 @@
 
 #define instr sbb
 
-static void do_execute() {
+static void do_execute() {/*
 	if (op_src->size == 1 && op_dest->size > 1 && op_src->val & 0x80)
 	{
 		op_src->val |= 0xffffff00;
 		if (DATA_BYTE == 2) op_src->val &= 0xffff;
-	}
+	}*/
 		//op_src->val = (op_src->val << (DATA_BYTE * 8 - 8)) >> (DATA_BYTE * 8 - 8);
 	DATA_TYPE a = op_dest->val;
 	DATA_TYPE b = op_src->val;
