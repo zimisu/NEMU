@@ -55,7 +55,7 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #USERPROG := obj/testcase/if-else			
-USERPROG := obj/testcase/and_or_xor_test_cmp
+USERPROG := obj/testcase/bubble-sort
 #ENTRY := $(USERPROG)
 ENTRY = $(kernel_BIN)
 
