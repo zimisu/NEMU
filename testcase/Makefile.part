@@ -3,6 +3,8 @@ testcase_CFLAGS_EXTRA := -m32 -fno-builtin -fno-stack-protector \
 
 $(eval $(call make_common_rules,testcase,$(testcase_CFLAGS_EXTRA)))
 
+
+
 # redefine testcase_BIN
 testcase_BIN := $(testcase_COBJS:.o=)
 testcase_START_OBJ := $(testcase_OBJ_DIR)/start.o
@@ -16,3 +18,9 @@ $(testcase_BIN): % : $(testcase_START_OBJ) %.o $(FLOAT) $(NEWLIBC)
 $(testcase_OBJ_DIR)/mov: % : %.o
 	$(call make_command, $(LD), $(testcase_LDFLAGS), ld $@, $^)
 	@objdump -d $@ > $@.txt
+############## test .S cases ###################    
+testcase_BIN_SOBJS := $(filter-out obj/testcase/start, $(testcase_SOBJS:.o=))
+$(testcase_BIN_SOBJS): % : %.o
+	$(call make_command, $(LD), $(testcase_LDFLAGS), ld $@, $^)
+	@objdump -d $@ > $@.txt
+#################################
