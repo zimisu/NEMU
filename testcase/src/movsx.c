@@ -10,7 +10,6 @@ int main() {
 	A[3] = 3;
 	A[4] = 4;
 
-
 	b = A[3];
 	A[5] = b;
 	C[0] = 'a';
@@ -23,11 +22,8 @@ int main() {
 	A[0] = (int)C[1];
 	nemu_assert(A[1] == 1);
 	nemu_assert(A[2] == 2);
-
 	nemu_assert(A[3] == 3);
-
 	nemu_assert(A[4] == 4);
-
 	nemu_assert(b == 3);
 	nemu_assert(A[5] == 3);
 	nemu_assert(C[1] == 0xffffff80);

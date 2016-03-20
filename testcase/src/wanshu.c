@@ -18,7 +18,6 @@ int main() {
 		}
 	}
 
-	nemu_assert(n == 500);
 	nemu_assert(k == 3);
 
 	HIT_GOOD_TRAP;
