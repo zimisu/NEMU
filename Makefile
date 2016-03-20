@@ -55,9 +55,10 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #USERPROG := obj/testcase/if-else			
-USERPROG := obj/testcase/erfenfa
+USERPROG := obj/testcase/hello-str
 #ENTRY := $(USERPROG)
 ENTRY = $(kernel_BIN)
+
 
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
