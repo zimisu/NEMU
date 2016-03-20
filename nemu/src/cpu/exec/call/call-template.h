@@ -12,8 +12,8 @@
 static void do_execute()
 {
 	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, cpu.eip + get_instr_len());
-	//swaddr_write(cpu.esp, 4, cpu.eip + DATA_BYTE + 1);
+	//swaddr_write(cpu.esp, 4, cpu.eip + get_instr_len());
+	swaddr_write(cpu.esp, 4, cpu.eip + DATA_BYTE + 1);
 
 	if (op_src->type == OP_TYPE_IMM)
 		cpu.eip += op_src->val;
