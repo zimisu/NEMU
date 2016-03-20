@@ -3,8 +3,10 @@
 #define instr neg
 
 static void do_execute() {
+	cpu.EFLAGS.CF = op_src->val != 0;
 	DATA_TYPE result = -op_src->val;
 	OPERAND_W(op_src, result);
+	
 
 	/* There is no need to update EFLAGS, since no other instructions 
 	 * in PA will test the flags updated by this instruction.
