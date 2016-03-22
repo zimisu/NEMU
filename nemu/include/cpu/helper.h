@@ -10,7 +10,6 @@
 static inline uint32_t instr_fetch(swaddr_t addr, size_t len) {
 	return swaddr_read(addr, len);
 }
-static inline int alksjgdlkasd(){return 1;}
 
 static int len;
 /* Instruction Decode and EXecute */
