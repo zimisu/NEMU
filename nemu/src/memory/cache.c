@@ -8,6 +8,7 @@
 #define LEVEL I
 #include "cache-template.h"
 
+
 #define COL_WIDTH 6
 #define LINE_WIDTH 4
 #define SET_WIDTH 12
