@@ -1,4 +1,3 @@
-/*
 #define MAX_LEVEL II
 
 #define COL_WIDTH 6
@@ -28,4 +27,4 @@ uint32_t cache_read(hwaddr_t addr, size_t len) {
 
 void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
 	cache_write_I(addr, len, data);
-}*/
+}

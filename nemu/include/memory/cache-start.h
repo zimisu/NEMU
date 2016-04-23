@@ -7,7 +7,6 @@ typedef union {
 	uint32_t addr;
 } concat(cache_addr_, LEVEL);
 
-
 #define NR_COL (1 << COL_WIDTH)
 #define NR_LINE (1 << LINE_WIDTH)
 #define NR_SET (1 << SET_WIDTH)
