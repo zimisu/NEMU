@@ -3,7 +3,7 @@
 
 static void do_execute()
 {
-	int val = swaddr_read(cpu.esp, DATA_BYTE);	
+	int val = swaddr_read(cpu.esp, DATA_BYTE, R_SS);	
 	cpu.esp += DATA_BYTE;
     OPERAND_W(op_src, val);
     print_asm_template1();

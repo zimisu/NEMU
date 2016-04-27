@@ -7,8 +7,8 @@ static void do_execute() {
 	op_src->reg = R_ESI; 
 	op_dest->reg = R_EDI;
 	
-	op_src->val = swaddr_read(cpu.edi, DATA_BYTE);
-	op_dest->val = swaddr_read(cpu.esi, DATA_BYTE);
+	op_src->val = swaddr_read(cpu.edi, DATA_BYTE, R_ES);
+	op_dest->val = swaddr_read(cpu.esi, DATA_BYTE, R_DS);
 	
 	DATA_TYPE result = op_dest->val - op_src->val;
 	if(op_dest->val < op_src->val) cpu.EFLAGS.CF = 1; else cpu.EFLAGS.CF = 0;
