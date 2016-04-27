@@ -73,6 +73,47 @@ typedef struct {
 		uint8_t _8[2];
 	} gpr[8];//, eax, ecx, edx, ebx, esp, ebp, esi,;w edi;
 	/* Do NOT change the order of the GPRs' definitions. */
+	
+	struct {
+		lnaddr_t base;
+		size_t limit;
+	} GDTR;
+	
+	union {
+		struct {
+			CR0 _0;
+			CR0 _1;
+			CR0 _2;
+			CR3 _3;
+		};
+		uint32_t _[4];
+	} cr;
+	
+	
+	union {
+		union {
+			struct {
+				struct {
+					uint16_t rpl	:	2;
+					uint16_t ti		:	1;
+					uint16_t index	:	13;
+				};
+				SegDesc invi;
+			};
+			uint16_t _16;
+		} sr[4];
+		struct {
+			uint16_t es	:	16;
+			uint64_t	:	64;
+		   	uint16_t cs	:	16;
+			uint64_t	:	64;
+		    uint16_t ss	:	16;
+			uint64_t	:	64;
+			uint16_t ds	:	16;
+			uint64_t	:	64;
+		};
+	};
+	
 	swaddr_t eip;
 	EFLAGS_t EFLAGS;
 
@@ -91,6 +132,10 @@ static inline int check_reg_index(int index) {
 #define reg_w(index) (cpu.gpr[check_reg_index(index)]._16)
 #define reg_b(index) (cpu.gpr[check_reg_index(index) & 0x3]._8[index >> 2])
 
+static inline void init_reg() {
+	cpu.EFLAGS = 2;
+	cpu.cr._[0] = 0;
+}
 extern const char* regsl[];
 extern const char* regsw[];
 extern const char* regsb[];
