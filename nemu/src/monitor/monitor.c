@@ -13,7 +13,6 @@ void init_wp_list();
 void init_ddr3();
 void init_cache();
 
-
 FILE *log_fp = NULL;
 
 static void init_log() {
