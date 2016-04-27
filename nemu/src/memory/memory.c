@@ -1,4 +1,5 @@
 #include "common.h"
+#include "cpu/reg.h"
 
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
@@ -25,12 +26,14 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
 	hwaddr_write(addr, len, data);
 }
-
-uint32_t swaddr_read(swaddr_t addr, size_t len) {
+lnaddr_t seg_translate(swaddr_t, uint8_t);
+uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #ifdef DEBUG
 	assert(len == 1 || len == 2 || len == 4);
 #endif
-	return lnaddr_read(addr, len);
+	lnaddr_t lnaddr = addr;
+	if(cpu.cr._0.protect_enable == 1) lnaddr = seg_translate(addr, sreg);
+	return lnaddr_read(lnaddr, len);
 }
 
 void swaddr_write(swaddr_t addr, size_t len, uint32_t data) {
