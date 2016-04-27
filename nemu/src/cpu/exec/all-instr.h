@@ -7,6 +7,7 @@
 #include "data-mov/cmovcc.h"
 #include "data-mov/convert.h"
 #include "data-mov/lgdt.h"
+#include "data-mov/movsp.h"
 
 
 #include "arith/dec.h"
