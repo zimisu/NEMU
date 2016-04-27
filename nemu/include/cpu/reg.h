@@ -3,6 +3,10 @@
 
 
 #include "common.h"
+#include "../../lib-common/x86-inc/cpu.h"
+#include "../../lib-common/x86-inc/mmu.h"
+
+
 
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
@@ -15,28 +19,30 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
  * For more details about the register encoding scheme, see i386 manual.
  */
 
-
-typedef struct {
-	uint32_t CF : 1;
-	uint32_t ONEF: 1;
-	uint32_t PF : 1;
-	uint32_t    : 1;
-	uint32_t AF : 1;
-	uint32_t    : 1;
-	uint32_t ZF : 1;
-	uint32_t SF : 1;
-	uint32_t TF : 1;
-	uint32_t IF : 1;
-	uint32_t DF : 1;
-	uint32_t OF : 1;
-	uint32_t OL : 1;
-	uint32_t IP : 1;
-	uint32_t ND : 1;
-	uint32_t RF : 1;
-	uint32_t	: 1;
-	uint32_t VM : 1;
-	uint32_t	: 14;
-} EFLAGS_t;
+typedef union {
+	struct {
+		uint32_t CF : 1;
+		uint32_t ONEF: 1;
+		uint32_t PF : 1;	
+		uint32_t    : 1;	
+		uint32_t AF : 1;
+		uint32_t    : 1;
+		uint32_t ZF : 1;
+		uint32_t SF : 1;
+		uint32_t TF : 1;
+		uint32_t IF : 1;
+		uint32_t DF : 1;	
+		uint32_t OF : 1;
+		uint32_t OL : 1;
+		uint32_t IP : 1;
+		uint32_t ND : 1;
+		uint32_t RF : 1;
+		uint32_t	: 1;
+		uint32_t VM : 1;	
+		uint32_t	: 14;
+	};
+	uint32_t all_EFLAGS; 
+}EFLAGS_t;
 
 #define eax gpr[0]._32
 #define ecx gpr[1]._32
@@ -133,7 +139,7 @@ static inline int check_reg_index(int index) {
 #define reg_b(index) (cpu.gpr[check_reg_index(index) & 0x3]._8[index >> 2])
 
 static inline void init_reg() {
-	cpu.EFLAGS = 2;
+	cpu.EFLAGS.all_EFLAGS = 2;
 	cpu.cr._[0] = 0;
 }
 extern const char* regsl[];
