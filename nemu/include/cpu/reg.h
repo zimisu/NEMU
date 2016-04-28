@@ -107,11 +107,11 @@ typedef struct {
 				};
 				SegDesc invi;
 			};
-			struct
-			{
+			//struct
+			//{
 				uint16_t _16;
-				uint64_t value;
-			};
+			//	uint64_t value;
+			//};
 		} sr[4];
 		struct {
 			uint16_t es	:	16;
