@@ -13,8 +13,8 @@ void init_seg() {
 	segdesc->present = 1;
 	segdesc->base_31_24 = segdesc->base_23_16 = segdesc->base_15_0 = 0;
 	segdesc->limit_19_16 = segdesc->limit_15_0 = -1;
-	printf("R_CS:%d\n  es index:%d\n", R_CS, cpu.sr[1].index);
 	cpu.sr[R_CS].invi = *segdesc;
+	printf("R_CS:%d\n  es index:%d\n", R_CS, cpu.sr[1].index);
 	cpu.cr._[0] = cpu.cr._[3] = 0;
 	int i;
 	for (i = 0; i < 8; i++)
