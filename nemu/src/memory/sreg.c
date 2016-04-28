@@ -18,7 +18,7 @@ void init_seg() {
 	int i;
 	for (i = 0; i < 8; i++)
 		printf("%x\n", tmp[i]);
-	printf("--------------%x  %x\n", *(int*)segdesc, *((int*)segdesc) + 1);
+	//printf("--------------%x  %x\n", *(int*)segdesc, *((int*)segdesc) + 1);
 }
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
