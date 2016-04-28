@@ -9,7 +9,7 @@ uint32_t hwaddr_write(hwaddr_t, size_t, uint32_t);
 void init_seg() {	
 	uint8_t tmp[8];	
 	cpu.cs = 8;
-	printf("%d %d %d %d\n", cpu.sr[0]._16, cpu.sr[1]._16, cpu.sr[2]._16, cpu.sr[3]._16);
+	printf("%d %d %d %d----\n", cpu.sr[0]._16, cpu.sr[1]._16, cpu.sr[2]._16, cpu.sr[3]._16);
 	printf("%llu %llu %llu %llu\n", 
 		(unsigned long long)cpu.sr[0].value, 
 		(unsigned long long)cpu.sr[1].value, 
