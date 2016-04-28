@@ -26,6 +26,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	int result = (segdesc->base_31_24 << 24) + 
 		(segdesc->base_23_16 << 16) + 
 		segdesc->base_15_0 + addr;
+	printf("seg_translate: %x\n", result);	
 	return result;
 }
 
