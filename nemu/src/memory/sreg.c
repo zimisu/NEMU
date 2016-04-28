@@ -60,7 +60,7 @@ void load_sreg(uint32_t sreg) {
 		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
 
-	printf("sreg:%d\n", sreg);
+	//printf("sreg:%d\n", sreg);
 	for (i = 0; i < 8; i++)
 		printf("%x\n", tmp[i]);
 	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x  segdesc::0x%x %x", 
