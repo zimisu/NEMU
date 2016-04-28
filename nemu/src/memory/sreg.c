@@ -64,8 +64,9 @@ void load_sreg(uint32_t sreg) {
 	SegDesc *segdesc = (SegDesc*)tmp;
 
 	//printf("sreg:%d\n", sreg);
+	/*
 	for (i = 0; i < 8; i++)
-		printf("%x\n", tmp[i]);
+		printf("%x\n", tmp[i]);*/
 	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x  segdesc::0x%x %x", 
 		cpu.GDTR.base + cpu.sr[sreg].index * 8, *(int*)segdesc, *((int*)segdesc) + 1);
 	Assert(cpu.sr[sreg].index * 8 < (segdesc->limit_19_16 << 16) + segdesc->limit_15_0, "Segment overflow!");
