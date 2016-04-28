@@ -23,9 +23,10 @@ void init_seg() {
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	SegDesc *segdesc = &cpu.sr[sreg].invi;
-	return (segdesc->base_31_24 << 24) + 
+	int result = (segdesc->base_31_24 << 24) + 
 		(segdesc->base_23_16 << 16) + 
 		segdesc->base_15_0 + addr;
+	return result;
 }
 
 void load_sreg(uint32_t sreg) {
@@ -34,7 +35,7 @@ void load_sreg(uint32_t sreg) {
 	for(i = 0; i < 8; ++ i) 
 		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
-	
+
 	for (i = 0; i < 8; i++)
 		printf("%x\n", tmp[i]);
 	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x  segdesc::0x%x %x", cpu.GDTR.base + cpu.sr[sreg].index * 8, *(int*)segdesc, *((int*)segdesc) + 1);
