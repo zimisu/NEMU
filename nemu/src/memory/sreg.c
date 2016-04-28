@@ -9,6 +9,8 @@ uint32_t hwaddr_write(hwaddr_t, size_t, uint32_t);
 void init_seg() {	
 	uint8_t tmp[8];	
 	cpu.cs = 8;
+	printf("%d %d %d %d\n", cpu.sr[0]._16, cpu.sr[1]._16, cpu.sr[2]._16, cpu.sr[3]._16);
+	printf("%d %d %d %d\n", cpu.sr[0].index, cpu.sr[1].index, cpu.sr[2].index, cpu.sr[3].index);
 	printf("R_CS:%d\n  cs:%d  es index:%d\n", R_CS, cpu.cs, cpu.sr[R_CS].index);
 	SegDesc *segdesc = (SegDesc*)tmp;
 	segdesc->present = 1;
