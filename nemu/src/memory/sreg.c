@@ -30,7 +30,7 @@ void load_sreg(uint32_t sreg) {
 	for(i = 0; i < 8; ++ i) 
 		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
-	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x", cpu.GDTR.base + cpu.sr[sreg].index * 8);
+	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x  segdesc:0x%x%x", cpu.GDTR.base + cpu.sr[sreg].index * 8, *(int*)segdesc, *((int*)segdesc) + 1);
 	Assert(cpu.sr[sreg].index * 8 < (segdesc->limit_19_16 << 16) + segdesc->limit_15_0, "Segment overflow!");
 	cpu.sr[sreg].invi = *segdesc;
 }
