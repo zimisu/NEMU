@@ -21,9 +21,12 @@ void init_seg() {
 	segdesc->base_31_24 = segdesc->base_23_16 = segdesc->base_15_0 = 0;
 	segdesc->limit_19_16 = segdesc->limit_15_0 = -1;
 	cpu.sr[R_CS].invi = *segdesc;
-	printf("R_CS:%d\n  _16:%d  es index:%d\n", R_CS, cpu.sr[R_CS]._16, cpu.sr[R_CS].index);
+	printf("R_CS:%d\n  _16:%d  %d %d es index:%d\n", R_CS, cpu.sr[R_CS]._16, 
+		cpu.sr[R_CS].rpl, 
+		cpu.sr[R_CS].ti, 
+		cpu.sr[R_CS].index);
 
-	
+
 	printf("%d %d %d %d----\n", cpu.sr[0]._16, cpu.sr[1]._16, cpu.sr[2]._16, cpu.sr[3]._16);
 	printf("%llu %llu %llu %llu\n", 
 		(unsigned long long)cpu.sr[0].value, 
