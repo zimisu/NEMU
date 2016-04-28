@@ -57,7 +57,7 @@ void load_sreg(uint32_t sreg) {
 	uint8_t tmp[8]; 
 	int i;
 	for(i = 0; i < 8; ++ i) 
-		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index + i, 1);
+		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
 
 	printf("sreg:%d\n", sreg);
