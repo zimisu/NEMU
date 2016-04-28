@@ -2,6 +2,7 @@
 #include "burst.h"
 #include "rand.h"
 #include "misc.h"
+#include "stdio.h"
 
 #include "memory/cache-start.h"
 
@@ -56,7 +57,7 @@ void write_cache(uint32_t set, uint32_t line, uint32_t flag, uint32_t addr) {
 
 void cache_set_read(hwaddr_t addr, void *data) {
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
-
+	printf("cachecachecache\n");
 	cache_addr temp;
 	temp.addr = addr & ~BURST_MASK;
 	uint32_t col = temp.col;
