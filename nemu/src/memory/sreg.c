@@ -10,6 +10,11 @@ void init_seg() {
 	uint8_t tmp[8];	
 	cpu.cs = 8;
 	printf("%d %d %d %d\n", cpu.sr[0]._16, cpu.sr[1]._16, cpu.sr[2]._16, cpu.sr[3]._16);
+	printf("%llu %llu %llu %llu\n", 
+		(unsigned long long)cpu.sr[0].value, 
+		(unsigned long long)cpu.sr[1].value, 
+		(unsigned long long)cpu.sr[2].value, 
+		(unsigned long long)cpu.sr[3].value);
 	printf("R_CS:%d\n  cs:%d  es index:%d\n", R_CS, cpu.cs, cpu.sr[R_CS].index);
 	SegDesc *segdesc = (SegDesc*)tmp;
 	segdesc->present = 1;
