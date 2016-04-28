@@ -38,9 +38,12 @@ void init_seg() {
 		(unsigned long long)cpu.sr[3].value);
 		*/
 	cpu.cr._[0] = cpu.cr._[3] = 0;
+	/*
 	int i;
+	
 	for (i = 0; i < 8; i++)
 		printf("%x\n", tmp[i]);
+		*/
 	//printf("--------------%x  %x\n", *(int*)segdesc, *((int*)segdesc) + 1);
 }
 
@@ -49,7 +52,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	int result = (segdesc->base_31_24 << 24) + 
 		(segdesc->base_23_16 << 16) + 
 		segdesc->base_15_0 + addr;
-	printf("seg_translate: sreg:%d   %x\n", sreg, result);	
+	//printf("seg_translate: sreg:%d   %x\n", sreg, result);	
 	return result;
 }
 
