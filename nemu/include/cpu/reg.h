@@ -96,7 +96,6 @@ typedef struct {
 		uint32_t _[4];
 	} cr;
 	
-	
 	union {
 		union {
 			struct {
@@ -107,11 +106,15 @@ typedef struct {
 				};
 				SegDesc invi;
 			};
+			
 			struct
 			{
 				uint16_t _16;
+
+				// Something terrible will happend without this line!!!
 				uint64_t value;
 			};
+			//uint16_t _16;
 		} sr[4];
 		struct {
 			uint16_t es	:	16;
