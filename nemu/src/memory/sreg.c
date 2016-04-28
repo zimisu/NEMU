@@ -15,6 +15,7 @@ void init_seg() {
 	segdesc->limit_19_16 = segdesc->limit_15_0 = -1;
 	cpu.sr[R_SS].invi = *segdesc;
 	cpu.cr._[0] = cpu.cr._[3] = 0;
+	printf("%x  %x\n", *(int*)segdesc, *((int*)segdesc) + 1);
 }
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
