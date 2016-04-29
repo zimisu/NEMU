@@ -55,7 +55,7 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #USERPROG := obj/testcase/add
-USERPROG := obj/testcase/struct
+USERPROG := obj/testcase/add
 #ENTRY := $(USERPROG)
 ENTRY = $(kernel_BIN)
 
