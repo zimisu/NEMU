@@ -19,13 +19,43 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	cache_write(addr, len, data);
 }
 
+
+
+#define limit 0x1000
+hwaddr_t page_translate(lnaddr_t, uint32_t);
+
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
-	return hwaddr_read(addr, len);
+	//return hwaddr_read(addr, len);
+	hwaddr_t hwaddr;
+	if(cpu.cr._0.paging == 1) {
+//	hwaddr = page_translate(addr, len);
+
+		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
+		else {
+			uint32_t off = addr & 0xfff;
+//			printf("%x %d %x %d %d\n", addr, len, off, limit - off, len - limit + off);
+			hwaddr_t hwaddr2;
+			hwaddr = page_translate(addr, limit - off);
+			hwaddr2 = page_translate(addr + limit - off, len - limit + off);
+			return hwaddr_read(hwaddr, limit - off) + 
+				(hwaddr_read(hwaddr2, len - limit + off) << ((limit - off) * 8));
+		}
+	}
+		else hwaddr = addr;	
+	return hwaddr_read(hwaddr, len);
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
-	hwaddr_write(addr, len, data);
+	//hwaddr_write(addr, len, data);
+	hwaddr_t hwaddr;
+	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr, len);
+		else hwaddr = addr;
+	hwaddr_write(hwaddr, len, data);
 }
+
+
+
+
 lnaddr_t seg_translate(swaddr_t, uint8_t);
 
 uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
