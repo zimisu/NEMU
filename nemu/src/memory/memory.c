@@ -28,10 +28,10 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	//return hwaddr_read(addr, len);
 	hwaddr_t hwaddr;
 	if(cpu.cr._0.paging == 1) {
-			printf("hello=-==================\n");
 
 		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
 		else {
+			assert(0);
 			uint32_t off = addr & 0xfff;
 //			printf("%x %d %x %d %d\n", addr, len, off, limit - off, len - limit + off);
 			hwaddr_t hwaddr2;
