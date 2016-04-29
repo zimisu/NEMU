@@ -38,9 +38,8 @@ PTE page_read(lnaddr_t addr, uint32_t len) {
 
 hwaddr_t page_translate(lnaddr_t addr, uint32_t len) {
 	if(cr3 != cpu.cr._[3]) {
-		//init_tlb();
+		init_tlb();
 		cr3 = cpu.cr._[3];
-//		printf("^_^%x\n", cr3);
 	}
 	return tlb_read(addr, len);
 }
