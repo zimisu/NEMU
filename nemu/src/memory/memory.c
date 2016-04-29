@@ -26,9 +26,9 @@ hwaddr_t page_translate(lnaddr_t, uint32_t);
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	//return hwaddr_read(addr, len);
-			printf("hello=-==================\n");
 	hwaddr_t hwaddr;
 	if(cpu.cr._0.paging == 1) {
+			printf("hello=-==================\n");
 
 		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
 		else {
