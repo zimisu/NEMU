@@ -25,12 +25,12 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 hwaddr_t page_translate(lnaddr_t, uint32_t);
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
-	printf("%x\n", addr);
+	//printf("%x\n", addr);
 	//return hwaddr_read(addr, len);
 	hwaddr_t hwaddr;
-	if(cpu.cr._0.paging == 1) {
+	if (cpu.cr._0.paging == 1) {
 
-		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
+		if ((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
 		else {
 			assert(0);
 			uint32_t off = addr & 0xfff;
@@ -49,7 +49,7 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
 	//hwaddr_write(addr, len, data);
 	hwaddr_t hwaddr;
-	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr, len);
+	if (cpu.cr._0.paging == 1) hwaddr = page_translate(addr, len);
 		else hwaddr = addr;
 	hwaddr_write(hwaddr, len, data);
 }
@@ -65,10 +65,10 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #endif
 	lnaddr_t lnaddr = addr;
 	if (cpu.cr._0.protect_enable == 1) 
-		{
-			lnaddr = seg_translate(addr, sreg);
-			printf("-------\n%x\n", addr);
-		}
+	{
+		lnaddr = seg_translate(addr, sreg);
+		//printf("-------\n%x\n", addr);
+	}
 	return lnaddr_read(lnaddr, len);
 }
 
