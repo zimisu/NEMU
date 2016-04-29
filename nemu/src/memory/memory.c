@@ -37,12 +37,11 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 			hwaddr_t hwaddr2;
 			hwaddr = page_translate(addr, limit - off);
 			hwaddr2 = page_translate(addr + limit - off, len - limit + off);
-			hwaddr2 = 0;
+			//hwaddr2 = 0;
 			return hwaddr_read(hwaddr, limit - off) + 
 				(hwaddr_read(hwaddr2, len - limit + off) << ((limit - off) * 8));
 		}
-	}
-		else hwaddr = addr;	
+	} else hwaddr = addr;	
 	return hwaddr_read(hwaddr, len);
 }
 
