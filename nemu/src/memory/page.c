@@ -17,7 +17,7 @@ uint32_t hwaddr_read(lnaddr_t, size_t);
 hwaddr_t tlb_read(lnaddr_t, uint32_t);
 void init_tlb();
 
-PTE page_read(lnaddr_t addr, uint32_t len) {
+hwaddr_t page_read(lnaddr_t addr, uint32_t len) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
@@ -33,7 +33,8 @@ PTE page_read(lnaddr_t addr, uint32_t len) {
 			addr, dir_entry.page_frame, pg_tbl_entry.val);
 
 //	hwaddr_t hwaddr = (pg_tbl_entry.page_frame << 12) + lnaddr.offset;
-	return pg_tbl_entry;
+	//return pg_tbl_entry;
+	return (pg_tbl_entry.page_frame << 12) + lnaddr.offset;
 }
 
 hwaddr_t page_translate(lnaddr_t addr, uint32_t len) {
@@ -42,5 +43,6 @@ hwaddr_t page_translate(lnaddr_t addr, uint32_t len) {
 		init_tlb();
 		cr3 = cpu.cr._[3];
 	}
-	return tlb_read(addr, len);
+	return page_read(addr, len);
+	//return tlb_read(addr, len);
 }
