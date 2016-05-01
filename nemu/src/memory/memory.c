@@ -20,7 +20,6 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 }
 
 
-
 #define limit 0x1000
 hwaddr_t page_translate(lnaddr_t, uint32_t);
 
