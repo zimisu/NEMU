@@ -11,7 +11,7 @@
 
 static void do_execute(){
     cpu.esp = cpu.ebp;
-	cpu.ebp = swaddr_read(esp, 4);
+	cpu.ebp = swaddr_read(esp, 4, R_SS);
 	cpu.esp += 4;
 	print_asm_template1();
 }

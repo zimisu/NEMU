@@ -27,8 +27,8 @@ void printStackFrame()
 						tmpeip, strtab + symtab[i].st_name);
 				if (strcmp("main", strtab + symtab[i].st_name) == 0)
 					over = 1;
-				tmpeip = swaddr_read(tmpebp+4, 4);
-				tmpebp = swaddr_read(tmpebp,4);
+				tmpeip = swaddr_read(tmpebp+4, 4, R_SS);
+				tmpebp = swaddr_read(tmpebp,4, R_SS);
 				count++;
 				break;
 			}
