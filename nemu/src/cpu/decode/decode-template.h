@@ -14,6 +14,11 @@ make_helper(concat(decode_none_, SUFFIX))
 	op_src->size = op_dest->size = 0;	
 	return 0; 
 }
+make_helper(concat(decode_n_, SUFFIX)) {
+	op_src->val = op_dest->val = 0;
+	op_src->size = op_dest->size = DATA_BYTE;
+	return 0;
+}
 
 
 /* Ib, Iv */
