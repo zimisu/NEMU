@@ -10,6 +10,7 @@
 #include "data-mov/movsp.h"
 #include "data-mov/lidt.h"
 #include "data-mov/iret.h"
+#include "data-mov/cli.h"
 
 
 #include "arith/dec.h"
