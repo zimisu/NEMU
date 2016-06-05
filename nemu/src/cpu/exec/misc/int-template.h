@@ -9,6 +9,7 @@ static void do_execute() {
 	raise_intr(op_src->val);
 }
 
+
 make_instr_helper(i)
 
 #include "cpu/exec/template-end.h"
