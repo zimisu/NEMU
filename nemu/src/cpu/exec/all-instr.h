@@ -11,6 +11,8 @@
 #include "data-mov/lidt.h"
 #include "data-mov/iret.h"
 #include "data-mov/cli.h"
+#include "data-mov/pusha.h"
+#include "data-mov/popa.h"
 
 
 #include "arith/dec.h"
