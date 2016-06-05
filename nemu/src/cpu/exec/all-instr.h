@@ -8,6 +8,7 @@
 #include "data-mov/convert.h"
 #include "data-mov/lgdt.h"
 #include "data-mov/movsp.h"
+#include "data-mov/lidt.h"
 
 
 #include "arith/dec.h"
@@ -42,6 +43,7 @@
 
 #include "misc/misc.h"
 #include "misc/flags.h"
+#include "misc/int.h"
 
 #include "special/special.h"
 

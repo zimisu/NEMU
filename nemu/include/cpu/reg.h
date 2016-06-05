@@ -94,7 +94,11 @@ typedef struct {
 			CR3 _3;
 		};
 		uint32_t _[4];
-	} cr;
+	} cr;	
+	struct {
+		lnaddr_t base;
+		size_t limit;
+	} IDTR;
 	
 	union {
 		union {
