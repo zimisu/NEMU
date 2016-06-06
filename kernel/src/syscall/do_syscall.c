@@ -19,6 +19,7 @@ void do_syscall(TrapFrame *tf) {
 		 * very dangerous in a real operating system. Therefore such a 
 		 * system call never exists in GNU/Linux.
 		 */
+		 
 		case 0: 
 			cli();
 			add_irq_handle(tf->ebx, (void*)tf->ecx);
