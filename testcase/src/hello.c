@@ -17,7 +17,6 @@ int read(int fd, char *buf, int len) {
 	nemu_assert(0);
 	return 0;
 }
-
 int write(int fd, char *buf, int len) {
 	return syscall(__NR_write, fd, buf, len); 
 }
