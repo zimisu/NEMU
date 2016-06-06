@@ -5,7 +5,8 @@
 void raise_intr(uint8_t);
 
 static void do_execute() {
-	cpu.eip += get_instr_len();
+	cpu.eip += 2;
+	//get_instr_len();
 	raise_intr(op_src->val);
 }
 
