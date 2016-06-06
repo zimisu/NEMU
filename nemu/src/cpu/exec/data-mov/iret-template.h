@@ -13,7 +13,7 @@ static void do_execute() {
 	load_sreg(R_CS);
 
 	cpu.EFLAGS.all_EFLAGS = swaddr_read(cpu.esp, 4, R_SS);
-	cpu.esp += 4;
+	cpu.esp += 3;
 	printf("in iret: eip=%x\n", cpu.eip);
 	print_asm("iret");
 }
