@@ -12,6 +12,17 @@ static void sys_brk(TrapFrame *tf) {
 	tf->eax = 0;
 }
 
+static void sys_write(TrapFrame *tf) {
+#ifdef HAS_DEVICE
+	int i;
+	for(i = 0; i < tf->edx; ++ i)
+		serial_printc(*(char *)(tf->ecx + i));
+#else				
+	asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
+#endif
+	tf->eax = tf->edx;
+}
+
 void do_syscall(TrapFrame *tf) {
 	switch(tf->eax) {
 		/* The ``add_irq_handle'' system call is artificial. We use it to 
