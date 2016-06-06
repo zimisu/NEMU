@@ -55,7 +55,7 @@ clean: clean-cpp
 #+++ Makefile
 #@@ -55,2 +55,2 @@
 #USERPROG := obj/testcase/add
-USERPROG := obj/testcase/hello-inline-asm
+USERPROG := obj/testcase/hello
 #ENTRY := $(USERPROG)
 ENTRY = $(kernel_BIN)
 
