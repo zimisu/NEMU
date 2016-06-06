@@ -25,7 +25,7 @@ make_helper(inv) {
 }
 
 make_helper(nemu_trap) {
-	printf("~~~~~~~~~~~~~~~~~~~~~~~~~+++;\n");
+	printf("~~~~~~~~~~~~~~~~~~~~~~~~~+++;%d\n", cpu.eax);
 	print_asm("nemu trap (eax = %d)", cpu.eax);
 
 	int i;
