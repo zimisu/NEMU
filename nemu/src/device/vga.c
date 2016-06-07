@@ -72,7 +72,7 @@ void do_update_screen_graphic_mode() {
 }
 
 void update_screen() {
-	printf("------screen");
+	printf("------vga screen");
 	if(vmem_dirty) {
 		do_update_screen_graphic_mode();
 		vmem_dirty = false;
