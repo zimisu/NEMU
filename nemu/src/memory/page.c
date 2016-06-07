@@ -18,7 +18,7 @@ hwaddr_t tlb_read(lnaddr_t, uint32_t);
 void init_tlb();
 
 PTE page_read(lnaddr_t addr, uint32_t len) {
-	printf("in page_read: addr=%x\n", addr);
+	//printf("in page_read: addr=%x\n", addr);
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
