@@ -15,6 +15,7 @@
 #include "data-mov/popa.h"
 #include "data-mov/in.h"
 #include "data-mov/out.h"
+#include "data-mov/sti.h"
 
 
 #include "arith/dec.h"
