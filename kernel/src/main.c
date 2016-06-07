@@ -77,6 +77,7 @@ void init_cond() {
 	/* Write some test data to the video memory. */
 	Log("Hello, this is video_mapping_write_test!");
 	video_mapping_write_test();
+	Log("Hello, this is video_mapping_write_test finished!");
 #endif
 
 	Log("Hello, NEMU world before loader in kernel main.c!");
