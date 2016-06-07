@@ -60,7 +60,7 @@ void init_cond() {
 
 	/* Enable interrupts. */
 	sti();
-#endif
+#endif	Log("Hello, NEMU world0!");
 
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */

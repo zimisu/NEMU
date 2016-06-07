@@ -21,8 +21,6 @@ void create_video_mapping();
 uint32_t get_ucr3();
 
 uint32_t loader() {
-	while(1);
-	Log("hhelkkkkkkkkkkkkkl\n");
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
