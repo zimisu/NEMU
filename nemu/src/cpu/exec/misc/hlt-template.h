@@ -7,10 +7,10 @@
 static void do_execute() {
 //	cpu.eip --;
 	Assert(cpu.EFLAGS.IF == 1,"hlt!!");
-	//while(!cpu.INTR)
-		//{printf(".");}
-	//;
-	if (!cpu.INTR) cpu.eip--;
+	while(!cpu.INTR)
+		{printf("*");}
+	;
+	//if (!cpu.INTR) cpu.eip--;
 	print_asm("hlt");
 }
 
