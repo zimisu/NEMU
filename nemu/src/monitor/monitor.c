@@ -46,9 +46,11 @@ void init_monitor(int argc, char *argv[]) {
 	init_wp_list();
 
 #ifdef HAS_DEVICE
-	printf("HAS_DEVICE!!!!!!!!!!!!!!!!\n");
+	printf("HAS_DEVICE defined!!!!!!!!!!!!!!!!\n");
 	init_device();
 	init_sdl();
+#else
+	printf("HAS_DEVICE not defined!!!!!!!!!!!!!!\n");
 #endif
 	/* Display welcome message. */
 	welcome();
