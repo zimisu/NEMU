@@ -21,6 +21,7 @@ void create_video_mapping();
 uint32_t get_ucr3();
 
 uint32_t loader() {
+	set_bp();
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
@@ -84,7 +85,6 @@ uint32_t loader() {
 
 	volatile uint32_t entry = elf->e_entry;
 
-	set_bp();
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
 
