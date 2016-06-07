@@ -88,6 +88,7 @@ uint32_t loader() {
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
 
 #ifdef HAS_DEVICE
+	set_bp();
 	create_video_mapping();
 #endif
 	write_cr3(get_ucr3());
