@@ -26,7 +26,7 @@ void create_video_mapping() {
 		ptable->val = make_pte(pframe_addr);
 		ptable ++;
 	}*/
-	Log("this is create_video_mapping");
+	Log("hit create_video_mapping");
 	  PDE *updir = get_updir();
     PTE *ptable = (PTE *)va_to_pa(vptable);
     updir[0].val = make_pde(ptable);
