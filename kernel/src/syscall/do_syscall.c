@@ -45,7 +45,8 @@ void do_syscall(TrapFrame *tf) {
 			break;
 
 		case SYS_brk: /*panic("@@@");*/sys_brk(tf); break;
-		case SYS_write: sys_write(tf); break;
+		case SYS_write: sys_write(tf); break;/*
+
 		case SYS_open : 
 			tf->eax = fs_open((char *)tf->ebx, tf->ecx); break;
 		case SYS_read : 
@@ -53,7 +54,7 @@ void do_syscall(TrapFrame *tf) {
 			tf->eax = fs_read(tf->ebx, (void *)tf->ecx, tf->edx); break;
 		case SYS_lseek : tf->eax = fs_lseek(tf->ebx, tf->ecx, tf->edx); break;
 		case SYS_close : tf->eax = fs_close(tf->ebx); break;
-
+*/
 		/* TODO: Add more system calls. */
 
 		default: panic("Unhandled system call: id = %d", tf->eax);
