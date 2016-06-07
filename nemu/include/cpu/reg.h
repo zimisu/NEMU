@@ -131,7 +131,7 @@ typedef struct {
 			uint64_t	:	64;
 		};
 	};
-	
+	bool INTR;
 	swaddr_t eip;
 	EFLAGS_t EFLAGS;
 

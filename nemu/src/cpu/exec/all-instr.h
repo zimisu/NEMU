@@ -13,6 +13,8 @@
 #include "data-mov/cli.h"
 #include "data-mov/pusha.h"
 #include "data-mov/popa.h"
+#include "data-mov/in.h"
+#include "data-mov/out.h"
 
 
 #include "arith/dec.h"
@@ -48,6 +50,7 @@
 #include "misc/misc.h"
 #include "misc/flags.h"
 #include "misc/int.h"
+#include "misc/hlt.h"
 
 #include "special/special.h"
 

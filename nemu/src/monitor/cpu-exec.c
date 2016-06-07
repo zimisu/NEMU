@@ -12,13 +12,17 @@
 int nemu_state = STOP;
 
 int exec(swaddr_t);
-int check_wp();
+
+uint32_t i8259_query_intr();
+void i8259_ack_intr();
+void raise_intr(uint8_t/*, uint32_t*/);
 
 char assembly[80];
 char asm_buf[128];
 
 /* Used with exception handling. */
 jmp_buf jbuf;
+
 
 void print_bin_instr(swaddr_t eip, int len) {
 	int i;
@@ -36,6 +40,9 @@ void do_int3() {
 }
 
 /* Simulate how the CPU works. */
+
+extern void check_wp(int *nemu_state);
+
 void cpu_exec(volatile uint32_t n) {
 	if(nemu_state == END) {
 		printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
@@ -48,7 +55,6 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 	setjmp(jbuf);
-
 	for(; n > 0; n --) {
 #ifdef DEBUG
 		swaddr_t eip_temp = cpu.eip;
@@ -61,8 +67,8 @@ void cpu_exec(volatile uint32_t n) {
 		/* Execute one instruction, including instruction fetch,
 		 * instruction decode, and the actual execution. */
 		int instr_len = exec(cpu.eip);
-
 		cpu.eip += instr_len;
+		
 
 #ifdef DEBUG
 		print_bin_instr(eip_temp, instr_len);
@@ -74,10 +80,17 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-		if (check_wp() > 0) nemu_state = STOP;
-
+		
+		check_wp(&nemu_state);
 
 		if(nemu_state != RUNNING) { return; }
+		if(cpu.INTR & cpu.EFLAGS.IF) {
+			uint32_t intr_no = i8259_query_intr();
+//			printf("%d\n", intr_no);
+			i8259_ack_intr();
+			cpu.eip --;
+			raise_intr(intr_no/*, -1*/);
+		}
 	}
 
 	if(nemu_state == RUNNING) { nemu_state = STOP; }

@@ -13,19 +13,20 @@ static void sys_brk(TrapFrame *tf) {
 }
 
 static void sys_write(TrapFrame *tf) {
-	/*
+	
 #ifdef HAS_DEVICE
 	int i;
 	for(i = 0; i < tf->edx; ++ i)
 		serial_printc(*(char *)(tf->ecx + i));
 #else
-*/				
 	asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
-//#endif
+#endif
 	tf->eax = tf->edx;
 }
 
 void do_syscall(TrapFrame *tf) {
+	printf("HELLO!!!-------\n");
+	Log("HELLO!!!-------\n");
 	switch(tf->eax) {
 		/* The ``add_irq_handle'' system call is artificial. We use it to 
 		 * let user program register its interrupt handlers. But this is 
