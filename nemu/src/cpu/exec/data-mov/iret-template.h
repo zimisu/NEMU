@@ -14,7 +14,7 @@ static void do_execute() {
 
 	cpu.EFLAGS.all_EFLAGS = swaddr_read(cpu.esp, 4, R_SS);
 	cpu.esp += 4;
-	cpu.eip -= 1;
+	//cpu.eip -= 1;
 	printf("in iret: eip=%x\n", cpu.eip);
 	print_asm("iret");
 }
