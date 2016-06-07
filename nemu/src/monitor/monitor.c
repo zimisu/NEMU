@@ -1,5 +1,4 @@
 #include "nemu.h"
-#include "string.h"
 
 #define ENTRY_START 0x100000
 
@@ -12,7 +11,12 @@ void init_regex();
 void init_wp_list();
 void init_ddr3();
 void init_cache();
+void init_reg();
 void init_seg();
+#ifdef HAS_DEVICE
+void init_device();
+void init_sdl();
+#endif
 
 FILE *log_fp = NULL;
 
@@ -31,7 +35,7 @@ void init_monitor(int argc, char *argv[]) {
 
 	/* Open the log file. */
 	init_log();
-	//printf("---%s\n----%s\n", argv[0], argv[1]);
+
 	/* Load the string table and symbol table from the ELF file for future use. */
 	load_elf_tables(argc, argv);
 
@@ -41,6 +45,11 @@ void init_monitor(int argc, char *argv[]) {
 	/* Initialize the watchpoint link list. */
 	init_wp_list();
 
+#ifdef HAS_DEVICE
+	init_device();
+
+	init_sdl();
+#endif
 	/* Display welcome message. */
 	welcome();
 }
@@ -77,20 +86,12 @@ static void load_entry() {
 	fclose(fp);
 }
 
-void init_EFLAGS()
-{
-	memset(&cpu.EFLAGS, 0, sizeof(cpu.EFLAGS));
-	cpu.EFLAGS.ONEF = 1;
-}
-
 void restart() {
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
 #endif
-
-	init_EFLAGS();
 
 	/* Read the entry code into memory. */
 	load_entry();
@@ -99,10 +100,12 @@ void restart() {
 	cpu.eip = ENTRY_START;
 
 	/* Initialize DRAM. */
-	init_ddr3();	
-	
-	/* init cache and reg. */
+	init_ddr3();
+
+	/* Initialize cache. */
 	init_cache();
+
 	init_reg();
+
 	init_seg();
 }
