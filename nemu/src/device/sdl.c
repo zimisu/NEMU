@@ -23,6 +23,7 @@ extern void keyboard_intr();
 extern void update_screen();
 
 static void timer_sig_handler(int signum) {
+	printf("hit timer_sig_handler~~~~~~~~~~~\n");
 	jiffy ++;
 	timer_intr();
 
