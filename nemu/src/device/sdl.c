@@ -29,6 +29,7 @@ static void timer_sig_handler(int signum) {
 
 	device_update_flag = true;
 	if(jiffy % (TIMER_HZ / VGA_HZ) == 0) {
+		printf("update_screen_flag=true\n");
 		update_screen_flag = true;
 	}
 
@@ -37,6 +38,7 @@ static void timer_sig_handler(int signum) {
 }
 
 void device_update() {
+	printf("device_update hit!!!!!!!!!!!!!!");
 	if(!device_update_flag) {
 		return;
 	}
