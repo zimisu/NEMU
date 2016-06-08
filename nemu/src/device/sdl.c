@@ -25,13 +25,13 @@ extern void update_screen();
 void device_update();
 
 static void timer_sig_handler(int signum) {
-	printf("hit timer_sig_handler~~~~~~~~~~~\n");
+	//printf("hit timer_sig_handler~~~~~~~~~~~\n");
 	jiffy ++;
 	timer_intr();
 
 	device_update_flag = true;
 	if(jiffy % (TIMER_HZ / VGA_HZ) == 0) {
-		printf("update_screen_flag=true\n");
+		//printf("update_screen_flag=true\n");
 		update_screen_flag = true;
 		device_update();
 	}
@@ -41,7 +41,7 @@ static void timer_sig_handler(int signum) {
 }
 
 void device_update() {
-	printf("device_update hit!!!!!!!!!!!!!!");
+	//printf("device_update hit!!!!!!!!!!!!!!");
 	if(!device_update_flag) {
 		return;
 	}
