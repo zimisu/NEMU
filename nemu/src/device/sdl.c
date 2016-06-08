@@ -78,7 +78,7 @@ void sdl_clear_event_queue() {
 }
 
 void init_sdl() {
-	printf("init_sdl===========================\n");
+	//printf("init_sdl===========================\n");
 	int ret = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE);
 	Assert(ret == 0, "SDL_Init failed");
 
