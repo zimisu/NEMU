@@ -24,14 +24,13 @@ static void sys_write(TrapFrame *tf) {
 	int i;
 	for(i = 0; i < tf->edx; ++ i)
 		serial_printc(*(char *)(tf->ecx + i));
-#else
+#else				
 	asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
 #endif
 	tf->eax = tf->edx;
 }
 
 void do_syscall(TrapFrame *tf) {
-	//Log("-------------------HELLO-do_syscall-----------------------\n");
 	switch(tf->eax) {
 		/* The ``add_irq_handle'' system call is artificial. We use it to 
 		 * let user program register its interrupt handlers. But this is 
@@ -45,8 +44,8 @@ void do_syscall(TrapFrame *tf) {
 			break;
 
 		case SYS_brk: /*panic("@@@");*/sys_brk(tf); break;
-		case SYS_write: sys_write(tf); break;/*
-
+		case SYS_write: sys_write(tf); break;
+		/*
 		case SYS_open : 
 			tf->eax = fs_open((char *)tf->ebx, tf->ecx); break;
 		case SYS_read : 
@@ -60,3 +59,4 @@ void do_syscall(TrapFrame *tf) {
 		default: panic("Unhandled system call: id = %d", tf->eax);
 	}
 }
+
