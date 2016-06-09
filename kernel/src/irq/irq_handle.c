@@ -33,7 +33,7 @@ void irq_handle(TrapFrame *tf) {
 	 * to match the trap frame built during ``do_irq.S''. Remove the 
 	 * following line after you are done.
 	 */
-	//panic("Have you re-organized the ``TrapFrame'' structure?");
+//	panic("Have you re-organized the ``TrapFrame'' structure?");
 
 	int irq = tf->irq;
 
@@ -45,8 +45,6 @@ void irq_handle(TrapFrame *tf) {
 		panic("Unexpected exception #%d at eip = %x", irq, tf->eip);
 	} else if (irq >= 1000) {
 		int irq_id = irq - 1000;
-		if (irq_id >= NR_HARD_INTR)
-			Log("irq_id , NR_HARD_INTR: %x, %x", irq_id, NR_HARD_INTR);
 		assert(irq_id < NR_HARD_INTR);
 		struct IRQ_t *f = handles[irq_id];
 
