@@ -39,7 +39,12 @@ static const char ffo_table[] = {
 static void do_i8259() {
 	int8_t master_irq = master.highest_irq;
 	if(master_irq == NO_INTR) {
+		/* TODO: Uncomment the following line after the ``INTR'' member
+		 * is added to the CPU_state structure.
+		 */
 		cpu.INTR = false;
+//		printf("NOintr   ");
+//		panic("uncomment the line above");
 		return;
 	}
 	else if(master_irq == 2) {
@@ -48,8 +53,12 @@ static void do_i8259() {
 	}
 
 	intr_NO = master_irq + IRQ_BASE;
-	
+	/* TODO: Uncomment the following line after the ``INTR'' member
+	 * is added to the CPU_state structure.
+	 */
 	cpu.INTR = true;
+//	printf("intr   ");
+//	panic("uncomment the line above");
 }
 
 /* device interface */
