@@ -21,7 +21,7 @@ static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (v
 }
 
 static inline int get_instr_len() {
-	return len;
+	return len + 1;
 }
 
 /* shared by all helper function */
