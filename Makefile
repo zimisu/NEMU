@@ -10,7 +10,6 @@ LIB_COMMON_DIR := lib-common
 NEWLIBC_DIR := $(LIB_COMMON_DIR)/newlib
 NEWLIBC := $(NEWLIBC_DIR)/libc.a
 FLOAT := obj/$(LIB_COMMON_DIR)/FLOAT.a
-
 include config/Makefile.git
 include config/Makefile.build
 
@@ -49,18 +48,12 @@ clean: clean-cpp
 	-rm -rf obj 2> /dev/null
 	-rm -f *log.txt entry $(FLOAT) 2> /dev/null
 
-##### some convinient rules #####
 
-#--- Makefile
-#+++ Makefile
-#@@ -55,2 +55,2 @@
-#USERPROG := obj/testcase/add
+##### some convinient rules #####
 USERPROG := $(game_BIN)
 #USERPROG := obj/testcase/hello
 #ENTRY := $(USERPROG)
-ENTRY = $(kernel_BIN)
-
-
+ENTRY := $(kernel_BIN)
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
 
