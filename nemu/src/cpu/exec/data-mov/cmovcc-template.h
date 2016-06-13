@@ -54,7 +54,12 @@ exec_template;
 exec_template;
 #undef IF_COND
 #undef instr
-
+/*-------------------------------------------------------------*/
+#define instr cmovle
+#define IF_COND cpu.EFLAGS.ZF == 1 || cpu.EFLAGS.SF != cpu.EFLAGS.OF
+exec_template;
+#undef IF_COND
+#undef instr
 
 
 #include "cpu/exec/template-end.h"
