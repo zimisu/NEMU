@@ -79,6 +79,7 @@ void init_cond() {
 #endif
 	/* Load the program. */
 	uint32_t eip = loader();
+	Log("USERPROG entry: %x\n", eip);
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Read data in the video memory to check whether 
@@ -101,7 +102,6 @@ void init_cond() {
 	asm volatile("subl $16, %esp");
 
 	/* Here we go! */
-	//Log("USERPROG entry: %x\n", eip);
 	((void(*)(void))eip)();
 
 	panic("should not reach here");
