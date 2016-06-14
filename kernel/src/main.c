@@ -78,6 +78,7 @@ void init_cond() {
 	//video_mapping_write_test();
 #endif
 	/* Load the program. */
+	Log("Hello, NEMU world!");
 	uint32_t eip = loader();
 	Log("USERPROG entry:");
 	
