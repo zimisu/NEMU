@@ -80,6 +80,7 @@ void init_cond() {
 	/* Load the program. */
 	Log("Hello, NEMU world!");
 	uint32_t eip = loader();
+	Log("Hello, NEMU world!");
 	Log("USERPROG entry:");
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
