@@ -101,6 +101,7 @@ void init_cond() {
 	asm volatile("subl $16, %esp");
 
 	/* Here we go! */
+	Log("USERPROG entry: %x\n", eip);
 	((void(*)(void))eip)();
 
 	panic("should not reach here");
